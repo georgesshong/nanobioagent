@@ -1,0 +1,29 @@
+{
+    "Gene alias": {
+        "What is the official gene symbol of LMP10?": "PSMB10"
+    },
+    "Gene disease association": {
+        "What are genes related to Hemolytic anemia due to phosphofructokinase deficiency?": "PFKL"
+    },
+    "Gene location": {
+        "Which chromosome is FAM66D gene located on human genome?": "chr8"
+    },
+    "Human genome DNA aligment": {
+        "Align the DNA sequence to the human genome:ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACCCTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGTATTTCTCT": "chr15:91950805-91950932"
+    },
+    "Multi-species DNA aligment": {
+        "Which organism does the DNA sequence come from:AGGGGCAGCAAACACCGGGACACACCCATTCGTGCACTAATCAGAAACTTTTTTTTCTCAAATAATTCAAACAATCAAAATTGGTTTTTTCGAGCAAGGTGGGAAATTTTTCGAT": "worm"
+    },
+    "Gene name conversion": {
+        "Convert ENSG00000215251 to official gene symbol.": "FASTKD5"
+    },
+    "Protein-coding genes": {
+        "Is ATP5F1EP2 a protein-coding gene?": "NA"
+    },
+    "Gene SNP association": {
+        "Which gene is SNP rs1217074595 associated with?": "LINC01270"
+    },
+    "SNP location": {
+        "Which chromosome does SNP rs1430464868 locate on human genome?": "chr13"
+    }
+}

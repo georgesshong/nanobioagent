@@ -1,0 +1,183 @@
+{
+  "gene_alias": {
+    "description": "Gene alias",
+    "patterns": [
+      "official gene symbol",
+      "gene symbol of",
+      "official symbol",
+      "convert official symbol"
+    ],
+    "plan": "plan_esearch_efetch",
+    "answer_format": {
+      "type": "string"
+    }
+  },
+  "gene_location": {
+    "description": "Gene Location",
+    "patterns": [
+      "Which chromosome is gene located on human genome",
+      "chromosome location",
+      "chromosome located",
+      "genome location"
+    ],
+    "plan": "plan_esearch_esummary",
+    "answer_format": {
+      "type": "string",
+      "pattern": "^chr([1-9]|1[0-9]|2[0-3]|X|Y)$",
+      "description": "Chromosome location in format 'chr' followed by number (1-23) or X/Y"
+    }
+  },
+  "gene_snp_association": {
+    "description": "Gene SNP association",
+    "patterns": [
+      "Which gene is SNP rsXXXXXXXXXX associated with",
+      "gene SNP association",
+      "gene rsXXXXXXXXXX association"
+    ],
+    "plan": "plan_gene_snp_association",
+    "answer_format": {
+      "type": "string"
+    }
+  },
+  "gene_disease_association": {
+    "description": "Gene disease association",
+    "patterns": [
+      "What gene is related to disease",
+      "gene related to disease",
+      "gene associated to dystrophy",
+      "gene related to syndrome",
+      "gene related to deficiency",
+      "gene related to defect"
+    ],
+    "plan": "plan_esearch_esummary",
+    "answer_format": {
+      "type": "list",
+      "delimiter": ",",
+      "description": "A comma-separated list of gene symbols (e.g., GENE1, GENE2, GENE3)"
+    }
+  },
+  "protein-coding_genes": {
+    "description": "Protein-coding genes",
+    "patterns": [
+      "Is XXX a protein-coding gene",
+      "protein coding gene?",
+      "is protein coding",
+      "is pseudogene"
+    ],
+    "plan": "plan_esearch_esummary",
+    "answer_format": {
+      "type": "TRUE or NA"
+    }
+  },
+  "human_genome_dna_alignment": {
+    "description": "Human genome DNA alignment",
+    "patterns": [
+      "Align DNA sequence to human genome:[DNA sequence]",
+      "align dna human genome",
+      "location of dna in human genome",
+      "which human chromosome is this dna"
+    ],
+    "plan": "plan_blast_alignment",
+    "min_length_to_parse_answer": 25, 
+    "answer_format": {
+      "description": "Extract chromosome location with 'chr' followed by chromosome number/letter and the start and end position",
+      "format": "chrX:start-end",
+      "examples": [
+        "chr21:12702345-12702461",
+        "chr15:91950805-91950932", 
+        "chrX:71742848-71742983"
+      ],
+      "error_handling": {
+        "no_alignment_found": "No human chromosome alignment found",
+        "invalid_format": "Invalid chromosome format"
+      }
+    }
+  },
+  "multi-species_dna_alignment": {
+    "description": "Find out which organism / species the DNA sequence aligns to",
+    "patterns": [
+      "Which organism does the DNA sequence come from",
+      "Which organism does the DNA sequence come from:[DNA sequence]",
+      "organism DNA sequence",
+      "animal DNA sequence"
+    ],
+    "plan": "plan_blast_organism",
+    "answer_format": {
+      "type": "mapped_string",
+      "mapping": {
+        "Caenorhabditis elegans": "worm",
+        "Homo sapiens": "human",
+        "human": "human",
+        "Danio rerio": "zebrafish", 
+        "Zebrafish": "zebrafish",
+        "mouse": "mouse",
+        "Mus musculus": "mouse",
+        "Saccharomyces cerevisiae": "yeast",
+        "yeast": "yeast", 
+        "Rattus norvegicus": "rat",
+        "rat": "rat",
+        "Gallus gallus": "chicken",
+        "Meleagris gallopavo": "turkey",
+        "Cairina moschata": "duck",
+        "No significant similarity found": "No significant similarity found"
+      },
+      "description": "Species name from BLAST alignment. Convert known scientific names using the mapping provided. For unmapped species, return the scientific name as found in BLAST results."
+    }
+  },
+  "ism_sequence_optimization": {
+    "description": "ISM-powered sequence optimization to find critical bases",
+    "patterns": [
+      "find critical bases in",
+      "critical positions in sequence",
+      "important regions in DNA sequence",
+      "sequence optimization",
+      "enhancer sequence analysis",
+      "mutagenesis analysis",
+      "analyze important positions",
+      "identify functional regions"
+    ],
+    "plan": "plan_ism_analysis",
+    "answer_format": {
+      "type": "visualization_with_text",
+      "description": "ISM analysis results with sequence logo visualization"
+    },
+    "min_length_to_parse_answer": 99999999
+  },
+  "snp_splicing_analysis": {
+    "description": "SNP splicing impact analysis using AlphaGenome",
+    "patterns": [
+      "splicing impact does SNP",
+      "splicing effect of SNP",
+      "SNP splicing analysis",
+      "variant splicing impact",
+      "splicing prediction for",
+      "how does SNP affect splicing",
+      "splicing changes from SNP"
+    ],
+    "plan": "plan_snp_splicing_analysis",
+    "answer_format": {
+      "type": "quantitative_analysis",
+      "description": "Splicing impact scores with clinical interpretation"
+    },
+    "min_length_to_parse_answer": 99999999
+  },
+  "tissue_expression_comparison": {
+    "description": "Compare gene expression across multiple tissues using AlphaGenome",
+    "patterns": [
+      "compare expression in",
+      "expression across tissues",
+      "tissue-specific expression",
+      "expression in breast vs",
+      "gene expression comparison",
+      "expression levels in different tissues",
+      "tissue expression analysis",
+      "compare gene expression"
+    ],
+    "plan": "plan_tissue_expression_comparison",
+    "answer_format": {
+      "type": "statistical_comparison",
+      "description": "Multi-tissue expression analysis with statistical comparisons"
+    },
+    "min_length_to_parse_answer": 99999999
+  }
+}

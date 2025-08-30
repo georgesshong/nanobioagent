@@ -1,0 +1,12 @@
+{
+  "Test Gene Alias Questions": {},
+  "Generation Info": {
+    "method": "NCBI API",
+    "total_generated": 0,
+    "search_terms_used": [
+      "kinase",
+      "receptor",
+      "transcription factor"
+    ]
+  }
+}

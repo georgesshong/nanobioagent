@@ -1,0 +1,13 @@
+model_name,url,parameters,released,downloads,supported
+Qwen3-4B-Instruct-2507,https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507,4000000000.0,2025-08-05,140077,True
+Qwen3-Coder-30B-A3B-Instruct,https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct,30000000000.0,2025-07-31,202919,True
+Qwen3-Coder-480B-A35B-Instruct-FP8,https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8,480000000000.0,2025-07-22,112368,True
+Qwen3-Coder-480B-A35B-Instruct,https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct,480000000000.0,2025-07-22,59794,True
+Qwen3-235B-A22B-Instruct-2507,https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507,235000000000.0,2025-07-21,71540,True
+Qwen2.5-Coder-3B-Instruct,https://huggingface.co/Qwen/Qwen2.5-Coder-3B-Instruct,3000000000.0,2024-11-06,150862,True
+Qwen2.5-Coder-32B-Instruct,https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct,32000000000.0,2024-11-06,73622,True
+Qwen2.5-32B-Instruct,https://huggingface.co/Qwen/Qwen2.5-32B-Instruct,32000000000.0,2024-09-17,346916,True
+Qwen2.5-Coder-7B-Instruct,https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct,7000000000.0,2024-09-17,244138,True
+Qwen2.5-7B-Instruct,https://huggingface.co/Qwen/Qwen2.5-7B-Instruct,7000000000.0,2024-09-16,9128290,True
+Qwen2.5-72B-Instruct,https://huggingface.co/Qwen/Qwen2.5-72B-Instruct,72000000000.0,2024-09-16,101682,True
+Qwen2-72B-Instruct,https://huggingface.co/Qwen/Qwen2-72B-Instruct,72000000000.0,2024-05-28,39268,True

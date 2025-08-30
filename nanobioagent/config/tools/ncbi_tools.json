@@ -1,0 +1,97 @@
+{
+  "infer_parameters_from_task": {
+    "name": "LLM Parameter Inference with Few-Shot",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "infer_parameters_from_task",
+    "specific_instructions": {
+      "gene_alias": "For gene symbol alias → database: \"gene\" or \"snp\", search_term: the gene name",
+      "gene_location": "For gene location ==> database: \"gene\" or \"snp\" or \"nuccore\", search_term: the gene name. \nSpecial Rule for sequences with dots (clone for nucleotide sequences): \n- IF and ONLY IF the search_term contains a literal dot character \".\" (period/full stop) followed by a one or two digit variant number (indicating a clone) \n- THEN set database to \"nuccore\" AND search_term to the substring before the first dot \n- Example 1: \"AC104236.2\" → database: \"nuccore\", search_term: \"AC104236\"",
+      "gene_snp_association": "For gene SNP association → database: \"snp\", search_term: the SNP ID (starts with \"rs\")",
+      "gene_disease_association": "For disease association → database: \"omim\", search_term: the disease name, retmax: \"20\"",
+      "protein-coding_genes": "For checking protein-coding genes → database: \"gene\", search_term: the gene symbol",
+      "human_genome_dna_alignment": "For human genome dna alignment → database: \"nt\", search_term: the dna sequence made up of the ATGC letters",
+      "multi-species_dna_alignment": "For human genome dna alignment → database: \"nt\", search_term: the dna sequence made up of the ATGC letters"
+    },
+    "general_instructions": "Parse the answer from this NCBI API response for the genomics question.\nInstructions for genomics parsing:"
+  },
+  "get_esearch_idlist_from_param": {
+    "name": "NCBI eSearch",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "get_esearch_idlist_from_param"
+  },
+  "get_efetch_doc_from_idlist": {
+    "name": "NCBI eFetch",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "get_efetch_doc_from_idlist"
+  },
+  "parse_answer_from_doc": {
+    "name": "LLM Answer Parser with Few-Shot",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "parse_answer_from_doc",
+    "specific_instructions": {
+      "gene_alias": "For gene alias lookup:\n\nTWO CASES:\n\nCASE 1 - Regular Gene Alias Lookup:\nIF query found in 'Other Aliases: [query, ...]' of any entry:\n  THEN return the 'Official Symbol: [ANSWER]' from that SAME entry\n\nCASE 2 - Ensembl Gene ID Conversion:\nIF query is an Ensembl Gene ID (starts with 'ENSG'):\n  THEN return the 'Official Symbol: [ANSWER]' from the matching entry\n  (Note: Ensembl IDs won't appear in 'Other Aliases' - they're used to find the entry)\n\nPriority: Human (Homo sapiens) entries first\n\nNEVER return the query itself - always return the Official Symbol that the query is an alias FOR.\n\nExample patterns:\n- Regular alias: Entry shows \"Official Symbol: ZNF366, Other Aliases: DCSCRIPT\"\n  Query: \"What is official symbol of DCSCRIPT?\" → Answer: ZNF366\n- Ensembl ID: Entry shows \"Official Symbol: IDS\" (found via ENSG00000010404)\n  Query: \"Convert ENSG00000010404 to official gene symbol\" → Answer: IDS",
+      "gene_alias_old": "For gene alias lookup: IF query found in 'Other Aliases: [query, ...]' of any entry:\n  THEN return the 'Official Symbol: [ANSWER]' from that SAME entry\n  \nPriority: Human (Homo sapiens) entries first\n\nNEVER return the query itself - always return the Official Symbol that the query is an alias FOR.\n\nExample pattern:\nEntry shows: Official Symbol: ZNF366, Other Aliases: DCSCRIPT\nQuery: What is official symbol of DCSCRIPT?\nAnswer: ZNF366 (because DCSCRIPT is an alias FOR ZNF366). But if the query is an Ensembl Gene ID (with prefix 'ENSG') then the query will not be in 'Other Aliases' and you should just return the Official Symbol).",
+      "gene_location": "For gene location: Look for 'Chromosome: X' and format as 'chrX'",
+      "gene_snp_association": "For gene SNP association: Extract gene name from JSON response",
+      "gene_disease_association_old": "For disease association: Extract gene symbols from entries with either '*' or '+' prefix in the 'oid' string (e.g. 'oid':'*602365' or 'oid':'+109270')",
+      "gene_disease_association": "For disease association: Find entries where 'oid' starts with '*' or '+' and never with the '#' prefix. From each title, extract only the gene symbol (the short capitalized text that appears after the semicolon, like 'TWIST2' from 'TWIST FAMILY bHLH TRANSCRIPTION FACTOR 2; TWIST2'). Return gene symbols only, separated by commas.",
+      "protein-coding_genes": "For checking protein-coding genes: Return \"TRUE\" for genes with protein function keywords (enzyme, receptor, kinase, factor, etc.) or \"protein-coding\" mentions; return \"NA\" for genes with non-coding keywords (pseudogene, lncRNA, microRNA, etc.) or no clear protein function described.",
+      "human_genome_dna_alignment": "Parse BLAST results to find chromosome location in format chrX:start-end. Step-by-step process: Step 1: Split the document into alignment sections (each section starts with '>') Step 2: For each section, examine the header (first few lines) to check if it contains human chromosome information Step 3: Look for chromosome patterns (case-insensitive):  - \"chromosome [number/X/Y]\" (e.g., \"chromosome 15\", \"chromosome X\")  - \"chr[number/X/Y]\" (e.g., \"chr15\", \"chr X\") Step 4: If human chromosome found, extract the chromosome number/letter. Step 5: Within that same section, find all \"Sbjct\" lines that contain position numbers 6. Extract the start position from the first Sbjct line and end position from the last Sbjct line 7. Format result as \"chrX:start-end\" (e.g., \"chr15:94509-94636\")",
+      "multi-species_dna_alignment": "For multi-species dna alignment: Find out which organism / species has the best matching sequence to the input DNA sequence."
+    },
+    "general_instructions": "Parse the answer from this NCBI API response for the genomics question.\nInstructions for genomics parsing:",
+    "xxx_general_instructions": "Parse the answer from this NCBI API response for the genomics question. CRITICAL: Do NOT include any thinking steps, reasoning, or explanations. NEVER use <think> tags or any form of step-by-step reasoning. \nInstructions for genomics parsing:"
+  },
+  "get_esummary_doc_from_idlist": {
+    "name": "NCBI eSummary",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "get_esummary_doc_from_idlist"
+  },
+  "get_snp_summary_from_id": {
+    "name": "NCBI eSummary",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "get_snp_summary_from_id"
+  },
+  "execute_blast_query": {
+    "name": "NCBI BLAST Query",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "execute_blast_query"
+  },
+  "put_blast_query_for_rid": {
+    "name": "NCBI BLAST Put Query",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "put_blast_query_for_rid"
+  },
+  "get_blast_doc_from_rid": {
+    "name": "NCBI BLAST Get Query",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "get_blast_doc_from_rid"
+  },
+  "parse_blast_human_genome_alignment_withrules": {
+    "name": "Answer Parser for Blast resutls with Rules",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "parse_blast_human_genome_alignment_withrules"
+  },
+  "parse_answer_from_doc_withrules": {
+    "name": "Answer Parser with Rules",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "parse_answer_from_doc_withrules"
+  },
+  "infer_parameters_from_task_withrules": {
+    "name": "Parameter Inference with pattern matching rules and reg-ex", 
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.ncbi_tools",
+    "function": "infer_parameters_from_task_withrules"
+  }
+}

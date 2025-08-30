@@ -1,0 +1,83 @@
+{
+    "function_mappings": {
+        "Gene alias": "find_official_symbol",
+        "Gene disease association": "find_disease_association",
+        "Gene location": "find_gene_location",
+        "Human genome DNA aligment": "align_human_genome",
+        "Multi-species DNA aligment": "find_organism_from_dna",
+        "Gene name conversion": "convert_ensembl_to_official",
+        "Protein-coding genes": "is_protein_coding",
+        "Gene SNP association": "find_snp_association",
+        "SNP location": "find_snp_location"
+    }
+    ,"template_questions": {
+        "Gene alias": [
+            "What is the official gene symbol of XXXXX?",
+            "What's the official gene symbol for XXXXX?",
+            "Give me the official gene symbol of XXXXX"
+        ],
+        "Gene disease association": [
+            "What are genes related to XXXXX?",
+            "Which genes are associated with XXXXX?",
+            "List genes related to disease XXXXX"
+        ],
+        "Gene location": [
+            "Which chromosome is XXXXX gene located on human genome?",
+            "On which chromosome is gene XXXXX located?",
+            "Where is gene XXXXX located in the human genome?"
+        ],
+        "Human genome DNA aligment": [
+            "Align the DNA sequence to the human genome:ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACCCTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGTATTTCTCT"
+        ],
+        "Multi-species DNA aligment": [
+            "Which organism does the DNA sequence come from:AGGGGCAGCAAACACCGGGACACACCCATTCGTGCACTAATCAGAAACTTTTTTTTCTCAAATAATTCAAACAATCAAAATTGGTTTTTTCGAGCAAGGTGGGAAATTTTTCGAT"
+        ],
+        "Gene name conversion": [
+            "Convert ENSG00000215251 to official gene symbol."
+        ],
+        "Protein-coding genes": [
+            "Is ATP5F1EP2 a protein-coding gene?"
+        ],
+        "Gene SNP association": [
+            "Which gene is SNP rs1217074595 associated with?"
+        ],
+        "SNP location": [
+            "Which chromosome does SNP rs1430464868 locate on human genome?"
+        ]
+    },
+    "pattern_maps": {
+        "Gene alias": [
+            "symbol of ([^?]+)\\??",
+            "symbol for ([^?]+)\\??",
+            "gene symbol (?:of|for) ([^?]+)\\??"
+        ],
+        "Gene disease association": [
+            "genes related to ([^?]+)\\??",
+            "genes associated with ([^?]+)\\??",
+            "genes (?:for|linked to) ([^?]+)\\??"
+        ],
+        "Gene location": [
+            "chromosome is ([^ ]+) gene located",
+            "chromosome ([^ ]+) gene",
+            "is ([^ ]+) gene located"
+        ],
+        "Human genome DNA aligment": [
+            "Align the DNA sequence to the human genome:([ATGC]+)"
+        ],
+        "Multi-species DNA aligment": [
+            "DNA sequence come from:([ATGC]+)"
+        ],
+        "Gene name conversion": [
+            "Convert (ENSG\\d+) to official gene symbol"
+        ],
+        "Protein-coding genes": [
+            "Is ([^ ]+) a protein-coding gene\\??"
+        ],
+        "Gene SNP association": [
+            "Which gene is SNP (rs\\d+) associated with\\??"
+        ],
+        "SNP location": [
+            "Which chromosome does SNP (rs\\d+) locate on human genome\\??"
+        ]
+    }
+}

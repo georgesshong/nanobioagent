@@ -1,0 +1,1488 @@
+{
+  "_metadata": {
+    "version": "2.0",
+    "description": "Converted from CSV format",
+    "created": "2025-08-19"
+  },
+  "nvidia_nim_prefixes": [
+    "deepseek-ai/", "google/", "ibm/", "llama-3.1-nemotron", "llama-3.3-nemotron",
+    "nvidia/", "marin/", "meta/", "microsoft/", "mistralai/", "nv-mistralai/", 
+    "qwen/", "tiiuae/", "zyphra/", "openai/"
+  ],
+  "_defaults": {
+    "cut_length": 18000,
+    "max_tokens": 512,
+    "model_type": "chat",
+    "context_window": 32000,
+    "temperature": 0,
+    "doc": "https://huggingface.co/",
+    "pricing": {
+      "input": 0.001,
+      "output": 0.004,
+      "per_tokens": 1000
+    }
+  },
+  "models": {
+    "gpt-3.5-turbo": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "openai",
+      "context_window": 16385,
+      "doc": "https://platform.openai.com/docs/models/gpt-3.5-turbo",
+      "pricing": {
+        "input": 0.5,
+        "output": 1.5,
+        "per_tokens": 1000000
+      }
+    },
+    "gpt-4.1-mini": {
+      "cut_length": 72000,
+      "max_tokens": 512,
+      "model_type": "openai",
+      "context_window": 1047576,
+      "doc": "https://platform.openai.com/docs/models/gpt-4.1-mini",
+      "pricing": {
+        "input": 0.4,
+        "output": 1.6,
+        "per_tokens": 1000000
+      }
+    },
+    "gpt-4.1-nano": {
+      "cut_length": 72000,
+      "max_tokens": 512,
+      "model_type": "openai",
+      "context_window": 1047576,
+      "doc": "https://platform.openai.com/docs/models/gpt-4.1-nano",
+      "pricing": {
+        "input": 0.1,
+        "output": 0.4,
+        "per_tokens": 1000000
+      }
+    },
+    "gpt-4.1": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "openai",
+      "context_window": 1047576,
+      "doc": "https://platform.openai.com/docs/models/gpt-4.1",
+      "pricing": {
+        "input": 2,
+        "output": 8,
+        "per_tokens": 1000000
+      }
+    },
+    "gpt-4o-mini": {
+      "cut_length": 72000,
+      "max_tokens": 512,
+      "model_type": "openai",
+      "context_window": 128000,
+      "doc": "https://platform.openai.com/docs/models/gpt-4o-mini",
+      "pricing": {
+        "input": 0.15,
+        "output": 0.6,
+        "per_tokens": 1000000
+      }
+    },
+    "gpt-4o": {
+      "cut_length": 72000,
+      "max_tokens": 512,
+      "model_type": "openai",
+      "context_window": 128000,
+      "doc": "https://platform.openai.com/docs/models/gpt-4o",
+      "pricing": {
+        "input": 2.5,
+        "output": 10,
+        "per_tokens": 1000000
+      }
+    },
+    "gpt-5-mini": {
+      "cut_length": 96000,
+      "max_tokens": 4096,
+      "model_type": "openai",
+      "context_window": 400000,
+      "temperature": 1,
+      "doc": "https://platform.openai.com/docs/models/gpt-5-mini",
+      "pricing": {
+        "input": 0.25,
+        "output": 2,
+        "per_tokens": 1000000
+      }
+    },
+    "gpt-5-nano": {
+      "cut_length": 96000,
+      "max_tokens": 4096,
+      "model_type": "openai",
+      "context_window": 400000,
+      "temperature": 1,
+      "doc": "https://platform.openai.com/docs/models/gpt-5-nano",
+      "pricing": {
+        "input": 0.05,
+        "output": 0.4,
+        "per_tokens": 1000000
+      }
+    },
+    "gpt-5": {
+      "cut_length": 96000,
+      "max_tokens": 4096,
+      "model_type": "openai",
+      "context_window": 400000,
+      "temperature": 1,
+      "doc": "https://platform.openai.com/docs/models/gpt-5",
+      "pricing": {
+        "input": 1.25,
+        "output": 10,
+        "per_tokens": 1000000
+      }
+    },
+    "claude-3-5-haiku-20241022": {
+      "cut_length": 54000,
+      "max_tokens": 512,
+      "model_type": "anthropic",
+      "context_window": 200000,
+      "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/haiku-3-5",
+      "pricing": {
+        "input": 0.8,
+        "output": 4,
+        "per_tokens": 1000000
+      }
+    },
+    "claude-3-7-sonnet-20250219": {
+      "cut_length": 54000,
+      "max_tokens": 512,
+      "model_type": "anthropic",
+      "context_window": 200000,
+      "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/sonnet-3-7",
+      "pricing": {
+        "input": 3,
+        "output": 15,
+        "per_tokens": 1000000
+      }
+    },
+    "claude-sonnet-4-20250514": {
+      "cut_length": 54000,
+      "max_tokens": 512,
+      "model_type": "anthropic",
+      "context_window": 200000,
+      "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/sonnet-4",
+      "pricing": {
+        "input": 3,
+        "output": 15,
+        "per_tokens": 1000000
+      }
+    },
+    "claude-opus-4-20250514": {
+      "cut_length": 54000,
+      "max_tokens": 512,
+      "model_type": "anthropic",
+      "context_window": 200000,
+      "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/opus-4",
+      "pricing": {
+        "input": 3,
+        "output": 15,
+        "per_tokens": 1000000
+      }
+    },
+    "claude-opus-4-1-20250805": {
+      "cut_length": 54000,
+      "max_tokens": 512,
+      "model_type": "anthropic",
+      "context_window": 200000,
+      "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/opus-4-1",
+      "pricing": {
+        "input": 15,
+        "output": 75,
+        "per_tokens": 1000000
+      }
+    },
+    "claude": {
+      "cut_length": 54000,
+      "max_tokens": 512,
+      "model_type": "anthropic",
+      "context_window": 200000,
+      "doc": "https://docs.anthropic.com/en/docs/about-claude/models/overview",
+      "pricing": {
+        "input": 0.015,
+        "output": 0.075,
+        "per_tokens": 1000
+      }
+    },
+    "gemini-1.5-flash": {
+      "cut_length": 30000,
+      "max_tokens": 512,
+      "model_type": "google",
+      "context_window": 1000000,
+      "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-1.5-flash",
+      "pricing": {
+        "input": 0.075,
+        "output": 0.3,
+        "per_tokens": 1000000
+      }
+    },
+    "gemini-1.5-flash-8b": {
+      "cut_length": 30000,
+      "max_tokens": 512,
+      "model_type": "google",
+      "context_window": 1000000,
+      "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-1.5-flash-8b",
+      "pricing": {
+        "input": 0.0375,
+        "output": 0.15,
+        "per_tokens": 1000000
+      }
+    },
+    "gemini-2.0-flash": {
+      "cut_length": 30000,
+      "max_tokens": 512,
+      "model_type": "google",
+      "context_window": 1048576,
+      "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.0-flash",
+      "pricing": {
+        "input": 0.1,
+        "output": 0.4,
+        "per_tokens": 1000000
+      }
+    },
+    "gemini-2.0-flash-lite": {
+      "cut_length": 30000,
+      "max_tokens": 512,
+      "model_type": "google",
+      "context_window": 1048576,
+      "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.0-flash-lite",
+      "pricing": {
+        "input": 0.075,
+        "output": 0.3,
+        "per_tokens": 1000000
+      }
+    },
+    "gemini-2.5-flash": {
+      "cut_length": 96000,
+      "max_tokens": 512,
+      "model_type": "google",
+      "context_window": 1048576,
+      "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-flash",
+      "pricing": {
+        "input": 0.3,
+        "output": 2.5,
+        "per_tokens": 1000000
+      }
+    },
+    "gemini-2.5-flash-lite": {
+      "cut_length": 96000,
+      "max_tokens": 512,
+      "model_type": "google",
+      "context_window": 1048576,
+      "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-flash-lite",
+      "pricing": {
+        "input": 0.1,
+        "output": 0.3,
+        "per_tokens": 1000000
+      }
+    },
+    "gemini-2.5-pro": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "google",
+      "context_window": 1048576,
+      "thinking_control_prompt": "CRITICAL INSTRUCTION: Do not use reasoning steps.",
+      "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-pro",
+      "pricing": {
+        "input": 1.25,
+        "output": 10,
+        "per_tokens": 1000000
+      }
+    },
+    "nvidia/llama-3.1-nemotron-nano-4b-v1.1": {
+      "cut_length": 16000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 131072,
+      "thinking_control_prompt": "detailed thinking off.",
+      "doc": "https://build.nvidia.com/nvidia/llama-3_1-nemotron-nano-4b-v1_1",
+      "num_parameters": 4000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "nvidia/llama-3.1-nemotron-nano-8b-v1": {
+      "cut_length": 16000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 131072,
+      "thinking_control_prompt": "detailed thinking off.",
+      "doc": "https://build.nvidia.com/nvidia/llama-3_1-nemotron-nano-8b-v1",
+      "num_parameters": 8000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "nvidia/nvidia-nemotron-nano-9b-v2": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://build.nvidia.com/nvidia/nvidia-nemotron-nano-9b-v2",
+      "num_parameters": 9000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "nvidia/llama-3.3-nemotron-super-49b-v1": {
+      "cut_length": 16000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 131072,
+      "thinking_control_prompt": "detailed thinking off.",
+      "doc": "https://build.nvidia.com/nvidia/llama-3_3-nemotron-super-49b-v1",
+      "num_parameters": 49900000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "nvidia/llama-3.3-nemotron-super-49b-v1.5": {
+      "cut_length": 16000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 131072,
+      "thinking_control_prompt": "detailed thinking off.",
+      "doc": "https://build.nvidia.com/nvidia/llama-3_3-nemotron-super-49b-v1",
+      "num_parameters": 49900000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "nvidia/llama-3.1-nemotron-ultra-253b-v1": {
+      "cut_length": 16000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 131072,
+      "thinking_control_prompt": "detailed thinking off.",
+      "doc": "https://build.nvidia.com/nvidia/llama-3_1-nemotron-ultra-253b-v1",
+      "num_parameters": 253000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "google/gemma-3-1b-it": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 32000,
+      "doc": "https://build.nvidia.com/google/gemma-3-1b-it",
+      "num_parameters": 1000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "google/gemma-2-2b-it": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 4000,
+      "doc": "https://build.nvidia.com/google/gemma-2-2b-it",
+      "num_parameters": 2000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "google/gemma-7b": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 8000,
+      "doc": "https://build.nvidia.com/google/gemma-7b",
+      "num_parameters": 7000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "google/codegemma-7b": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 8000,
+      "doc": "https://build.nvidia.com/google/codegemma-7b",
+      "num_parameters": 7000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "google/gemma-3-27b-it": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/google/gemma-3-27b-it",
+      "num_parameters": 27000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "deepseek-ai/deepseek-r1-distill-qwen-7b": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/deepseek-ai/deepseek-r1-distill-qwen-7b",
+      "num_parameters": 7000000000,
+      "pricing": {
+        "input": 1.6,
+        "output": 1.6,
+        "per_tokens": 1000000
+      }
+    },
+    "deepseek-ai/deepseek-r1-distill-llama-8b": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/deepseek-ai/deepseek-r1-distill-llama-8b",
+      "num_parameters": 8000000000,
+      "pricing": {
+        "input": 1.6,
+        "output": 1.6,
+        "per_tokens": 1000000
+      }
+    },
+    "ibm/granite-3.3-8b-instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/ibm/granite-3_3-8b-instruct",
+      "num_parameters": 8000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "qwen/qwen3-235b-a22b": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 32768,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://build.nvidia.com/qwen/qwen3-235b-a22b",
+      "num_parameters": 234000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 0.6,
+        "per_tokens": 1000000
+      }
+    },
+    "qwen/qwen2.5-coder-7b-instruct": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 32000,
+      "doc": "https://build.nvidia.com/qwen/qwen2_5-coder-7b-instruct",
+      "num_parameters": 7000000000,
+      "pricing": {
+        "input": 0.3,
+        "output": 0.3,
+        "per_tokens": 1000000
+      }
+    },
+    "qwen/qwen2.5-coder-32b-instruct": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 32000,
+      "doc": "https://build.nvidia.com/qwen/qwen2_5-coder-32b-instruct",
+      "num_parameters": 32000000000,
+      "pricing": {
+        "input": 0.8,
+        "output": 0.8,
+        "per_tokens": 1000000
+      }
+    },
+    "qwen/qwen2.5-7b-instruct": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/qwen/qwen2_5-7b-instruct",
+      "num_parameters": 7000000000,
+      "pricing": {
+        "input": 0.3,
+        "output": 0.3,
+        "per_tokens": 1000000
+      }
+    },
+    "nvidia/mistral-nemo-minitron-8b-base": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 8000,
+      "doc": "https://build.nvidia.com/nvidia/mistral-nemo-minitron-8b-base",
+      "num_parameters": 8000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "mistralai/mistral-7b-instruct-v0.3": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 8000,
+      "doc": "https://build.nvidia.com/mistralai/mistral-7b-instruct-v03",
+      "num_parameters": 7000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "mistralai/mixtral-8x7b-instruct-v0.1": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 32000,
+      "doc": "https://build.nvidia.com/mistralai/mixtral-8x7b-instruct",
+      "num_parameters": 7000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "mistralai/mistral-nemotron": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/mistralai/mistral-nemotron",
+      "num_parameters": 12000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "meta/llama-3.2-3b-instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/meta/llama-3.2-3b-instruct",
+      "num_parameters": 3000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "microsoft/phi-4-mini-instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/microsoft/phi-4-mini-instruct",
+      "num_parameters": 3800000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "microsoft/phi-3-small-128k-instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/microsoft/phi-3-small-128k-instruct",
+      "num_parameters": 7000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "microsoft/phi-4-mini-flash-reasoning": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 64000,
+      "doc": "https://build.nvidia.com/microsoft/phi-4-mini-flash-reasoning",
+      "num_parameters": 3800000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "nv-mistralai/mistral-nemo-12b-instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 128000,
+      "doc": "https://build.nvidia.com/nv-mistralai/mistral-nemo-12b-instruct",
+      "num_parameters": 12000000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "tiiuae/falcon3-7b-instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "nvidia_nim",
+      "context_window": 32000,
+      "doc": "https://build.nvidia.com/tiiuae/falcon3-7b-instruct",
+      "num_parameters": 7220000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "huggingface/openai/gpt-oss-120b": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 131072,
+      "doc": "https://huggingface.co/openai/gpt-oss-120b",
+      "num_parameters": 5100000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "huggingface/openai/gpt-oss-20b": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 131072,
+      "doc": "https://huggingface.co/openai/gpt-oss-20b",
+      "num_parameters": 3600000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "ollama/meditron:7b": {
+      "cut_length": 8000,
+      "max_tokens": 512,
+      "model_type": "ollama",
+      "context_window": 2000,
+      "doc": "https://ollama.com/library/meditron:7b",
+      "num_parameters": 6740000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "ollama/llama3:8b": {
+      "cut_length": 8000,
+      "max_tokens": 512,
+      "model_type": "ollama",
+      "context_window": 8000,
+      "doc": "https://ollama.com/library/llama3:8b",
+      "num_parameters": 8030000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "ollama/llama2:latest": {
+      "cut_length": 8000,
+      "max_tokens": 512,
+      "model_type": "ollama",
+      "context_window": 2048,
+      "doc": "https://ollama.com/library/llama2:latest",
+      "num_parameters": 6740000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "ollama/codellama:7b-instruct": {
+      "cut_length": 8000,
+      "max_tokens": 512,
+      "model_type": "ollama",
+      "context_window": 2048,
+      "doc": "https://ollama.com/library/codellama:7b-instruct",
+      "num_parameters": 6740000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "ollama/gemma3:12b-it-qat": {
+      "cut_length": 8000,
+      "max_tokens": 512,
+      "model_type": "ollama",
+      "context_window": 128000,
+      "doc": "https://ollama.com/library/gemma3:12b-it-qat",
+      "num_parameters": 12200000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "ollama/qwen3:8b": {
+      "cut_length": 8000,
+      "max_tokens": 512,
+      "model_type": "ollama",
+      "context_window": 32768,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://ollama.com/library/qwen3:8b",
+      "num_parameters": 8190000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "ollama/qwen2.5-coder-7b-instruct": {
+      "cut_length": 8000,
+      "max_tokens": 512,
+      "model_type": "ollama",
+      "context_window": 32768,
+      "doc": "https://ollama.com/library/qwen2.5-coder:7b-instruct",
+      "num_parameters": 7620000000,
+      "pricing": {
+        "input": 0.001,
+        "output": 0.004,
+        "per_tokens": 1000
+      }
+    },
+    "text-davinci": {
+      "cut_length": 4000,
+      "max_tokens": 512,
+      "model_type": "completion",
+      "context_window": 4097,
+      "doc": "https://platform.openai.com/docs/models/davinci-002",
+      "num_parameters": 175000000000,
+      "pricing": {
+        "input": 2,
+        "output": 2,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+      "cut_length": 96000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct",
+      "num_parameters": 450000000000,
+      "pricing": {
+        "input": 2,
+        "output": 2,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-Coder-30B-A3B-Instruct": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "num_parameters": 30500000000,
+      "pricing": {
+        "input": 0.8,
+        "output": 0.8,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-235B-A22B-Instruct-2507": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 32768,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "num_parameters": 235000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 0.6,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-4B-Instruct-2507": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+      "num_parameters": 4200000000,
+      "pricing": {
+        "input": 0.1,
+        "output": 0.1,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct",
+      "num_parameters": 32800000000,
+      "pricing": {
+        "input": 0.8,
+        "output": 0.8,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen2.5-Coder-7B-Instruct": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 32000,
+      "doc": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct",
+      "num_parameters": 7620000000,
+      "pricing": {
+        "input": 0.3,
+        "output": 0.3,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen2.5-Coder-3B-Instruct": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 32000,
+      "doc": "https://huggingface.co/Qwen/Qwen2.5-Coder-3B-Instruct",
+      "num_parameters": 3090000000,
+      "pricing": {
+        "input": 0.3,
+        "output": 0.3,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen2.5-72B-Instruct": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
+      "num_parameters": 72700000000,
+      "pricing": {
+        "input": 1.2,
+        "output": 1.2,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+      "num_parameters": 480000000000,
+      "pricing": {
+        "input": 2,
+        "output": 2,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-235B-A22B-FP8": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 32768,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-235B-A22B-FP8",
+      "num_parameters": 235000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 0.6,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-32B-FP8": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-32B-FP8",
+      "num_parameters": 32000000000,
+      "pricing": {
+        "input": 0.8,
+        "output": 0.8,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-8B": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-8B",
+      "num_parameters": 8000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 0.2,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-4B": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-4B",
+      "num_parameters": 4000000000,
+      "pricing": {
+        "input": 0.1,
+        "output": 0.1,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-30B-A3B": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-30B-A3B",
+      "num_parameters": 30000000000,
+      "pricing": {
+        "input": 0.8,
+        "output": 0.8,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-32B": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-32B",
+      "num_parameters": 32000000000,
+      "pricing": {
+        "input": 0.8,
+        "output": 0.8,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-14B": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-14B",
+      "num_parameters": 14000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 0.6,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/Qwen3-235B-A22B": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 32768,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "num_parameters": 235000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 0.6,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/Qwen/QwQ-32B": {
+      "cut_length": 36000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 256000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/Qwen/QwQ-32B",
+      "num_parameters": 32000000000,
+      "pricing": {
+        "input": 1.2,
+        "output": 1.2,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "num_parameters": 8190000000,
+      "pricing": {
+        "input": 3,
+        "output": 7,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-R1-0528": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+      "num_parameters": 685000000000,
+      "pricing": {
+        "input": 3,
+        "output": 7,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-Prover-V2-671B": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-671B",
+      "num_parameters": 671000000000,
+      "pricing": {
+        "input": 1.25,
+        "output": 1.25,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-V3-0324": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-V3-0324",
+      "num_parameters": 685000000000,
+      "pricing": {
+        "input": 1.25,
+        "output": 1.25,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+      "num_parameters": 7000000000,
+      "pricing": {
+        "input": 1.6,
+        "output": 1.6,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "num_parameters": 32000000000,
+      "pricing": {
+        "input": 1.6,
+        "output": 1.6,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-R1-Distill-Llama-8B": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+      "num_parameters": 8000000000,
+      "pricing": {
+        "input": 0.55,
+        "output": 2.19,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-R1": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "num_parameters": 685000000000,
+      "pricing": {
+        "input": 3,
+        "output": 7,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+      "num_parameters": 1500000000,
+      "pricing": {
+        "input": 0.18,
+        "output": 0.18,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+      "num_parameters": 14000000000,
+      "pricing": {
+        "input": 1.6,
+        "output": 1.6,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-V3": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
+      "num_parameters": 685000000000,
+      "pricing": {
+        "input": 1.25,
+        "output": 1.25,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/deepseek-ai/DeepSeek-V3.1": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
+      "num_parameters": 685000000000,
+      "pricing": {
+        "input": 0.56,
+        "output": 1.68,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/zai-org/GLM-4.5V": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 64000,
+      "doc": "https://huggingface.co/zai-org/GLM-4.5V",
+      "num_parameters": 108000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 1.1,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/zai-org/GLM-4.5-Air": {
+      "cut_length": 196000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/zai-org/GLM-4.5-Air",
+      "num_parameters": 110000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 1.1,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/zai-org/GLM-4.5": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/zai-org/GLM-4.5",
+      "num_parameters": 358000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 1.1,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/zai-org/GLM-4.5-Air-FP8": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/zai-org/GLM-4.5-Air-FP8",
+      "num_parameters": 110000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 1.1,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/zai-org/GLM-4.1V-9B-Thinking": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/zai-org/GLM-4.1V-9B-Thinking",
+      "num_parameters": 9000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 1.1,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/zai-org/GLM-4-32B-0414": {
+      "cut_length": 96000,
+      "max_tokens": 1024,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/zai-org/GLM-4-32B-0414",
+      "num_parameters": 32000000000,
+      "pricing": {
+        "input": 0.2,
+        "output": 1.1,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Llama-4-Scout-17B-16E-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+      "num_parameters": 17000000000,
+      "pricing": {
+        "input": 0.18,
+        "output": 0.59,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+      "num_parameters": 17000000000,
+      "pricing": {
+        "input": 0.27,
+        "output": 0.85,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Llama-4-Maverick-17B-128E-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+      "num_parameters": 17000000000,
+      "pricing": {
+        "input": 0.27,
+        "output": 0.85,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Llama-3.3-70B-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
+      "num_parameters": 70000000000,
+      "pricing": {
+        "input": 0.88,
+        "output": 0.88,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Llama-3.2-1B-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "num_parameters": 1000000000,
+      "pricing": {
+        "input": 0.06,
+        "output": 0.06,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Llama-3.2-3B-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "num_parameters": 3000000000,
+      "pricing": {
+        "input": 0.06,
+        "output": 0.06,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Llama-3.1-8B-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+      "num_parameters": 8000000000,
+      "pricing": {
+        "input": 0.18,
+        "output": 0.18,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Llama-3.1-70B-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct",
+      "num_parameters": 70000000000,
+      "pricing": {
+        "input": 0.88,
+        "output": 0.88,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Llama-3.1-405B-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+      "num_parameters": 405000000000,
+      "pricing": {
+        "input": 3.5,
+        "output": 3.5,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Meta-Llama-3-8B-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct",
+      "num_parameters": 8000000000,
+      "pricing": {
+        "input": 0.06,
+        "output": 0.06,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/meta-llama/Meta-Llama-3-70B-Instruct": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 128000,
+      "doc": "https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct",
+      "num_parameters": 70000000000,
+      "pricing": {
+        "input": 0.88,
+        "output": 0.88,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/google/gemma-3-27b-it": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 32000,
+      "doc": "https://huggingface.co/google/gemma-3-27b-it",
+      "num_parameters": 27000000000,
+      "pricing": {
+        "input": 0.8,
+        "output": 0.8,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/google/gemma-2-2b-it": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 4000,
+      "doc": "https://huggingface.co/google/gemma-2-2b-it",
+      "num_parameters": 2000000000,
+      "pricing": {
+        "input": 0.1,
+        "output": 0.1,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/google/gemma-2-9b-it": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 4000,
+      "doc": "https://huggingface.co/google/gemma-2-9b-it",
+      "num_parameters": 9000000000,
+      "pricing": {
+        "input": 0.3,
+        "output": 0.3,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/microsoft/phi-4": {
+      "cut_length": 18000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 16000,
+      "doc": "https://huggingface.co/microsoft/phi-4",
+      "num_parameters": 14700000000,
+      "pricing": {
+        "input": 0.3,
+        "output": 0.3,
+        "per_tokens": 1000000
+      }
+    },
+    "huggingface/HuggingFaceTB/SmolLM3-3B": {
+      "cut_length": 54000,
+      "max_tokens": 512,
+      "model_type": "huggingface",
+      "context_window": 64000,
+      "thinking_control_prompt": "/no_think",
+      "doc": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "num_parameters": 3080000000,
+      "pricing": {
+        "input": 0.1,
+        "output": 0.1,
+        "per_tokens": 1000000
+      }
+    }
+  }
+}

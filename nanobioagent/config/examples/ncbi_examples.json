@@ -1,0 +1,250 @@
+{
+    "parse_answer_from_doc": {
+      "gene_alias": [
+        {
+          "input": {
+            "document": "1. SMC3\nOfficial Symbol: SMC3 and Name: structural maintenance of chromosomes 3 [Homo sapiens (human)]\nOther Aliases: BAM, BMH, CDLS3, CSPG6, HCAPL1, SMC3\nOther Designations: structural maintenance of chromosomes protein 3; SMC protein 3; basement membrane-associated chondroitin proteoglycan; chondroitin sulfate proteoglycan 6 (bamacan); chromosome-associated polypeptide\nChromosome: 10; Location: 10q25.2\nAnnotation: Chromosome 10 NC_000010.11 (110567695..110606048)\nMIM: 606062\nID: 9126\n\n2. DCD\nOfficial Symbol: DCD and Name: dermcidin [Homo sapiens (human)]\nOther Aliases: AIDD-1, DSEP, HCAP, PIF, DCD\nOther Designations: dermcidin; diffusible survival/evasion peptide; preproteolysin; proteolysis inducing factor; survival promoting peptide\nChromosome: 12; Location: 12q13.2\nAnnotation: Chromosome 12 NC_000012.12 (54644589..54648365, complement)\nMIM: 606634\nID: 117159\n\n3. Smc3\nOfficial Symbol: Smc3 and Name: structural maintenance of chromosomes 3 [Mus musculus (house mouse)]\nOther Aliases: Bamacan, Cspg6, HCAP, Mmip1, SMC-3, SmcD\nOther Designations: structural maintenance of chromosomes protein 3; SMC protein 3; basement membrane-associated chondroitin proteoglycan; chondroitin sulfate proteoglycan 6; chromosome segregation protein SmcD; mad member-interacting protein 1; structural maintenace of chromosomes 3\nChromosome: 19; Location: 19 48.13 cM\nAnnotation: Chromosome 19 NC_000085.7 (53588827..53634262)\nID: 13006\n\n4. RNGTT\nOfficial Symbol: RNGTT and Name: RNA guanylyltransferase and 5'-phosphatase [Homo sapiens (human)]\nOther Aliases: CAP1A, HCE, HCE1, hCAP\nOther Designations: mRNA-capping enzyme; HCAP1\nChromosome: 6; Location: 6q15\nAnnotation: Chromosome 6 NC_000006.12 (88609897..88963618, complement)\nMIM: 603512\nID: 8732",
+            "task": "What is the official gene symbol of hCAP?"
+          },
+          "output": "RNGTT"
+        },
+        {
+          "input": {
+            "document": "1. SEP3\nOfficial Symbol: SEP3 and Name: K-box region and MADS-box transcription factor family protein [Arabidopsis thaliana (thale cress)]\nOther Aliases: AT1G24260, AGAMOUS-like 9, AGL9, F3I6.19, F3I6_19, SEPALLATA3, TRANSCRIPTION FACTOR AGL9\nOther Designations: K-box region and MADS-box transcription factor family protein\nChromosome: 1\nAnnotation: Chromosome 1 NC_003070.9 (8593536..8596123, complement)\nID: 839040\n\n2. SEP3\nagamous-like MADS-box protein AGL9 homolog [Nelumbo nucifera (sacred lotus)]\nOther Designations: agamous-like MADS-box protein AGL9 homolog\nChromosome: Un\nAnnotation:  NW_010729081.1 (3788896..3815793)\nID: 104592854\n\n3. SEPTIN3\nOfficial Symbol: SEPTIN3 and Name: septin 3 [Homo sapiens (human)]\nOther Aliases: SEP3, SEPT3, bK250D10.3\nOther Designations: neuronal-specific septin-3\nChromosome: 22; Location: 22q13.2\nAnnotation: Chromosome 22 NC_000022.11 (41969443..41998221)\nMIM: 608314\nID: 55964",
+            "task": "What is the official gene symbol of SEP3?"
+          },
+          "output": "SEPTIN3"
+        },
+        {
+          "input": {
+            "document": "1. CST7\nOfficial Symbol: CST7 and Name: cystatin F [Homo sapiens (human)]\nOther Aliases: CMAP\nOther Designations: cystatin-F; cystatin-7; cystatin-like metastasis-associated protein; leukocystatin\nChromosome: 20; Location: 20p11.21\nAnnotation: Chromosome 20 NC_000020.11 (24949269..24959928)\nMIM: 603253\nID: 8530",
+            "task": "Convert ENSG00000077984 to official gene symbol."
+          },
+          "output": "CST7"
+        },
+        {
+          "input": {
+            "document": "1. C20orf195\nOfficial Symbol: C20orf195 and Name: C20orf195 homolog [Gallus gallus (chicken)]\nOther Aliases: C20H20ORF195\nOther Designations: fibronectin type III domain-containing protein 11\nChromosome: 20\nAnnotation: Chromosome 20 NC_052551.1 (10097923..10100209, complement)\nID: 419266\n\n2. FNDC11\nOfficial Symbol: FNDC11 and Name: fibronectin type III domain containing 11 [Bos taurus (domestic cattle)]\nOther Aliases: C13H20orf195, C20orf195\nOther Designations: fibronectin type III domain-containing protein 11; uncharacterized protein C20orf195 homolog\nChromosome: 13\nAnnotation: Chromosome 13 NC_037340.1 (54115800..54119852, complement)\nID: 614565\n\n3. FNDC11\nOfficial Symbol: FNDC11 and Name: fibronectin type III domain containing 11 [Homo sapiens (human)]\nOther Aliases: C20orf195\nOther Designations: fibronectin type III domain-containing protein 11\nChromosome: 20; Location: 20q13.33\nAnnotation: Chromosome 20 NC_000020.11 (63553020..63556708)\nID: 79025\n\n4. FNDC11\nOfficial Symbol: FNDC11 and Name: fibronectin type III domain containing 11 [Macaca mulatta (Rhesus monkey)]\nOther Aliases: C20orf195\nOther Designations: fibronectin type III domain-containing protein 11\nChromosome: 10\nAnnotation: Chromosome 10 NC_041763.1 (98779824..98782749)\nID: 696464\n\n5. LOC106897047\nuncharacterized protein C20orf195 homolog [Calidris pugnax (ruff)]\nOther Designations: uncharacterized protein C20orf195 homolog\nChromosome: Un\nAnnotation:  NW_015091083.1 (2405655..2406590, complement)\nID: 106897047",
+            "task": "What is the official gene symbol of C20orf195?"
+          },
+          "output": "FNDC11"
+        }
+      ],
+      "gene_location": [
+        {
+          "input": {
+            "document": "1. EML3\\nOfficial Symbol: EML3 and Name: EMAP like 3 [Homo sapiens (human)]\\nOther Aliases: ELP95, EMAP3, EMAP95\\nOther Designations: echinoderm microtubule-associated protein-like 3; EMAP-3; echinoderm microtubule associated protein like 3\\nChromosome: 11; Location: 11q12.3\\nAnnotation: Chromosome 11 NC_000011.10 (62602218..62612775, complement)\\nMIM: 618118\\nID: 256364\\n\\n2. Eml3\\nOfficial Symbol: Eml3 and Name: echinoderm microtubule associated protein like 3 [Mus musculus (house mouse)]\\nOther Aliases: Emap-3\\nOther Designations: echinoderm microtubule-associated protein-like 3\\nChromosome: 19; Location: 19 6.04 cM\\nAnnotation: Chromosome 19 NC_000085.7 (8904584..8918946)\\nID: 225898",
+            "task": "Which chromosome is EML3 gene located on human genome?"
+          },
+          "output": "chr11"
+        },
+        {
+          "input": {
+            "document": "1. TTTY7\\nOfficial Symbol: TTTY7 and Name: testis expressed transcript, Y-linked 7 [Homo sapiens (human)]\\nOther Aliases: CLONE795723, LINC00129, NCRNA00129, TTTY21BA, TTY7, TTTY7\\nOther Designations: Putative transcript Y 7 protein; long intergenic non-protein coding RNA 129; testis expressed transcript, Y-linked 21B; testis-specific transcript, Y-linked 7 (non-protein coding); transcript Y 7\\nChromosome: Y; Location: Yp11.2",
+            "task": "Which chromosome is TTTY7 gene located on human genome?"
+          },
+          "output": "chrY"
+        },
+        {
+          "input": {
+            "document": "{\"header\":{\"type\":\"esummary\",\"version\":\"0.3\"},\"result\":{\"uids\":[\"18643685\"],\"18643685\":{\"uid\":\"18643685\",\"term\":\"18643685\",\"caption\":\"AC013644\",\"title\":\"Homo sapiens chromosome 8, clone RP11-17A4, complete sequence\",\"extra\":\"gi|18643685|gnl|WIBR|L3616|gb|AC013644.7|\",\"gi\":18643685,\"createdate\":\"1999/11/13\",\"updatedate\":\"2002/02/16\",\"flags\":\"\",\"taxid\":9606,\"slen\":168477,\"biomol\":\"genomic\",\"moltype\":\"dna\",\"topology\":\"linear\",\"sourcedb\":\"insd\",\"segsetsize\":\"\",\"projectid\":\"0\",\"genome\":\"\",\"subtype\":\"chromosome|map|clone|clone_lib\",\"subname\":\"8|8|RP11-17A4|RPCI-11 Human Male BAC\",\"assemblygi\":\"\",\"assemblyacc\":\"\",\"tech\":\"htgs-3\",\"completeness\":\"\",\"geneticcode\":\"1\",\"strand\":\"ds\",\"organism\":\"Homo sapiens\",\"strain\":\"\",\"biosample\":\"\",\"statistics\":\"\",\"properties\":{\"na\":\"1\",\"value\":\"1\"},\"oslt\":{\"indexed\":true,\"value\":\"AC013644.7\"},\"accessionversion\":\"AC013644.7\"}}}\\n",
+            "task": "Which chromosome is RP11-17A4.3 gene located on human genome?"
+          },
+          "output": "chr8"
+        }
+      ],
+      "gene_snp_association": [
+        {
+          "input": {
+            "document": "{\"result\":{\"1217074595\":{\"genes\":[{\"name\":\"LINC01270\",\"gene_id\":\"284751\"}],\"chr\":\"20\"}}}",
+            "task": "Which gene is SNP rs1217074595 associated with?"
+          },
+          "output": "LINC01270"
+        }
+      ],
+      "gene_disease_association": [
+        {
+          "input": {
+            "document_old": "{\"header\":{\"type\":\"esummary\",\"version\":\"0.3\"},\"result\":{\"uids\":[\"232800\",\"171860\",\"103000\"],\"232800\":{\"uid\":\"232800\",\"oid\":\"#232800\",\"title\":\"GLYCOGEN STORAGE DISEASE VII; GSD7\",\"alttitles\":\"\",\"locus\":\"16211089\"},\"171860\":{\"uid\":\"171860\",\"oid\":\"*171860\",\"title\":\"PHOSPHOFRUCTOKINASE, LIVER TYPE; PFKL\",\"alttitles\":\"\",\"locus\":\"22923583\"},\"103000\":{\"uid\":\"103000\",\"oid\":\"*103000\",\"title\":\"ADENYLATE KINASE 1; AK1\",\"alttitles\":\"\",\"locus\":\"12541064\"}}}",
+            "document": "{\"header\":{\"type\":\"esummary\",\"version\":\"0.3\"},\"result\":{\"uids\":[\"232800\",\"171860\",\"103000\"],\"232800\":{\"uid\":\"232800\",\"oid\":\"#232800\",\"title\":\"GLYCOGEN STORAGE DISEASE VII; GSD7\",\"alttitles\":\"\",\"locus\":\"16211089\"},\"171860\":{\"uid\":\"171860\",\"oid\":\"*171860\",\"title\":\"LIVER TYPE; PFKL\",\"alttitles\":\"\",\"locus\":\"22923583\"},\"103000\":{\"uid\":\"103000\",\"oid\":\"*103000\",\"title\":\"ADENYLATE KINASE 1; AK1\",\"alttitles\":\"\",\"locus\":\"12541064\"}}}",
+            "task": "What are genes related to Hemolytic anemia due to phosphofructokinase deficiency?"
+          },
+          "output": "PFKL, AK1"
+        },
+        {
+          "input": {
+            "document": "{\"header\": {\"type\": \"esummary\", \"version\": \"0.3\"}, \"result\": {\"uids\": [\"611555\", \"179830\", \"611590\", \"179800\", \"267300\", \"602722\", \"604278\", \"259730\", \"248250\", \"208085\", \"146255\", \"600359\", \"605239\", \"192132\", \"109270\", \"181180\", \"611492\", \"118450\", \"255120\", \"137950\"], \"611555\": {\"uid\": \"611555\", \"oid\": \" 611555\", \"title\": \"RENAL TUBULAR ACIDOSIS, DISTAL, WITH NEPHROCALCINOSIS, SHORT STATURE, IMPAIRED INTELLECTUAL DEVELOPMENT, AND DISTINCTIVE FACIES\", \"alttitles\": \"\", \"locus\": \"\"}, \"179830\": {\"uid\": \"179830\", \"oid\": \" 179830\", \"title\": \"RENAL TUBULAR ACIDOSIS, PROXIMAL\", \"alttitles\": \"\", \"locus\": \"\"}, \"611590\": {\"uid\": \"611590\", \"oid\": \"#611590\", \"title\": \"RENAL TUBULAR ACIDOSIS, DISTAL, 4, WITH HEMOLYTIC ANEMIA; DRTA4\", \"alttitles\": \"RENAL TUBULAR ACIDOSIS, DISTAL, WITH NORMAL RED CELL MORPHOLOGY, INCLUDED\", \"locus\": \"12087557\"}, \"179800\": {\"uid\": \"179800\", \"oid\": \"#179800\", \"title\": \"RENAL TUBULAR ACIDOSIS, DISTAL, 1; DRTA1\", \"alttitles\": \"\", \"locus\": \"604011\"}, \"267300\": {\"uid\": \"267300\", \"oid\": \"#267300\", \"title\": \"RENAL TUBULAR ACIDOSIS, DISTAL, 2, WITH PROGRESSIVE SENSORINEURAL HEARING LOSS; DRTA2\", \"alttitles\": \"\", \"locus\": \"associated\"}, \"602722\": {\"uid\": \"602722\", \"oid\": \"#602722\", \"title\": \"RENAL TUBULAR ACIDOSIS, DISTAL, 3, WITH OR WITHOUT SENSORINEURAL HEARING LOSS; DRTA3\", \"alttitles\": \"\", \"locus\": \"previously\"}, \"604278\": {\"uid\": \"604278\", \"oid\": \"#604278\", \"title\": \"PROXIMAL RENAL TUBULAR ACIDOSIS-OCULAR ANOMALY SYNDROME; PRTAO\", \"alttitles\": \"\", \"locus\": \"tail-to-tail\"}, \"259730\": {\"uid\": \"259730\", \"oid\": \"#259730\", \"title\": \"OSTEOPETROSIS, AUTOSOMAL RECESSIVE 3; OPTB3\", \"alttitles\": \"\", \"locus\": \"17386510\"}, \"248250\": {\"uid\": \"248250\", \"oid\": \"#248250\", \"title\": \"HYPOMAGNESEMIA 3, RENAL; HOMG3\", \"alttitles\": \"HYPERCALCIURIA, CHILDHOOD, SELF-LIMITING, INCLUDED\", \"locus\": \"3q26.33\"}, \"208085\": {\"uid\": \"208085\", \"oid\": \"#208085\", \"title\": \"ARTHROGRYPOSIS, RENAL DYSFUNCTION, AND CHOLESTASIS 1; ARCS1\", \"alttitles\": \"\", \"locus\": \"151740\"}, \"146255\": {\"uid\": \"146255\", \"oid\": \"#146255\", \"title\": \"HYPOPARATHYROIDISM, SENSORINEURAL DEAFNESS, AND RENAL DYSPLASIA SYNDROME; HDRS\", \"alttitles\": \"\", \"locus\": \"13961795\"}, \"600359\": {\"uid\": \"600359\", \"oid\": \"*600359\", \"title\": \"POTASSIUM CHANNEL, INWARDLY RECTIFYING, SUBFAMILY J, MEMBER 1; KCNJ1\", \"alttitles\": \"\", \"locus\": \"11q22.3\"}, \"605239\": {\"uid\": \"605239\", \"oid\": \"*605239\", \"title\": \"ATPase, H+ TRANSPORTING, LYSOSOMAL, V0 SUBUNIT A, ISOFORM 4; ATP6V0A4\", \"alttitles\": \"\", \"locus\": \"previously\"}, \"192132\": {\"uid\": \"192132\", \"oid\": \"*192132\", \"title\": \"ATPase, H+ TRANSPORTING, LYSOSOMAL, 56/58-KD, V1 SUBUNIT B, ISOFORM 1; ATP6V1B1\", \"alttitles\": \"\", \"locus\": \"associated\"}, \"109270\": {\"uid\": \"109270\", \"oid\": \"+109270\", \"title\": \"SOLUTE CARRIER FAMILY 4 (ANION EXCHANGER), MEMBER 1; SLC4A1\", \"alttitles\": \"ACANTHOCYTOSIS, ONE FORM OF, INCLUDED\", \"locus\": \"11155072\"}, \"181180\": {\"uid\": \"181180\", \"oid\": \" 181180\", \"title\": \"SAY SYNDROME\", \"alttitles\": \"\", \"locus\": \"\"}, \"611492\": {\"uid\": \"611492\", \"oid\": \"*611492\", \"title\": \"CARBONIC ANHYDRASE II; CA2\", \"alttitles\": \"\", \"locus\": \"11928091\"}, \"118450\": {\"uid\": \"118450\", \"oid\": \"#118450\", \"title\": \"ALAGILLE SYNDROME 1; ALGS1\", \"alttitles\": \"\", \"locus\": \"21967307\"}, \"255120\": {\"uid\": \"255120\", \"oid\": \"#255120\", \"title\": \"CARNITINE PALMITOYLTRANSFERASE I DEFICIENCY\", \"alttitles\": \"\", \"locus\": \"11434517\"}, \"137950\": {\"uid\": \"137950\", \"oid\": \"%137950\", \"title\": \"GLOMERULOPATHY WITH FIBRONECTIN DEPOSITS 1; GFND1\", \"alttitles\": \"\", \"locus\": \"19162006\"}}}", 
+            "task": "What are genes related to Distal renal tubular acidosis?"
+          },
+          "output": "KCNJ1, ATP6V0A4, ATP6V1B1, SLC4A1, CA2"
+        }
+      ],
+      "protein-coding_genes": [
+        {
+          "input": {
+            "document": "ATP5F1EP2\\nOfficial Symbol: ATP5F1EP2 and Name: ATP synthase F1 subunit epsilon pseudogene 2 [Homo sapiens (human)]\\nOther Aliases: ATP5EP2\\nOther Designations: ATP synthase, H+ transporting, mitochondrial F1 complex, epsilon subunit pseudogene 2\\nChromosome: 13; Location: 13q12.2\\nAnnotation: Chromosome 13 NC_000013.11 (27945206..27945573)\\nID: 432369",
+            "task": "Is ATP5F1EP2 a protein-coding gene?"
+          },
+          "output": "NA"
+        },
+        {
+          "input": {
+            "document": "NAXE\\nOfficial Symbol: NAXE and Name: NAD(P)HX epimerase [Homo sapiens (human)]\\nOther Aliases: AIBP, APOA1BP, PEBEL, YJEFN1\\nOther Designations: NAD(P)H-hydrate epimerase; AI-BP; apoA-I binding protein; apolipoprotein A-I-binding protein; yjeF N-terminal domain-containing protein 1; yjeF_N1\\nChromosome: 1; Location: 1q22\\nAnnotation: Chromosome 1 NC_000001.11 (156591776..156594299)\\nMIM: 608862\\nID: 128240",
+            "task": "Is NAXE a protein-coding gene?"
+          },
+          "output": "TRUE"
+        }
+      ],
+      "human_genome_dna_alignment": [
+        {
+          "input": {
+            "document": "<p><!--\nQBlastInfoBegin\n\tStatus=READY\nQBlastInfoEnd\n--><p>\n<PRE>\n\nBLASTN 2.16.1+\nReference: Zheng Zhang, Scott Schwartz, Lukas Wagner, and\nWebb Miller (2000), \"A greedy algorithm for aligning DNA\nsequences\", J Comput Biol 2000; 7(1-2):203-14.\n\n\nReference for database indexing: Aleksandr Morgulis, George\nCoulouris, Yan Raytselis, Thomas L. Madden, Richa Agarwala,\nAlejandro A. Schaffer (2008), \"Database Indexing for\nProduction MegaBLAST Searches\", Bioinformatics 24:1757-1764.\n\n\nRID: 15KYA2ZD013\n\n\nDatabase: Core nucleotide BLAST database\n           114,586,527 sequences; 857,178,510,502 total letters\nQuery= \nLength=128\n\n\n                                                                   Score     E     Max\nSequences producing significant alignments:                       (Bits)  Value  Ident\n\nAC104236.2 Homo sapiens chromosome 15, clone RP11-24J19, compl...  237     3e-58  100%      \nNG_132175.1 Homo sapiens H3K27ac-H3K4me1 hESC enhancer GRCh37_...  237     3e-58  100%      \nFJ515841.1 Homo sapiens isolate SLC3A1-VI-T solute carrier org...  237     3e-58  100%      \nCP034493.1 Eukaryotic synthetic construct chromosome 15            237     3e-58  100%      \nXR_007727471.1 PREDICTED: Macaca thibetana thibetana uncharact...  187     3e-43  96%       \n\nALIGNMENTS\n>AC104236.2 Homo sapiens chromosome 15, clone RP11-24J19, complete sequence\nLength=160392\n\n Score = 237 bits (128),  Expect = 3e-58\n Identities = 128/128 (100%), Gaps = 0/128 (0%)\n Strand=Plus/Plus\n\nQuery  1      ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n              ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  94509  ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  94568\n\nQuery  61     CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaaaGT  120\n              ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  94569  CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGT  94628\n\nQuery  121    ATTTCTCT  128\n              ||||||||\nSbjct  94629  ATTTCTCT  94636\n\n\n>NG_132175.1 Homo sapiens H3K27ac-H3K4me1 hESC enhancer GRCh37_chr15:92493309-92494181 \n(LOC127830695) on chromosome 15\nLength=1073\n\n Score = 237 bits (128),  Expect = 3e-58\n Identities = 128/128 (100%), Gaps = 0/128 (0%)\n Strand=Plus/Plus\n\nQuery  1    ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  827  ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  886\n\nQuery  61   CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaaaGT  120\n            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  887  CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGT  946\n\nQuery  121  ATTTCTCT  128\n            ||||||||\nSbjct  947  ATTTCTCT  954\n\n\n>FJ515841.1 Homo sapiens isolate SLC3A1-VI-T solute carrier organic anion \ntransporter family member 3A1 (SLCO3A1) gene, complete cds\nLength=315834\n\n Score = 237 bits (128),  Expect = 3e-58\n Identities = 128/128 (100%), Gaps = 0/128 (0%)\n Strand=Plus/Plus\n\nQuery  1       ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n               ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  100090  ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  100149\n\nQuery  61      CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaaaGT  120\n               ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  100150  CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGT  100209\n\nQuery  121     ATTTCTCT  128\n               ||||||||\nSbjct  100210  ATTTCTCT  100217\n\n\n>CP034493.1 Eukaryotic synthetic construct chromosome 15\n CP034518.1 Eukaryotic synthetic construct chromosome 15\nLength=82521392\n\n Score = 237 bits (128),  Expect = 3e-58\n Identities = 128/128 (100%), Gaps = 0/128 (0%)\n Strand=Plus/Plus\n\nQuery  1         ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  72494035  ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  72494094\n\nQuery  61        CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaaaGT  120\n                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  72494095  CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGT  72494154\n\nQuery  121       ATTTCTCT  128\n                 ||||||||\nSbjct  72494155  ATTTCTCT  72494162\n\n\n>XR_007727471.1 PREDICTED: Macaca thibetana thibetana uncharacterized LOC126959095 \n(LOC126959095), ncRNA\nLength=52241\n\n Score = 187 bits (101),  Expect = 3e-43\n Identities = 112/117 (96%), Gaps = 1/117 (1%)\n Strand=Plus/Plus\n\nQuery  1      ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n              ||||||||||||||||||||||| ||||||||||||||||| ||||||||||||||||||\nSbjct  14272  ATTCTGCCTTTAGTAATTTGATGTCAGAGACTTCTTGGGAAACACAGCCAGGGAGCCACC  14331\n\nQuery  61     CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaa  117\n              |||||||||||| |||||| ||||||||||||||||||||||||| |||||||||||\nSbjct  14332  CTTTACTCCACCTACAGGTAGCTTATATCCAATCTGAGAAAGAAA-AAAAAAAAAAA  14387\n\n\n  Database: Core nucleotide BLAST database\n    Posted date:  Apr 25, 2025  11:23 PM\n  Number of letters in database: 857,076,902,744\n  Number of sequences in database:  114,770,816\n\nLambda      K        H\n    1.33    0.621     1.12 \nGapped\nLambda      K        H\n    1.28    0.460    0.850 \nMatrix: blastn matrix:1 -2\nGap Penalties: Existence: 0, Extension: 0\nNumber of Sequences: 114770816\nNumber of Hits to DB: 0\nNumber of extensions: 0\nNumber of successful extensions: 0\nNumber of sequences better than 10: 0\nNumber of HSP's better than 10 without gapping: 0\nNumber of HSP's gapped: 0\nNumber of HSP's successfully gapped: 0\nLength of query: 128\nLength of database: 857076902744\nLength adjustment: 34\nEffective length of query: 94\nEffective length of database: 853174695000\nEffective search space: 80198421330000\nEffective search space used: 80198421330000\nA: 0\nX1: 13 (25.0 bits)\nX2: 32 (59.1 bits)\nX3: 54 (99.7 bits)\nS1: 13 (25.1 bits)\nS2: 23 (43.6 bits)\n\n\n",
+            "task": "Align the DNA sequence to the human genome:ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACCCTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGTATTTCTCT"
+          },
+          "output": "chr15:94509-94636"
+        }
+      ],
+      "multi-species_dna_alignment": [
+        {
+          "input": {
+            "document": "<p><!--\nQBlastInfoBegin\n\tStatus=READY\nQBlastInfoEnd\n--><p>\n<PRE>\n\nBLASTN 2.16.1+\nReference: Zheng Zhang, Scott Schwartz, Lukas Wagner, and\nWebb Miller (2000), \"A greedy algorithm for aligning DNA\nsequences\", J Comput Biol 2000; 7(1-2):203-14.\n\n\nReference for database indexing: Aleksandr Morgulis, George\nCoulouris, Yan Raytselis, Thomas L. Madden, Richa Agarwala,\nAlejandro A. Schaffer (2008), \"Database Indexing for\nProduction MegaBLAST Searches\", Bioinformatics 24:1757-1764.\n\n\nRID: 15KYA2ZD013\n\n\nDatabase: Core nucleotide BLAST database\n           114,586,527 sequences; 857,178,510,502 total letters\nQuery= \nLength=128\n\n\n                                                                   Score     E     Max\nSequences producing significant alignments:                       (Bits)  Value  Ident\n\nAC104236.2 Homo sapiens chromosome 15, clone RP11-24J19, compl...  237     3e-58  100%      \nNG_132175.1 Homo sapiens H3K27ac-H3K4me1 hESC enhancer GRCh37_...  237     3e-58  100%      \nFJ515841.1 Homo sapiens isolate SLC3A1-VI-T solute carrier org...  237     3e-58  100%      \nCP034493.1 Eukaryotic synthetic construct chromosome 15            237     3e-58  100%      \nXR_007727471.1 PREDICTED: Macaca thibetana thibetana uncharact...  187     3e-43  96%       \n\nALIGNMENTS\n>AC104236.2 Homo sapiens chromosome 15, clone RP11-24J19, complete sequence\nLength=160392\n\n Score = 237 bits (128),  Expect = 3e-58\n Identities = 128/128 (100%), Gaps = 0/128 (0%)\n Strand=Plus/Plus\n\nQuery  1      ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n              ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  94509  ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  94568\n\nQuery  61     CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaaaGT  120\n              ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  94569  CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGT  94628\n\nQuery  121    ATTTCTCT  128\n              ||||||||\nSbjct  94629  ATTTCTCT  94636\n\n\n>NG_132175.1 Homo sapiens H3K27ac-H3K4me1 hESC enhancer GRCh37_chr15:92493309-92494181 \n(LOC127830695) on chromosome 15\nLength=1073\n\n Score = 237 bits (128),  Expect = 3e-58\n Identities = 128/128 (100%), Gaps = 0/128 (0%)\n Strand=Plus/Plus\n\nQuery  1    ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  827  ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  886\n\nQuery  61   CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaaaGT  120\n            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  887  CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGT  946\n\nQuery  121  ATTTCTCT  128\n            ||||||||\nSbjct  947  ATTTCTCT  954\n\n\n>FJ515841.1 Homo sapiens isolate SLC3A1-VI-T solute carrier organic anion \ntransporter family member 3A1 (SLCO3A1) gene, complete cds\nLength=315834\n\n Score = 237 bits (128),  Expect = 3e-58\n Identities = 128/128 (100%), Gaps = 0/128 (0%)\n Strand=Plus/Plus\n\nQuery  1       ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n               ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  100090  ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  100149\n\nQuery  61      CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaaaGT  120\n               ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  100150  CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGT  100209\n\nQuery  121     ATTTCTCT  128\n               ||||||||\nSbjct  100210  ATTTCTCT  100217\n\n\n>CP034493.1 Eukaryotic synthetic construct chromosome 15\n CP034518.1 Eukaryotic synthetic construct chromosome 15\nLength=82521392\n\n Score = 237 bits (128),  Expect = 3e-58\n Identities = 128/128 (100%), Gaps = 0/128 (0%)\n Strand=Plus/Plus\n\nQuery  1         ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  72494035  ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  72494094\n\nQuery  61        CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaaaGT  120\n                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\nSbjct  72494095  CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGT  72494154\n\nQuery  121       ATTTCTCT  128\n                 ||||||||\nSbjct  72494155  ATTTCTCT  72494162\n\n\n>XR_007727471.1 PREDICTED: Macaca thibetana thibetana uncharacterized LOC126959095 \n(LOC126959095), ncRNA\nLength=52241\n\n Score = 187 bits (101),  Expect = 3e-43\n Identities = 112/117 (96%), Gaps = 1/117 (1%)\n Strand=Plus/Plus\n\nQuery  1      ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACC  60\n              ||||||||||||||||||||||| ||||||||||||||||| ||||||||||||||||||\nSbjct  14272  ATTCTGCCTTTAGTAATTTGATGTCAGAGACTTCTTGGGAAACACAGCCAGGGAGCCACC  14331\n\nQuery  61     CTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGaaaaaaaaaaa  117\n              |||||||||||| |||||| ||||||||||||||||||||||||| |||||||||||\nSbjct  14332  CTTTACTCCACCTACAGGTAGCTTATATCCAATCTGAGAAAGAAA-AAAAAAAAAAA  14387\n\n\n  Database: Core nucleotide BLAST database\n    Posted date:  Apr 25, 2025  11:23 PM\n  Number of letters in database: 857,076,902,744\n  Number of sequences in database:  114,770,816\n\nLambda      K        H\n    1.33    0.621     1.12 \nGapped\nLambda      K        H\n    1.28    0.460    0.850 \nMatrix: blastn matrix:1 -2\nGap Penalties: Existence: 0, Extension: 0\nNumber of Sequences: 114770816\nNumber of Hits to DB: 0\nNumber of extensions: 0\nNumber of successful extensions: 0\nNumber of sequences better than 10: 0\nNumber of HSP's better than 10 without gapping: 0\nNumber of HSP's gapped: 0\nNumber of HSP's successfully gapped: 0\nLength of query: 128\nLength of database: 857076902744\nLength adjustment: 34\nEffective length of query: 94\nEffective length of database: 853174695000\nEffective search space: 80198421330000\nEffective search space used: 80198421330000\nA: 0\nX1: 13 (25.0 bits)\nX2: 32 (59.1 bits)\nX3: 54 (99.7 bits)\nS1: 13 (25.1 bits)\nS2: 23 (43.6 bits)\n\n\n",
+            "task": "Which organism does the DNA sequence come from:AGGGGCAGCAAACACCGGGACACACCCATTCGTGCACTAATCAGAAACTTTTTTTTCTCAAATAATTCAAACAATCAAAATTGGTTTTTTCGAGCAAGGTGGGAAATTTTTCGAT"
+          },
+          "output": "worm"
+        }
+      ]
+    },
+    "infer_parameters_from_task": {
+      "gene_alias": [
+        {
+          "input": {
+            "task": "What is the official gene symbol of LMP10?"
+          },
+          "output": {
+            "database": "gene",
+            "search_term": "LMP10",
+            "retmax": "5",
+            "retmode": "json"
+          }
+        },
+        {
+          "input": {
+            "task": "What is the gene symbol associated with rs1217074595?"
+          },
+          "output": {
+            "database": "snp",
+            "search_term": "rs1217074595",
+            "retmax": "5",
+            "retmode": "json"
+          }
+        },
+        {
+          "input": {
+            "task": "Convert ENSG00000077984 to official gene symbol."
+          },
+          "output": {
+            "database": "gene",
+            "search_term": "ENSG00000077984",
+            "retmax": "5",
+            "retmode": "json"
+          }
+        }
+      ],
+      "gene_location": [
+        {
+          "input": {
+            "task": "Which chromosome is EML3 gene located on human genome?"
+          },
+          "output": {
+            "database": "gene",
+            "search_term": "EML3",
+            "retmax": "5",
+            "retmode": "json"
+          }
+        },
+        {
+          "input": {
+            "task": "Which chromosome is TTTY7 gene located on human genome?"
+          },
+          "output": {
+            "database": "gene",
+            "search_term": "TTTY7",
+            "retmax": "5",
+            "retmode": "json"
+          }
+        },
+        {
+          "input": {
+            "task": "Which chromosome is RP11-17A4.3 gene located on human genome?"
+          },
+          "output": {
+            "database": "nuccore",
+            "search_term": "RP11-17A4",
+            "retmax": "5",
+            "retmode": "json"
+          }
+        }
+      ],
+      "gene_snp_association": [
+        {
+          "input": {
+            "task": "Which gene is SNP rs1217074595 associated with?"
+          },
+          "output": {
+            "database": "snp",
+            "search_term": "rs1217074595",
+            "retmax": "5",
+            "retmode": "json"
+          }
+        }
+      ],
+      "gene_disease_association": [
+        {
+          "input": {
+            "task": "What are genes related to Hemolytic anemia due to phosphofructokinase deficiency?"
+          },
+          "output": {
+            "database": "omim",
+            "search_term": "Hemolytic+anemia+due+to+phosphofructokinase+deficiency",
+            "retmax": "20",
+            "retmode": "json"
+          }
+        }
+      ],
+      "protein-coding_genes": [
+        {
+          "input": {
+            "task": "Is ATP5F1EP2 a protein-coding gene?"
+          },
+          "output": {
+            "database": "gene",
+            "search_term": "ATP5F1EP2",
+            "retmax": "5",
+            "retmode": "json"
+          }
+        }
+      ],
+      "human_genome_dna_alignment": [
+        {
+          "input": {
+            "task": "Align the DNA sequence to the human genome:ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACCCTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGTATTTCTCT"
+          },
+          "output": {
+            "database": "nt",
+            "search_term": "ATTCTGCCTTTAGTAATTTGATGACAGAGACTTCTTGGGAACCACAGCCAGGGAGCCACCCTTTACTCCACCAACAGGTGGCTTATATCCAATCTGAGAAAGAAAGAAAAAAAAAAAAGTATTTCTCT"
+          }
+        }
+      ],
+      "multi-species_dna_alignment": [
+        {
+          "input": {
+            "task": "Which organism does the DNA sequence come from:AGGGGCAGCAAACACCGGGACACACCCATTCGTGCACTAATCAGAAACTTTTTTTTCTCAAATAATTCAAACAATCAAAATTGGTTTTTTCGAGCAAGGTGGGAAATTTTTCGAT"
+          },
+          "output": {
+            "database": "nt",
+            "search_term": "AGGGGCAGCAAACACCGGGACACACCCATTCGTGCACTAATCAGAAACTTTTTTTTCTCAAATAATTCAAACAATCAAAATTGGTTTTTTCGAGCAAGGTGGGAAATTTTTCGAT"
+          }
+        }
+      ]
+    }
+  }

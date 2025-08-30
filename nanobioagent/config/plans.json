@@ -1,0 +1,242 @@
+{
+  "plan_esearch_efetch": {
+    "description": "Standard eSearch followed by eFetch",
+    "steps": [
+      {
+        "function": "infer_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "get_esearch_idlist_from_param",
+        "inputs": ["parameters"],
+        "outputs": ["idlist", "database_used", "raw_response"]
+      },
+      {
+        "function": "get_efetch_doc_from_idlist",
+        "inputs": ["idlist", "database_used"],
+        "outputs": ["document"]
+      },
+      {
+        "function": "parse_answer_from_doc",
+        "inputs": ["document", "task", "prompt", "task_type", "llm"],
+        "outputs": ["answer"]
+      }
+    ]
+  },
+  "plan_esearch_esummary": {
+    "description": "Standard eSearch followed by eSummary",
+    "steps": [
+      {
+        "function": "infer_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "get_esearch_idlist_from_param",
+        "inputs": ["parameters"],
+        "outputs": ["idlist", "database_used", "raw_response"]
+      },
+      {
+        "function": "get_esummary_doc_from_idlist",
+        "inputs": ["idlist", "database_used"],
+        "outputs": ["document"]
+      },
+      {
+        "function": "parse_answer_from_doc",
+        "inputs": ["document", "task", "prompt", "task_type", "llm"],
+        "outputs": ["answer"]
+      }
+    ]
+  },
+  "plan_gene_snp_association": {
+    "description": "Find gene associated with a SNP (Single Nucleotide Polymorphism)",
+    "steps": [
+      {
+        "function": "infer_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "get_snp_summary_from_id",
+        "inputs": ["parameters"],
+        "outputs": ["idlist", "database_used", "document"]
+      },
+      {
+        "function": "parse_answer_from_doc",
+        "inputs": ["document", "task", "prompt", "task_type", "llm"],
+        "outputs": ["answer"]
+      }
+    ]
+  },
+  "plan_blast_alignment": {
+    "description": "Blast put and get",
+    "steps": [
+      {
+        "function": "infer_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "execute_blast_query",
+        "inputs": ["parameters"],
+        "outputs": ["document"]
+      },
+      {
+        "function": "parse_answer_from_doc",
+        "inputs": ["document", "task", "prompt", "task_type", "llm"],
+        "outputs": ["answer"]
+      }
+    ]
+  },
+  "plan_blast_alignment_withrules": {
+    "description": "Blast put and get",
+    "steps": [
+      {
+        "function": "infer_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "execute_blast_query",
+        "inputs": ["parameters"],
+        "outputs": ["document"]
+      },
+      {
+        "function": "parse_blast_human_genome_alignment_withrules",
+        "inputs": ["document", "task", "prompt", "task_type"],
+        "outputs": ["answer"]
+      }
+    ]
+  },
+  "plan_blast_organism": {
+    "description": "Blast put and get",
+    "steps": [
+      {
+        "function": "infer_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "execute_blast_query",
+        "inputs": ["parameters"],
+        "outputs": ["document"]
+      },
+      {
+        "function": "parse_answer_from_doc",
+        "inputs": ["document", "task", "prompt", "task_type", "llm"],
+        "outputs": ["answer"]
+      }
+    ]
+  },
+  "plan_blast2": {
+    "description": "Blast put and get",
+    "steps": [
+      {
+        "function": "infer_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "put_blast_query_for_rid",
+        "inputs": ["parameters"],
+        "outputs": ["rid", "database_used", "raw_response"]
+      },
+      {
+        "function": "get_blast_doc_from_rid",
+        "inputs": ["rid", "database_used"],
+        "outputs": ["document"]
+      },
+      {
+        "function": "parse_answer_from_doc",
+        "inputs": ["document", "task", "prompt", "task_type", "llm"],
+        "outputs": ["answer"]
+      }
+    ]
+  },
+  "plan_ism_analysis": {
+    "description": "Perform ISM analysis to identify critical bases in DNA sequence using AlphaGenome",
+    "steps": [
+      {
+        "function": "infer_ism_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "execute_alphagenome_ism",
+        "inputs": ["parameters"],
+        "outputs": ["ism_scores", "ism_interval", "sequence_interval", "api_response"]
+      },
+      {
+        "function": "parse_ism_results",
+        "inputs": ["ism_scores", "ism_interval", "parameters", "task"],
+        "outputs": ["answer", "visualization_file", "critical_positions"]
+      }
+    ]
+  },
+  "plan_snp_splicing_analysis": {
+    "description": "Analyze SNP splicing impact using NCBI + AlphaGenome integration",
+    "steps": [
+      {
+        "function": "infer_snp_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "get_snp_summary_from_id",
+        "inputs": ["parameters"],
+        "outputs": ["idlist", "database_used", "document"]
+      },
+      {
+        "function": "parse_snp_coordinates_from_doc",
+        "inputs": ["document", "task"],
+        "outputs": ["snp_data"]
+      },
+      {
+        "function": "execute_alphagenome_variant_splicing",
+        "inputs": ["snp_data"],
+        "outputs": ["splicing_predictions", "api_response"]
+      },
+      {
+        "function": "parse_splicing_results",
+        "inputs": ["splicing_predictions", "snp_data", "task"],
+        "outputs": ["answer"]
+      }
+    ]
+  },
+  "plan_tissue_expression_comparison": {
+    "description": "Compare gene expression across multiple tissues using NCBI + AlphaGenome",
+    "steps": [
+      {
+        "function": "infer_tissue_expression_parameters_from_task",
+        "inputs": ["task", "prompt", "task_type", "llm"],
+        "outputs": ["parameters"]
+      },
+      {
+        "function": "get_esearch_idlist_from_param",
+        "inputs": ["parameters"],
+        "outputs": ["idlist", "database_used", "raw_response"]
+      },
+      {
+        "function": "get_efetch_doc_from_idlist",
+        "inputs": ["idlist", "database_used"],
+        "outputs": ["document"]
+      },
+      {
+        "function": "parse_gene_coordinates_from_doc",
+        "inputs": ["document", "task"],
+        "outputs": ["gene_data"]
+      },
+      {
+        "function": "execute_multi_tissue_expression_analysis",
+        "inputs": ["gene_data", "parameters"],
+        "outputs": ["expression_results", "api_response"]
+      },
+      {
+        "function": "parse_tissue_expression_comparison",
+        "inputs": ["expression_results", "gene_data", "parameters", "task"],
+        "outputs": ["answer"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "infer_ism_parameters_from_task": {
+    "name": "ISM Parameter Inference",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "infer_ism_parameters_from_task",
+    "specific_instructions": {
+      "ism_sequence_optimization": "Extract DNA sequence from user input and infer ISM analysis parameters. Look for ATCG sequences and analysis preferences."
+    },
+    "general_instructions": "Extract parameters for AlphaGenome ISM analysis from user request."
+  },
+  "execute_alphagenome_ism": {
+    "name": "AlphaGenome ISM Analysis", 
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "execute_alphagenome_ism"
+  },
+  "parse_ism_results": {
+    "name": "ISM Results Parser",
+    "implementation_type": "function", 
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "parse_ism_results"
+  },
+  "infer_snp_parameters_from_task": {
+    "name": "SNP Parameter Inference",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "infer_snp_parameters_from_task"
+  },
+  "parse_snp_coordinates_from_doc": {
+    "name": "SNP Coordinates Parser",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "parse_snp_coordinates_from_doc"
+  },
+  "execute_alphagenome_variant_splicing": {
+    "name": "AlphaGenome Variant Splicing Analysis",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "execute_alphagenome_variant_splicing"
+  },
+  "parse_splicing_results": {
+    "name": "Splicing Results Parser",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "parse_splicing_results"
+  },
+  "infer_tissue_expression_parameters_from_task": {
+    "name": "Tissue Expression Parameter Inference",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "infer_tissue_expression_parameters_from_task"
+  },
+  "parse_gene_coordinates_from_doc": {
+    "name": "Gene Coordinates Parser",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "parse_gene_coordinates_from_doc"
+  },
+  "execute_multi_tissue_expression_analysis": {
+    "name": "Multi-Tissue Expression Analysis",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "execute_multi_tissue_expression_analysis"
+  },
+  "parse_tissue_expression_comparison": {
+    "name": "Tissue Expression Comparison Parser",
+    "implementation_type": "function",
+    "module": "nanobioagent.tools.alphagenome_utils",
+    "function": "parse_tissue_expression_comparison"
+  }
+}

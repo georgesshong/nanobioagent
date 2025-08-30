@@ -1,0 +1,31 @@
+model_name,method,answer,elapsed_time
+N/A,retrieve,RNGTT,0.0
+gpt-4.1,genegpt,"SMC3, DCD, or RNGTT (context-dependent)",11.53
+claude-sonnet-4-20250514,genegpt,RNGTT,67.15
+nvidia/llama-3.1-nemotron-ultra-253b-v1,genegpt,"<think>
+Okay, let's tackle the question: ""What is the official gene symbol of hCAP?"" 
+
+First, I need to recall that gene symbols can sometimes be tricky because they might have aliases or outdated names. The user mentioned using NCBI's Eutils, so I should start by querying the gene database using the term ""hCAP"".
+
+I'll use the eSearch utility to find the relevant gene ID. The URL would look like this: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&retmax=5&retmode=json&sort=relevance&term=hCAP
+
+Let me check the response. If there are results, I'll get a list of gene IDs. Then, I need to use eFetch to retrieve the details for those IDs. The official symbol should be in the eFetch response.
+
+Wait, the example responses show that sometimes the first result is the correct one, but I should verify if ""hCAP"" is an alias. For instance, in the first example, LMP10 was an alias for PSMB10. So maybe hCAP is an alias for another gene.
+
+Looking at the eSearch results for hCAP, suppose it returns a gene ID. Let's say the ID is 10000 (just an example). Then, using eFetch on that ID would give the official symbol. 
+
+Alternatively, if the eSearch doesn't return any results, I might need to try a different approach. Maybe hCAP is a less common symbol or specific to a certain database. But given the examples, the process seems straightforward: search the gene database, get the ID, then fetch the details.
+
+Another thing to consider is that sometimes the symbol might be part of a larger name. For example, in the first example, the official symbol was PSMB10, but the alias was LMP10. So the key is to look for the ""Official Symbol"" field in the eFetch response.
+
+Let me simulate the steps:
+
+1. eSearch for hCAP in the gene database.
+2. Get the gene ID(s).
+3. eFetch the details for those IDs.
+4. Extract the official symbol from the response.
+
+Assuming the eSearch returns a single ID, and the eFetch shows the official symbol as, say, ""CAPN1"" or something similar. But I need to actually perform the API calls to get the accurate data.
+
+Wait, but since I can't actually make live API calls, I have to rely",31.85
