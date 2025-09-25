@@ -6,39 +6,33 @@ import time
 import urllib.error
 import urllib.request
 import re
-import importlib
 import logging
 from logging.handlers import RotatingFileHandler
 from typing import Dict, List, Tuple, Callable, Optional, Any, Union
 from sentence_transformers import SentenceTransformer
 
-# Enable/Disable logging
-ENABLE_FILE_LOGGING = True
-ENABLE_CONSOLE_PRINTING = True
-
+# Enable/Disable logging (independent controlled by constants below)
+ENABLE_FILE_LOGGING = False  # prints the logs to a file
+ENABLE_CONSOLE_PRINTING = False  # prints the logs to the console
 # Setup logger
 logger = logging.getLogger("gene_logger")
 logger.setLevel(logging.DEBUG)
-
 # Default formatter with timestamp
 default_formatter = logging.Formatter('%(asctime)s|%(levelname)s|%(message)s')
 # Formatter without timestamp
 simple_formatter = logging.Formatter('%(levelname)s|%(message)s')
 # Formatter with only message
 message_only_formatter = logging.Formatter('%(message)s')
-
 # Console handler
 if ENABLE_CONSOLE_PRINTING:
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(default_formatter)
     logger.addHandler(console_handler)
-
 # File handler
 if ENABLE_FILE_LOGGING:
     file_handler = RotatingFileHandler("gene_tool.log", maxBytes=5*1024*1024, backupCount=3)
     file_handler.setFormatter(default_formatter)
     logger.addHandler(file_handler)
-
 # Unified logging function, level can be "info", "debug", "warning", "error", "critical"
 def log_event(message, level="info", enable_time_logging=False):
     if not level:
@@ -50,9 +44,16 @@ def log_event(message, level="info", enable_time_logging=False):
     else:
         for handler in logger.handlers:
             handler.setFormatter(default_formatter)
-    getattr(logger, level.lower() or "info")(message)
+    # Replace special characters for logging
+    if 'α' in message or 'β' in message:
+        safe_message = message.replace('α', 'alpha').replace('β', 'beta')
+    else:
+        safe_message = message
+    getattr(logger, level.lower() or "info")(safe_message)
+    
+    # getattr(logger, level.lower() or "info")(message)
 
-# Function to call NCBI API with Caching
+# Function to call NCBI API with Caching implementation
 def call_api(url, wait_time=1, use_cache=True, cache_blast=True, cache_dir="api_cache"):
     """
     Makes an API call with caching support, including special handling for BLAST calls.
@@ -76,7 +77,6 @@ def call_api(url, wait_time=1, use_cache=True, cache_blast=True, cache_dir="api_
     
     # Check if the response is cached (for any request type)
     if (use_cache or (is_blast_get and cache_blast)) and os.path.exists(cache_path):
-        # print(f"TEMP 0: Using cache_path: {cache_path}")
         log_event(f"Using cached response for {url}")
         with open(cache_path, 'rb') as f:
             return f.read()
@@ -86,7 +86,6 @@ def call_api(url, wait_time=1, use_cache=True, cache_blast=True, cache_dir="api_
     
     # Handle BLAST PUT requests specially
     if 'blast.ncbi.nlm.nih.gov' in url and 'CMD=Put' in url:
-        # print(f"TEMP 0: make_blast_put_request url: {url}")
         response = make_blast_put_request(url, cache_dir)
         
         # Cache the PUT response if enabled
@@ -156,8 +155,6 @@ def make_blast_put_request(url, cache_dir=None):
     
     # Create blast_mappings directory if it doesn't exist
     os.makedirs(os.path.join(cache_dir, "blast_mappings"), exist_ok=True)
-    # print(f"TEMP: Using cache directory: {cache_dir}")
-    # print(f"TEMP: Using sequence_cache_file: {sequence_cache_file}")
     # Check if we already have results for this exact sequence
     if os.path.exists(sequence_cache_file):
         with open(sequence_cache_file, 'r') as f:

@@ -264,7 +264,7 @@ def main():
     print("=" * 50)
     
     # Initialize generator
-    generator = ProductionGeneAliasGenerator(email="your_email@example.com")
+    generator = ProductionGeneAliasGenerator(email="gehong@ethz.ch")
     
     # Load existing data to avoid duplicates
     existing_data = generator.load_existing_data('geneturing_updated.json')

@@ -1,6 +1,6 @@
 """
 NanoBioAgent (NBA): Nano-Scale Language Model Agents for Genomics
-Built on top of GeneGPT with enhanced multi-agent framework
+Multi-agent framework with SLM (Small Language Models) and other benchmark methods (e.g. GeneGPT, direct LLM prompting and coded function queries)
 """
 __version__ = "1.0.0"
 __author__ = "George Hong"

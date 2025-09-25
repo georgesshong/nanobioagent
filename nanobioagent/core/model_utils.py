@@ -1,8 +1,26 @@
-# model_utils.py
 SYSTEM_PROMPT_NCBI = 'You are a helpful assistant.\nWhen you have completed your answer, write "Answer: [your answer]" followed by two newlines (i.e. "\n\n") to indicate completion.\nFor accuracy, you should use the NCBI Web APIs, Eutils and BLAST (with examples in user prompt), to obtain the data.\n'
 SYSTEM_PROMPT_BASIC = 'You are a helpful assistant.'
 STOP_SEQUENCE=['->', '\n\nQuestion']
-SECONDS_BETWEEN_CALLS = 3.1
+SECONDS_BETWEEN_CALLS = 1.1 # 3.1
+# Token estimation constants - centralized configuration calibrated from empirical tests on NCBI documents
+TOKEN_ESTIMATION_CONFIG = {
+    "default_chars_per_token": 3.0,  # Conservative average across models
+    "model_specific_ratios": {
+        "mistralai": 2.18,
+        "tiiuae": 2.32,
+        "ibm": 2.33,
+        "google/gemma-2": 1.80,
+        "google": 2.40,
+        "qwen": 2.49,
+        "gpt": 2.99,      # GPT models are more efficient
+        "microsoft": 2.98,
+        "meta": 3.00,
+        "nvidia/llama": 3.00,
+        "nvidia": 2.41,
+        "claude": 3.00      # 4.61 but let's be conservative
+    },
+    "minimum_tokens": 1
+}
 
 import json
 import os
@@ -12,14 +30,12 @@ from pathlib import Path
 from typing import Dict, Any, Union, List, Optional
 from datetime import datetime
 from dotenv import load_dotenv
-from ..tools import ncbi_query as ncbi
-from ..tools import gene_utils as utils
 from ..tools.gene_utils import log_event
 
 load_dotenv()
 
 import torch
-from langchain_community.llms import OpenAI, HuggingFacePipeline, Ollama, HuggingFaceEndpoint, HuggingFaceHub
+from langchain_community.llms import OpenAI, HuggingFacePipeline
 from langchain_community.chat_models import ChatOpenAI, ChatGooglePalm, ChatOllama, ChatHuggingFace
 from langchain_anthropic import ChatAnthropic
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -27,6 +43,12 @@ from langchain.schema import HumanMessage, SystemMessage
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 LANGCHAIN_AVAILABLE = True
+
+# To-Do: fix the deprecated warning from ChatOpenAI
+# LangChainDeprecationWarning: The class `ChatOpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-openai package and should be used instead.
+import warnings
+warnings.filterwarnings("ignore", message="Convert_system_message_to_human will be deprecated!")
+warnings.filterwarnings("ignore", message=".*ChatOpenAI.*deprecated.*", category=DeprecationWarning)
 
 # Returns model-specific configurations from JSON file, includes context windows, pricing data, and dynamic cut_length calculation
 def get_model_config(model_name, config_file="model_config.json"):
@@ -164,7 +186,8 @@ def create_langchain_model(model_name, config_data=None):
             return ChatOpenAI(
                 model_name=model_name,
                 temperature=temperature,
-                max_completion_tokens=model_config["max_tokens"],
+                model_kwargs={"max_completion_tokens": model_config["max_tokens"]},
+                # max_completion_tokens=model_config["max_tokens"],
                 openai_api_key=openai_api_key
             )
         else:
@@ -274,7 +297,7 @@ def create_langchain_model(model_name, config_data=None):
         log_event(f"Model type {model_type} not supported for {model_name}")
         return None
 
-# Call a LangChain model with the given prompt
+# Call a LangChain model with the given prompt with the hard-coded rate-limiting logic similar to genegpt approach
 def call_langchain_model(llm, q_prompt, system_message=SYSTEM_PROMPT_NCBI, model_name=None):
     # Add rate limiting
     if 'prev_call_time' in globals():
@@ -287,8 +310,12 @@ def call_langchain_model(llm, q_prompt, system_message=SYSTEM_PROMPT_NCBI, model
         return "Error: No LangChain model available."
     
     # Thinking control = True means letting the model config drive the behaviour. False means we don't interfere and let the model do its thing internally
-    enable_thinking_control = False
-    
+    enable_thinking_control = True
+    # To-Do: Disable system messages for Gemma models that don't support them, move to config later
+    models_no_system = ["google/gemma-2-2b-it", "google/gemma-7b", "google/codegemma-7b", "google/gemma-2-9b-it", "gpt-3.5-turbo"]
+    if model_name in models_no_system:
+        system_message = ''
+
     try:
         # For chat models
         if isinstance(llm, (ChatOpenAI, ChatAnthropic, ChatOllama, ChatGoogleGenerativeAI, ChatGooglePalm, ChatHuggingFace)):
@@ -296,17 +323,24 @@ def call_langchain_model(llm, q_prompt, system_message=SYSTEM_PROMPT_NCBI, model
                 model_config = get_model_config(model_name)
                 if enable_thinking_control:
                     thinking_control_prompt = model_config.get("thinking_control_prompt")
-                    print(f"call_langchain_model: model_name: {model_name} + thinking_control_prompt: {thinking_control_prompt}")
+                    log_event(f"call_langchain_model: model_name: {model_name} + thinking_control_prompt: {thinking_control_prompt}")
                     if thinking_control_prompt:
                         system_message = system_message + " " + thinking_control_prompt
-                        log_event(f"call_langchain_model: thinking_control_prompt: {thinking_control_prompt}")
 
-            messages = [
-                SystemMessage(content=system_message),
-                HumanMessage(content=q_prompt)
-            ]
+            if system_message and system_message.strip():
+                messages = [
+                    SystemMessage(content=system_message),
+                    HumanMessage(content=q_prompt)
+                ]
+            else:
+                messages = [
+                    HumanMessage(content=q_prompt)
+                ]
+            
             response = llm.invoke(messages, stop=STOP_SEQUENCE)
             return response.content
+            # remove the think tag
+            # return re.sub(r'<think>.*?</think>', '', response.content, flags=re.DOTALL)
         
         # For completion models
         else:
@@ -332,7 +366,10 @@ def call_llm(q_prompt, model_name, config_data=None, use_fallback=False, cost_tr
     if len(q_prompt) > model_config["cut_length"]:
         # truncate from the start
         q_prompt = q_prompt[len(q_prompt) - model_config["cut_length"]:]
-    
+    # use_fallback is only for gpt-x models for testing purpose, so force it to False for others to always invoke via langchain 
+    if not model_name.startswith("gpt-"):
+        use_fallback = False
+
     try:
         if LANGCHAIN_AVAILABLE and not use_fallback:
             # Create or get the LangChain model
@@ -352,10 +389,11 @@ def call_llm(q_prompt, model_name, config_data=None, use_fallback=False, cost_tr
             else:
                 raise Exception(f"Failed to create LangChain model for {model_name}")
         else:
-            # Fallback to OpenAI if LangChain is not available
+            # Fallback to direct OpenAI call as per geneGPT original method
             if not model_name.startswith("gpt-"):
-                log_event(f"Warning: LangChain not available. Falling back to gpt-3.5-turbo.")
-                model_name = "gpt-3.5-turbo"
+                # log_event(f"Warning: LangChain not available. Falling back to gpt-3.5-turbo.")
+                # model_name = "gpt-3.5-turbo"
+                raise Exception(f"fallback only used for testing purposes for gpt-x models, not for {model_name}")
             
             # Handle rate limiting    
             prev_call_time = globals().get('prev_call_time', 0)
@@ -440,6 +478,11 @@ def invoke_llm_with_config(llm, prompt_text, model_name, system_message = SYSTEM
     #if len(prompt_text) > model_config["cut_length"]:
     #    prompt_text = prompt_text[len(prompt_text) - model_config["cut_length"]:]
     
+    # To-Do: Disable system messages for Gemma models that don't support them, move to config later
+    models_no_system = ["google/gemma-2-2b-it", "google/gemma-7b", "google/codegemma-7b", "google/gemma-2-9b-it"]
+    if model_name in models_no_system:
+        effective_system_message = None
+        
     # Create messages
     if effective_system_message:
         messages = [
@@ -447,10 +490,10 @@ def invoke_llm_with_config(llm, prompt_text, model_name, system_message = SYSTEM
             HumanMessage(content=prompt_text)
         ]
         response = llm.invoke(messages)
-        print(f"invoke_llm_with_config: with system message: {effective_system_message}")
+        log_event(f"invoke_llm_with_config: with system message: {effective_system_message}")
     else:
         response = llm.invoke(prompt_text)
-        print(f"invoke_llm_with_config: with prompt")
+        log_event(f"invoke_llm_with_config: with prompt")
 
     return clean_llm_response(response.content)
 
@@ -494,19 +537,6 @@ def calculate_cost(model_name: str, input_tokens: int, output_tokens: int) -> Di
         }
     }
 
-# Token estimation constants - centralized configuration
-TOKEN_ESTIMATION_CONFIG = {
-    "default_chars_per_token": 3.7,  # Conservative average across models
-    "model_specific_ratios": {
-        "gpt": 3.5,      # GPT models are more efficient
-        "claude": 3.8,   # Claude similar to GPT
-        "gemini": 4.2,   # Gemini tends to use more tokens
-        "local": 4.0,    # Local models vary, use conservative default
-        "nvidia_nim": 3.8 # NVIDIA NIM models similar to base models
-    },
-    "minimum_tokens": 1
-}
-
 def get_chars_per_token(model_name: str = "") -> float:
     """
     Get the characters per token ratio for a specific model.
@@ -514,7 +544,8 @@ def get_chars_per_token(model_name: str = "") -> float:
     """
     if not model_name:
         return TOKEN_ESTIMATION_CONFIG["default_chars_per_token"]
-    model_lower = model_name.lower()
+    # model_lower = model_name.lower()
+    model_lower = model_name.lower().replace("huggingface/", "")
     ratios = TOKEN_ESTIMATION_CONFIG["model_specific_ratios"]
     # Check for model prefixes
     for model_type, ratio in ratios.items():
@@ -784,6 +815,9 @@ def _wrap_nvidia_model(llm, max_tokens=256):
             kwargs['max_tokens'] = max_tokens
             # Remove any parameters that NVIDIA API doesn't accept
             kwargs.pop('max_completion_tokens', None)
+            kwargs.pop('n', None)
+            kwargs.pop('logprobs', None)
+            kwargs.pop('top_logprobs', None)
             return original_create(*args, **kwargs)
         
         # Replace the create method directly
@@ -837,6 +871,31 @@ def extract_json_string_from_llm_response(response_text: str) -> str:
     raise ValueError(f"Could not extract valid JSON from LLM response. Response: {response_text[:500]}...")
 
 # Extract and parse JSON from LLM response as a dictionary
-def extract_json_dict_from_llm_response(response_text: str) -> Dict[str, Any]:
-    json_string = extract_json_string_from_llm_response(response_text)
-    return json.loads(json_string)
+def extract_json_dict_from_llm_response(response_text: str, fallback_parser=None, required_fields=None) -> Dict[str, Any]:
+    try:
+        # existing JSON extraction logic
+        json_string = extract_json_string_from_llm_response(response_text)
+        json_data = json.loads(json_string)
+        
+        # Validate that the JSON has required fields
+        if required_fields:
+            missing_fields = [field for field in required_fields if field not in json_data]
+            if missing_fields:
+                raise ValueError(f"JSON missing required fields: {missing_fields}")
+        
+        return json_data
+        
+    except ValueError as original_error:  # Changed variable name
+        # Use the provided fallback parser if available
+        if fallback_parser:
+            try:
+                log_event(f"Calling fallback parser: {fallback_parser.__name__}")
+                result = fallback_parser(response_text)
+                log_event(f"Fallback parser succeeded: {result}")
+                return result
+            except Exception as fallback_error:  # Changed variable name
+                log_event(f"Fallback parser failed: {fallback_error}")
+                pass
+        
+        # If all else fails, re-raise the original error
+        raise original_error

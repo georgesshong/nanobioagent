@@ -2,7 +2,7 @@
 """
 Model Configuration JSON to CSV Converter
 
-Converts model configuration JSON files to CSV format with support for:
+Converts model configuration CSV files to JSON format and vice-versa with support for:
 - Flattening nested pricing structures
 - Including _defaults as first row
 - Handling missing fields gracefully
@@ -10,34 +10,29 @@ Converts model configuration JSON files to CSV format with support for:
 
 Usage:
     python convert_model_config.py input_file.json
-    
-The output CSV will be saved with the same name but .csv extension.
+    python convert_model_config.py input_file.csv
 """
+# HARDCODED NVIDIA NIM PREFIXES - automatically added to JSON output
+# add more prefixes as needed
+NVIDIA_NIM_PREFIXES = [
+    "deepseek-ai/", "google/", "ibm/", "llama-3.1-nemotron", "llama-3.3-nemotron",
+    "nvidia/", "marin/", "meta/", "microsoft/", "mistralai/", "nv-mistralai/", 
+    "qwen/", "tiiuae/", "zyphra/", "openai/"
+]
 
 import json
 import csv
 import sys
 import os
 from pathlib import Path
-from typing import Dict, Any, List, Set, Union
+from typing import Dict, Any, List, Union
 
-
+# true if a value represents a number, handling Excel formatting.
 def is_numeric_value(value: Any) -> bool:
-    """
-    Check if a value represents a number, handling Excel formatting.
-    
-    Args:
-        value: Value to check (can be string, int, float, etc.)
-        
-    Returns:
-        True if value can be converted to a number
-    """
     if isinstance(value, (int, float)):
         return True
-    
     if not value or value == "":
         return False
-    
     try:
         # Clean up various apostrophe/quote characters used as thousands separators
         clean_value = str(value)
@@ -54,24 +49,11 @@ def is_numeric_value(value: Any) -> bool:
     except (ValueError, TypeError):
         return False
 
-
+# Parse a numeric value, handling Excel formatting and scientific notation.
 def parse_numeric_value(value: Any) -> Union[int, float]:
-    """
-    Parse a numeric value, handling Excel formatting and scientific notation.
-    Always returns integers when possible, avoiding scientific notation.
-    
-    Args:
-        value: Value to parse
-        
-    Returns:
-        Parsed numeric value as int or float
-        
-    Raises:
-        ValueError: If value cannot be converted to a number
-    """
+    # Always returns integers when possible, avoiding scientific notation.
     if isinstance(value, (int, float)):
         return int(value) if isinstance(value, float) and value.is_integer() else value
-    
     # Clean up various apostrophe/quote characters used as thousands separators
     clean_value = str(value)
     for separator in ["’", "'", "'", "'", "`", ","]:
@@ -88,17 +70,10 @@ def parse_numeric_value(value: Any) -> Union[int, float]:
     else:
         return int(clean_value)
 
-
+# flatten a model configuration dictionary, handling nested pricing structure.
 def flatten_model_config(model_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Flatten a model configuration dictionary, handling nested pricing structure.
-    
-    Args:
-        model_data: Dictionary containing model configuration
-        
-    Returns:
-        Flattened dictionary with pricing.* keys
-    """
+    # takes in model_data: Dictionary containing model configuration
+    # returns: Flattened dictionary with pricing.* keys
     flattened = {}
     
     for key, value in model_data.items():
@@ -116,11 +91,9 @@ def get_all_columns(models_data: Dict[str, Any], defaults_data: Dict[str, Any]) 
     """
     Extract all possible column names from models and defaults data.
     Uses _defaults order as the primary template, then adds any additional columns.
-    
     Args:
         models_data: Dictionary of all models
         defaults_data: Dictionary of default values
-        
     Returns:
         List of column names ordered by _defaults structure, then additional columns
     """
@@ -145,16 +118,13 @@ def get_all_columns(models_data: Dict[str, Any], defaults_data: Dict[str, Any]) 
     
     return columns_list
 
-
+# create a CSV row for a model configuration.
 def create_csv_row(model_name: str, model_data: Dict[str, Any], columns: List[str]) -> List[str]:
     """
-    Create a CSV row for a model configuration.
-    
     Args:
         model_name: Name of the model
         model_data: Model configuration dictionary
-        columns: List of all column names
-        
+        columns: List of all column names    
     Returns:
         List of values corresponding to the columns
     """
@@ -307,11 +277,9 @@ def unflatten_model_config(flattened_data: Dict[str, Any]) -> Dict[str, Any]:
 
 def clean_column_name(column_name: str) -> str:
     """
-    Clean column names by removing various BOMs and whitespace.
-    
+    Clean column names by removing various BOMs and whitespace.    
     Args:
         column_name: Raw column name from CSV
-        
     Returns:
         Cleaned column name
     """
@@ -433,6 +401,10 @@ def csv_to_json(input_file: str, preserve_metadata: bool = True) -> str:
             "description": "Converted from CSV format",
             "created": "2025-08-19"
         }
+    
+    # Always add hardcoded nvidia_nim_prefixes
+    json_data["nvidia_nim_prefixes"] = NVIDIA_NIM_PREFIXES
+    print(f"🚀 Added hardcoded nvidia_nim_prefixes: {len(json_data['nvidia_nim_prefixes'])} prefixes")
     
     models = {}
     defaults = None

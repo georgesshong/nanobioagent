@@ -24,8 +24,8 @@ load_dotenv()
 from nanobioagent.core.prompts import get_prompt_header
 from nanobioagent.api import gene_answer
 from nanobioagent.tools.gene_utils import log_event  # Make sure this import exists
-from nanobioagent.evaluation.evaluate import main_evaluation
-
+from nanobioagent.evaluation.evaluate import main_evaluation, TASK_TYPE_MAPPING
+from nanobioagent.evaluation.compare import calculate_score
 try:
     import nanobioagent as nba
     PACKAGE_MODE = True
@@ -52,7 +52,6 @@ except ImportError:
 
 SKIP_REPEAT_PROMPT = True
 MAX_NUM_CALLS = 10
-DEBUG_PRINT = True
 DEFAULT_MODEL_NAME = "gpt-4o-mini" # Default model for LLM calls in this module
 DEFAULT_RESULTS_FOLDER = "default"
 DEFAULT_STR_MASK = "111111"
@@ -87,8 +86,8 @@ def parse_arguments():
                 'used as str_mask for ablation studies. If empty, defaults to "default".')
     parser.add_argument('-m', '--model', type=str, default='gpt-3.5-turbo', 
             help='Model name to use (default: gpt-3.5-turbo)')
-    parser.add_argument('--config', type=str, default=None,
-            help='Path to LangChain config file (default: langchain.config.json)')
+    parser.add_argument('--config_data', type=str, default=None,
+        help='Path to config file controlling operations and other overwrites')
     parser.add_argument('--local', action='store_true',
             help='Force using local model from HuggingFace')
     parser.add_argument('--hf_path', type=str,
@@ -144,6 +143,7 @@ def process_experiment_name(experiment_name):
     return output_folder, str_mask, mask
 
 # Create timestamped snapshots of multiple files in organized directories.
+# for debugging and tracking changes only
 def get_files_to_snap():
     return [
             'main.py',  # Current script 
@@ -162,7 +162,7 @@ def get_files_to_snap():
             'nanobioagent/config/tasks.json',
             'nanobioagent/config/examples/ncbi_examples.json',
             'nanobioagent/config/tools/ncbi_tools.json',
-            'nanobioagent/__init__.py',  # Package initialization
+            'nanobioagent/__init__.py',
             'requirements.txt'
         ]
     
@@ -303,10 +303,46 @@ def cleanup_old_snapshots(archive_dir, keep_count=30):
         shutil.rmtree(snapshot_path)
         log_event(f"Removed old snapshot: {snapshot_dir}")
 
+# helper function to set high priority on Windows
+def set_high_priority():
+    if os.name != 'nt':
+        return
+    try:
+        import subprocess
+        subprocess.run(['wmic', 'process', 'where', f'processid={os.getpid()}', 'CALL', 'setpriority', 'high priority'], capture_output=True, shell=True, check=True)
+        print("Process priority set to high!")
+    except:
+        print("Process priority could not be set!")
+        pass  # Silently fail on non-Windows or if wmic fails
+
+# helper function to control Windows sleep/display timeout behavior, i needed this for long runs on my laptop
+def control_sleep_windows(state=None):
+    # set state to "prevent" to disable sleep/display timeout, "allow" to restore normal sleep behavior, None to do nothing
+    if state is None:
+        return
+    # Check if running on Windows
+    if os.name != 'nt':
+        return  # Not Windows, skip
+    try:
+        import ctypes
+        if state == "prevent":
+            # ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED
+            ctypes.windll.kernel32.SetThreadExecutionState(0x80000002)
+        elif state == "allow":
+            # ES_CONTINUOUS - restore normal power management
+            ctypes.windll.kernel32.SetThreadExecutionState(0x80000000)
+    except (AttributeError, ImportError, OSError):
+        # Handle cases where ctypes or windll don't exist, or call fails
+        pass
+
 # Main function to run the analysis
 def main():
+    # Set high priority for the process
+    set_high_priority()
     # Snap a copy of the current script with a timestamp
     save_timestamped_copy()
+    # Prevent sleep & display turning off for windows
+    control_sleep_windows(state="prevent")
     # Parse command line arguments
     args = parse_arguments()
     
@@ -323,7 +359,10 @@ def main():
     
     # Load configuration if available
     config_data = None
-    
+    if args.config_data:
+        with open(args.config_data, 'r') as f:
+            config_data = json.load(f)
+            
     log_event(f"Experiment: {output_folder}")
     log_event(f"Str_mask: {str_mask} (mask: {mask})")
     log_event(f"Using model: {model_name}, Method: {method}")
@@ -341,11 +380,16 @@ def main():
         model_dir_name += "_fallback"
     model_dir_name += f"_{method}"
     
-    result_dir = os.path.join(experiment_dir, model_dir_name)
+    request_type = "answer" # Default request type
+    if config_data and config_data.get("request", {}).get("type"):
+        request_type = config_data["request"]["type"] # overwrite if specified in config
+        result_dir = os.path.join(experiment_dir, model_dir_name, request_type)
+    else:
+        result_dir = os.path.join(experiment_dir, model_dir_name)
+
     os.makedirs(result_dir, exist_ok=True)
     
     log_event(f"Results will be saved to: {result_dir}")
-    
     # initialize 
     prev_call = time.time()	
     qas = json.load(open(qas_file))
@@ -414,17 +458,28 @@ def main():
             task_pbar = tqdm(total=task_total, desc=f"Task: {task}", position=1, leave=False)
             task_pbar.update(task_completed)  # Update with already completed questions
             
+            expected_task_type_for_classification = None
+            if request_type == "task_classification":
+                expected_task_types = TASK_TYPE_MAPPING.get(task, [])
+                if expected_task_types:
+                    expected_task_type_for_classification = expected_task_types[0] if len(expected_task_types) == 1 else ','.join(expected_task_types)
+                else:
+                    expected_task_type_for_classification = "unknown"
+                    
             for question, answer in info.items():
                 try:
                     if question in done_questions:
                         continue
                         
                     log_event('\n---New Instance---')
-                    
+                    expected_answer = answer
+                    if request_type == "task_classification":
+                        expected_answer = expected_task_type_for_classification
+                        
                     # Process the question using the method parameter
                     result = gene_answer(
                         question=question,
-                        answer=answer,
+                        answer=expected_answer,
                         prompt=prompt,
                         model_name=model_name,
                         config_data=config_data,
@@ -460,7 +515,9 @@ def main():
     
     # Print a final summary
     log_event(f"\nProcessing complete: {total_completed}/{total_questions} questions processed")
-    
+    # Allow sleep again
+    control_sleep_windows(state="allow")
+
     # Auto-run evaluation
     try:
         print("\n" + "="*50)

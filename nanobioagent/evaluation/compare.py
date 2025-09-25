@@ -221,20 +221,6 @@ def safe_numeric_conversion(value: Any, default_value: Any = "") -> Any:
             return default_value
     except (ValueError, TypeError):
         return default_value
-    """
-    Safely convert value to float, return 0.0 if conversion fails
-    """
-    try:
-        if isinstance(value, (int, float)):
-            return float(value)
-        elif isinstance(value, str):
-            if value.strip() == "":
-                return 0.0
-            return float(value)
-        else:
-            return 0.0
-    except (ValueError, TypeError):
-        return 0.0
 
 def compare_multiple_folders(folder_paths: List[str], details_csv: str, summary_csv: str):
     """
@@ -263,7 +249,13 @@ def compare_multiple_folders(folder_paths: List[str], details_csv: str, summary_
     for folder_path in folder_paths:
         results = load_results_from_folder(folder_path)
         all_results.append(results)
-        folder_names.append(os.path.basename(folder_path.rstrip('/')))
+        # Include parent directory to distinguish folders with same basename
+        path_parts = os.path.normpath(folder_path).split(os.sep)
+        if len(path_parts) >= 2:
+            folder_name = f"{path_parts[-2]}~{path_parts[-1]}"  # parent~basename
+        else:
+            folder_name = os.path.basename(folder_path.rstrip('/\\'))
+        folder_names.append(folder_name)
     
     # Prepare CSV data
     csv_data = []
@@ -628,8 +620,15 @@ def generate_default_output_paths(folder_paths: List[str]) -> Tuple[str, str]:
     Returns: (details_csv_path, summary_csv_path)
     """
     # Extract folder names (remove trailing slashes and get basename)
-    folder_names = [os.path.basename(folder_path.rstrip('/\\')) for folder_path in folder_paths]
-    
+    folder_names = []
+    for folder_path in folder_paths:
+        path_parts = os.path.normpath(folder_path).split(os.sep)
+        if len(path_parts) >= 2:
+            folder_name = f"{path_parts[-2]}~{path_parts[-1]}"
+        else:
+            folder_name = os.path.basename(folder_path.rstrip('/\\'))
+        folder_names.append(folder_name)
+        
     # Get the parent directory of the first folder
     parent_dir = os.path.dirname(os.path.abspath(folder_paths[0]))
     

@@ -8,7 +8,7 @@
       "gene_alias": "For gene symbol alias → database: \"gene\" or \"snp\", search_term: the gene name",
       "gene_location": "For gene location ==> database: \"gene\" or \"snp\" or \"nuccore\", search_term: the gene name. \nSpecial Rule for sequences with dots (clone for nucleotide sequences): \n- IF and ONLY IF the search_term contains a literal dot character \".\" (period/full stop) followed by a one or two digit variant number (indicating a clone) \n- THEN set database to \"nuccore\" AND search_term to the substring before the first dot \n- Example 1: \"AC104236.2\" → database: \"nuccore\", search_term: \"AC104236\"",
       "gene_snp_association": "For gene SNP association → database: \"snp\", search_term: the SNP ID (starts with \"rs\")",
-      "gene_disease_association": "For disease association → database: \"omim\", search_term: the disease name, retmax: \"20\"",
+      "gene_disease_association": "For disease association → database: \"omim\", search_term: the disease name, retmax: \"60\"",
       "protein-coding_genes": "For checking protein-coding genes → database: \"gene\", search_term: the gene symbol",
       "human_genome_dna_alignment": "For human genome dna alignment → database: \"nt\", search_term: the dna sequence made up of the ATGC letters",
       "multi-species_dna_alignment": "For human genome dna alignment → database: \"nt\", search_term: the dna sequence made up of the ATGC letters"
@@ -43,8 +43,7 @@
       "human_genome_dna_alignment": "Parse BLAST results to find chromosome location in format chrX:start-end. Step-by-step process: Step 1: Split the document into alignment sections (each section starts with '>') Step 2: For each section, examine the header (first few lines) to check if it contains human chromosome information Step 3: Look for chromosome patterns (case-insensitive):  - \"chromosome [number/X/Y]\" (e.g., \"chromosome 15\", \"chromosome X\")  - \"chr[number/X/Y]\" (e.g., \"chr15\", \"chr X\") Step 4: If human chromosome found, extract the chromosome number/letter. Step 5: Within that same section, find all \"Sbjct\" lines that contain position numbers 6. Extract the start position from the first Sbjct line and end position from the last Sbjct line 7. Format result as \"chrX:start-end\" (e.g., \"chr15:94509-94636\")",
       "multi-species_dna_alignment": "For multi-species dna alignment: Find out which organism / species has the best matching sequence to the input DNA sequence."
     },
-    "general_instructions": "Parse the answer from this NCBI API response for the genomics question.\nInstructions for genomics parsing:",
-    "xxx_general_instructions": "Parse the answer from this NCBI API response for the genomics question. CRITICAL: Do NOT include any thinking steps, reasoning, or explanations. NEVER use <think> tags or any form of step-by-step reasoning. \nInstructions for genomics parsing:"
+    "general_instructions": "Parse the answer from this NCBI API response for the genomics question.\nInstructions for genomics parsing:"
   },
   "get_esummary_doc_from_idlist": {
     "name": "NCBI eSummary",

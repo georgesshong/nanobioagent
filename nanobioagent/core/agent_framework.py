@@ -2,31 +2,11 @@
 Generic Agent Framework using LangChain LCEL patterns.
 Completely domain-agnostic and configuration-driven.
 """
-DEBUG_PRINT = True
+DEBUG_PRINT = False # control whether to print debug info for this particular module
+DEBUG_PRINT_MAX_CHAR = 2000 # Max chars to print for the function debug_log()
 MODE_MONITOR_MEMORY = "Light"  # "None", "Light", "Detailed"
 MODE_MONITOR_TIME = "Standard"  # "None", "Standard"
 DEFAULT_MODEL_NAME = "gpt-4o-mini" # Default model for LLM calls in this module
-
-import json
-import time
-import psutil
-import os
-from typing import Dict, List, Any, Optional, Union
-from pathlib import Path
-from pydantic import BaseModel, Field
-from .model_utils import create_langchain_model, extract_json_string_from_llm_response, extract_json_dict_from_llm_response, UniversalCostTracker, invoke_llm_with_config
-from ..tools.gene_utils import call_api, log_event
-from langchain_core.runnables import (
-    RunnableSequence, 
-    RunnablePassthrough, 
-    RunnableLambda
-)
-from langchain_core.prompts import PromptTemplate, FewShotChatMessagePromptTemplate
-from langchain_core.output_parsers import PydanticOutputParser
-from langchain_core.tools import Tool
-# from langchain_core.runnables.retry import RetryRunnable # new functionality
-from langchain_openai import ChatOpenAI
-
 FINAL_PARSING_CONFIG = {
     # Field-specific limits
     "field_limits": {
@@ -43,8 +23,29 @@ FINAL_PARSING_CONFIG = {
     "priority_fields": ["answer", "parameters", "document"]
 }
 
+import json
+import time
+import psutil
+import os
+import re
+from typing import Dict, List, Any, Optional, Union
+from pathlib import Path
+from pydantic import BaseModel, Field
+from .model_utils import create_langchain_model, extract_json_string_from_llm_response, extract_json_dict_from_llm_response, UniversalCostTracker, invoke_llm_with_config
+from ..tools.gene_utils import log_event
+from langchain_core.runnables import (
+    RunnableSequence, 
+    RunnablePassthrough, 
+    RunnableLambda
+)
+from langchain_core.prompts import PromptTemplate, FewShotChatMessagePromptTemplate
+from langchain_core.output_parsers import PydanticOutputParser
+from langchain_core.tools import Tool
+# from langchain_core.runnables.retry import RetryRunnable # new functionality
+from langchain_openai import ChatOpenAI
+
 # Debug printing utilities
-def debug_log(operation, data, category="GENERAL", show_content=True):
+def debug_log(operation, data, category="GENERAL", show_content=True, max_length=DEBUG_PRINT_MAX_CHAR):
     """Simple debug logging that respects DEBUG_PRINT flag"""
     if not DEBUG_PRINT:
         return
@@ -52,8 +53,8 @@ def debug_log(operation, data, category="GENERAL", show_content=True):
     if show_content and data is not None:
         # Smart truncation for long content
         content = str(data)
-        if len(content) > 1000:
-            content = content[:1000] + "... [truncated]"
+        if len(content) > max_length:
+            content = content[:max_length] + "... [truncated]"
         print(f"   {content}")
     print()
     
@@ -73,10 +74,6 @@ def get_memory_usage():
 # Format timing duration for display in seconds with 3 decimal places.
 def format_timing(duration_ms):
     return f"{duration_ms/1000:.3f}s"
-    # if duration_ms < 1000:
-    #     return f"{duration_ms:.1f}ms"
-    # else:
-    #     return f"{duration_ms/1000:.2f}s"
 
 class PerformanceMonitor:
     """Lightweight performance monitoring."""
@@ -202,9 +199,7 @@ class AgentFramework:
         self, 
         config_dir = None,
         model_name: str = DEFAULT_MODEL_NAME,
-        config_data = None,
-        temperature: float = 0.0,
-        api_key: Optional[str] = ""
+        config_data = None
     ):
         if config_dir is None:
             # Point to the config directory within the package
@@ -223,12 +218,12 @@ class AgentFramework:
         self.tasks_config = self._load_config("tasks.json")
         self.plans_config = self._load_config("plans.json")
         self.tools_registry = self._load_tools_registry()
-    
+        self.config_data = config_data
         # Initialize LCEL components
         self._setup_pipelines()
     
     def _load_config(self, filename: str) -> Dict[str, Any]:
-        """Load configuration from JSON file."""
+        # Load configuration from JSON file
         config_path = self.config_dir / filename
         if not config_path.exists():
             return {}
@@ -237,7 +232,7 @@ class AgentFramework:
             return json.load(f)
     
     def _load_tools_registry(self) -> Dict[str, Any]:
-        """Load all tool configurations from tools directory."""
+        # Load all tool configurations from tools directory
         tools_dir = self.config_dir / "tools"
         registry = {}
         
@@ -250,9 +245,8 @@ class AgentFramework:
         return registry
     
     def _extract_classification_patterns(self) -> Dict[str, Any]:
-        """Extract only the classification-relevant parts of task config."""
+        # Extract only the classification-relevant parts of task config
         classification_data = {}
-        
         for task_type, config in self.tasks_config.items():
             classification_data[task_type] = {
                 "description": config.get("description", ""),
@@ -260,6 +254,28 @@ class AgentFramework:
             }
         
         return classification_data
+
+    def _get_task_config(self, task_type: str, use_fallback: bool = False) -> Dict[str, Any]:
+        """Get task configuration with optional fallback handling."""
+        # Try exact match first
+        if task_type in self.tasks_config:
+            return self.tasks_config[task_type]
+        # If no exact match and fallback is disabled, return empty
+        if not use_fallback:
+            return {}
+        # Normalize function: remove separators and make lowercase
+        def normalize(text):
+            return text.replace("-", "").replace("_", "").replace(" ", "").lower()
+        
+        normalized_input = normalize(task_type)
+        # Find matching config key using normalized comparison
+        for config_key in self.tasks_config.keys():
+            if normalize(config_key) == normalized_input:
+                if DEBUG_PRINT:
+                    log_event(f"Task type normalized match: '{task_type}' -> '{config_key}'")
+                return self.tasks_config[config_key]
+        # No match found
+        return {}
 
     def _setup_pipelines(self):
         """Setup LangChain LCEL pipelines for each step."""
@@ -281,9 +297,12 @@ class AgentFramework:
         def classification_llm_wrapper(prompt_text):
             debug_log("Task Classification - Sending to LLM", f"Prompt length: {len(prompt_text)} chars", "CLASSIFICATION", False)
             try:
-                # result = self.llm.invoke(prompt_text)
                 result = invoke_llm_with_config(self.llm, prompt_text, self.model_name)
-    
+                # Experiment: try overwrite to check effects
+                # model_name_ow = "google/gemma-2-2b-it"
+                # llm_ow = create_langchain_model(model_name_ow)
+                # result = invoke_llm_with_config(llm_ow, prompt_text, model_name_ow)
+                
                 raw_content = result.content if hasattr(result, 'content') else str(result)
                 debug_log("Task Classification - LLM Response", raw_content, "CLASSIFICATION")
                 return result
@@ -313,7 +332,11 @@ class AgentFramework:
                 }, "CLASSIFICATION")
                 # Fallback: get dict and create TaskClassificationResult manually
                 try:
-                    json_data = extract_json_dict_from_llm_response(raw_content)
+                    json_data = extract_json_dict_from_llm_response(
+                        response_text=raw_content,
+                        fallback_parser=_parse_classification_fallback,
+                        required_fields=["task_type"]
+                    )
                     return TaskClassificationResult(
                         task_type=json_data.get("task_type", "unknown"),
                         confidence=json_data.get("confidence", 0.0),
@@ -383,9 +406,8 @@ class AgentFramework:
                 prompt_text = prompt_text
                 
             debug_log("Answer Parsing - LLM Input", prompt_text, "PARSING")
-            # result = self.llm.invoke(prompt_text)
             result = invoke_llm_with_config(self.llm, prompt_text, self.model_name)
-            
+
             raw_response = result.content if hasattr(result, 'content') else str(result)
             debug_log("Answer Parsing - LLM Output", raw_response, "PARSING")
             return result
@@ -405,7 +427,11 @@ class AgentFramework:
                 
                 # Fallback: get dict and create ParsedAnswer manually
                 try:
-                    json_data = extract_json_dict_from_llm_response(raw_content)
+                    json_data = extract_json_dict_from_llm_response(
+                        response_text=raw_content,
+                        fallback_parser=_parse_answer_fallback,
+                        required_fields=["answer"]
+                    )
                     return ParsedAnswer(
                         answer=json_data.get("answer", ""),
                         reasoning=json_data.get("reasoning", ""),
@@ -556,7 +582,7 @@ class AgentFramework:
         else:
             # Default: simple truncation
             return text[:limit-20] + f"... [truncated]"
-
+    
     def get_truncation_stats(self, original_results: Dict[str, Any], truncated_results: Dict[str, Any]) -> Dict[str, Any]:
         """Get statistics about truncation for debugging."""
         stats = {
@@ -647,11 +673,7 @@ class AgentFramework:
                 tool_config = self.tools_registry[step_name]
                 try:
                     tool_impl = self._get_tool_implementation(tool_config)
-                    #if DEBUG_PRINT:
-                        #print(f"DEBUG: Tool implementation loaded successfully")
                 except Exception as e:
-                    #if DEBUG_PRINT:
-                        #print(f"DEBUG: Failed to load tool implementation: {e}")
                     raise ValueError(f"Failed to get implementation for tool '{step_name}': {e}")
                 
                 # Prepare step inputs from context
@@ -730,6 +752,10 @@ class AgentFramework:
         """Parse final answer using LCEL pipeline."""
         monitor.start_timer("final_answer_parsing")
         
+        remove_document_before_parsing = False # experiment to reduce size but not a great idea
+        if remove_document_before_parsing:
+            execution_results.pop("document", None)  # Reduce size
+
         # Apply smart truncation before sending to LLM
         truncated_results = self._smart_truncate_execution_results(execution_results)
         
@@ -806,11 +832,35 @@ class AgentFramework:
             logs.append(f"Task classified as: {classification_result.task_type}")
             
             if DEBUG_PRINT:
+                log_event("="*10 + " Stage 1: Task Classification " + "="*10)
                 log_event(f"Task classified as: {classification_result.task_type}")
                 log_event(f"Available tasks: {list(self.tasks_config.keys())}")
-            
+                
             # Get task configuration
-            task_config = self.tasks_config.get(classification_result.task_type, {})
+            # task_config = self.tasks_config.get(classification_result.task_type, {})
+            task_config = self._get_task_config(classification_result.task_type, use_fallback=True)
+            
+            config_data = self.config_data
+            if config_data and config_data.get("request", {}).get("type") == "task_classification":
+                elapsed_time = time.time() - start_time
+                raw_classification_response = str(classification_result)
+                logs.append("=== TASK CLASSIFICATION DETAILS ===")
+                logs.append(f"Raw LLM Response: {raw_classification_response}")
+                logs.append(f"Parsed Task Type: {classification_result.task_type}")
+                logs.append(f"Confidence: {classification_result.confidence}")
+                logs.append(f"Reasoning: {classification_result.reasoning}")
+                if task_config:
+                    logs.append(f"Task Config: {json.dumps(task_config, indent=2)}")
+                    
+                return [
+                    task,
+                    expected_answer,
+                    classification_result.task_type,
+                    logs,
+                    [],
+                    elapsed_time
+                ]
+                
             if not task_config:
                 raise ValueError(f"No configuration found for task type: {classification_result.task_type}")
             
@@ -825,7 +875,7 @@ class AgentFramework:
                     parameters={},  # Empty - tools will extract what they need
                     context={}
                 )
-            
+
             # Step 2/3: Plan Retrieval and Execution
             logs.append("Stage 2: Plan Retrieval")
             plan_name = task_config.get("plan", classification_result.task_type)
@@ -834,11 +884,14 @@ class AgentFramework:
             if not plan:
                 raise ValueError(f"No plan found for: {plan_name}")
             logs.append(f"Plan retrieved: {plan_name}")
-            
+            if DEBUG_PRINT:
+                log_event("="*10 + " Stage 2: Plan Retrieval " + "="*10,)
+                log_event(f"Plan retrieved: {plan_name}")
+                
             logs.append("Stage 3: Plan Execution")
             step_names = [step["function"] for step in plan.get("steps", [])]
             logs.append(f"Plan of {len(step_names)} steps: {' --> '.join(step_names)}")
-            
+                
             initial_context = {
                 "task": task,
                 "parameters": parameter_result.parameters,
@@ -852,7 +905,7 @@ class AgentFramework:
             execution_result = self.execute_plan(plan, initial_context, monitor)
             logs.extend(execution_result.logs)  # Add tool logs to main logs
             
-            # NEW: Extract API URLs from execution results
+            # Extract API URLs from execution results
             if "api_urls" in execution_result.outputs:
                 api_calls = execution_result.outputs["api_urls"]
                 logs.append(f"Total API calls made: {len(api_calls)}")
@@ -860,10 +913,15 @@ class AgentFramework:
             if not execution_result.success:
                 raise ValueError(f"Plan execution failed: {execution_result.errors}")
             
-            # Step 4: Answer Parsing
+            if DEBUG_PRINT:
+                log_event("="*10 + " Stage 3: Plan Execution " + "="*10,)
+                log_event(f"Plan of {len(step_names)} steps: {' --> '.join(step_names)}")
+                log_event(execution_result.logs)
+                
+            # Step 4: Aggregate Parsing as a Generalist (e.g. Format the answer with common sense)
             logs.append("Stage 4: Answer Format Parsing")
             answer_format = task_config.get("answer_format", {})
-            
+                
             # Extract the raw answer from tool outputs BEFORE final parsing
             raw_answer_before_parsing = None
             if isinstance(execution_result.outputs, dict) and 'answer' in execution_result.outputs:
@@ -871,6 +929,10 @@ class AgentFramework:
             else:
                 raw_answer_before_parsing = str(execution_result.outputs)
             
+            if DEBUG_PRINT:
+                log_event("="*10 + " Stage 4: Answer Format Parsing " + "="*10,)
+                log_event(f"Raw answer before parsing: {raw_answer_before_parsing}")
+                
             # at task level, we can define a minimum length to parse at framework level
             # 0 (default) means always parse if answer_format is defined
             # 99999999 means never parse, always pass-through
@@ -896,16 +958,16 @@ class AgentFramework:
                     )
                     final_answer = parsed_answer.answer
                     
-                # NEW: Compare raw tool output vs final parsed answer
+                # Compare raw tool output vs final parsed answer
                 if DEBUG_PRINT:
                     if str(raw_answer_before_parsing) == str(final_answer):
-                        logs.append("✅ PARSING IMPACT: Raw tool output and final parsed answer are IDENTICAL - final parsing may be unnecessary")
-                        log_event("✅ PARSING IMPACT: Raw tool output and final parsed answer are IDENTICAL - final parsing may be unnecessary")
+                        logs.append("SUCCESS: PARSING IMPACT: Raw tool output and final parsed answer are IDENTICAL - final parsing may be unnecessary")
+                        log_event("SUCCESS: PARSING IMPACT: Raw tool output and final parsed answer are IDENTICAL - final parsing may be unnecessary")
                     else:
-                        logs.append("⚠️  PARSING IMPACT: Raw tool output and final parsed answer are DIFFERENT - final parsing is adding value")
+                        logs.append("WARNING: PARSING IMPACT: Raw tool output and final parsed answer are DIFFERENT - final parsing is adding value")
                         logs.append(f"   Raw tool output: '{raw_answer_before_parsing}'")
                         logs.append(f"   Final parsed:    '{final_answer}'")
-                        log_event("⚠️  PARSING IMPACT: Raw tool output and final parsed answer are DIFFERENT - final parsing is adding value")
+                        log_event("WARNING: PARSING IMPACT: Raw tool output and final parsed answer are DIFFERENT - final parsing is adding value")
                         log_event(f"   Raw tool output: '{raw_answer_before_parsing}'")
                         log_event(f"   Final parsed:    '{final_answer}'")
                         
@@ -919,10 +981,10 @@ class AgentFramework:
                     
                 # For pass-through cases, they're identical by definition
                 if DEBUG_PRINT:
-                    logs.append("✅ PARSING IMPACT: No final parsing applied - using raw tool output directly")
-                    log_event("✅ PARSING IMPACT: No final parsing applied - using raw tool output directly")
+                    logs.append("SUCCESS: PARSING IMPACT: No final parsing applied - using raw tool output directly")
+                    log_event("SUCCESS: PARSING IMPACT: No final parsing applied - using raw tool output directly")
 
-            # Step 5: Validation (optional)
+            # Step 5: Validation (optional. TO-DO)
             validation_criteria = task_config.get("validation", {})
             if validation_criteria:
                 logs.append("Validating answer...")
@@ -977,6 +1039,78 @@ class AgentFramework:
                 api_calls,
                 elapsed_time
             ]
+
+# Fallback Reg-Ex parser for task classification when JSON parsing fails
+def _parse_classification_fallback(response_text):
+    # More flexible patterns to handle different formatting
+    task_type_patterns = [
+        r'\*{1,3}\s*Task Type\s*:?\s*\*{1,3}\s*(\w+)',  # **Task Type:** or *Task Type* or ***Task Type:***
+        r'Task Type\s*:?\s*(\w+)',                      # Task Type: gene_alias (no stars)
+        r'task_type\s*:?\s*["\']?(\w+)["\']?'
+    ]
+    
+    confidence_patterns = [
+        r'\*{1,3}\s*Confidence\s*:?\s*\*{1,3}\s*([\d.]+)',  # **Confidence:** 0.9
+        r'Confidence\s*:?\s*([\d.]+)',                      # Confidence: 0.9 (no stars)
+        r'confidence\s*:?\s*["\']?([\d.]+)["\']?',          # confidence: "0.9"
+    ]
+    
+    # Try to extract task_type
+    task_type = None
+    for pattern in task_type_patterns:
+        match = re.search(pattern, response_text, re.IGNORECASE)
+        if match:
+            task_type = match.group(1).lower()
+            break
+    
+    # Try to extract confidence
+    confidence = 0.5  # default
+    for pattern in confidence_patterns:
+        match = re.search(pattern, response_text, re.IGNORECASE)
+        if match:
+            confidence = float(match.group(1))
+            break
+    
+    if task_type:
+        return {
+            "task_type": task_type,
+            "confidence": confidence,
+            "reasoning": "Extracted via manual parsing fallback"
+        }
+    
+    raise ValueError("Could not parse task classification")
+
+def _parse_answer_fallback(response_text):
+    """Fallback parser for final answer when JSON parsing fails"""
+    # Look for "Answer: XXX" pattern
+    log_event(f"Fallback answer parser invoked {response_text}")
+        # Look for "answer": "value" pattern (JSON style)
+    answer_json_match = re.search(r'"answer"\s*:\s*"([^"]+)"', response_text, re.IGNORECASE)
+    if answer_json_match:
+        return {
+            "answer": answer_json_match.group(1).strip(),
+            "reasoning": "Extracted from answer field",
+            "metadata": {}
+        }
+        
+    answer_match = re.search(r'Answer:\s*(.+?)(?:\n|$)', response_text, re.IGNORECASE)
+    if answer_match:
+        return {
+            "answer": answer_match.group(1).strip(),
+            "reasoning": "Extracted from Answer: pattern",
+            "metadata": {}
+        }
+    
+    # If no "Answer:" pattern, try to extract the last meaningful line
+    lines = [line.strip() for line in response_text.split('\n') if line.strip()]
+    if lines:
+        return {
+            "answer": lines[-1],
+            "reasoning": "Extracted last line as answer",
+            "metadata": {}
+        }
+    
+    raise ValueError("Could not parse answer")
 
 # Main entry point function for integration
 def answer_agent(

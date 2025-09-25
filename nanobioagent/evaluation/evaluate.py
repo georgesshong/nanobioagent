@@ -2,7 +2,7 @@
 evaluate GeneGPT on all GeneTuring tasks and one GeneHop task (Disease gene location)
 with additional detailed reporting, relaxed chromosome matching, and gene symbol normalization
 '''
-
+DEBUG_PRINT = False
 import glob
 import json
 import os
@@ -10,6 +10,115 @@ import sys
 import csv
 import re
 from collections import defaultdict
+
+# Define the task type mapping for classification scoring
+TASK_TYPE_MAPPING = {
+    'Gene alias': ['gene_alias'],
+    'Gene disease association': ['gene_disease_association'], 
+    'Gene location': ['gene_location'],
+    'SNP location': ['gene_snp_association', 'gene_location'],  # Can be solved by either
+    'Gene SNP association': ['gene_snp_association'],
+    'Protein-coding genes': ['protein-coding_genes'],
+    'Human genome DNA aligment': ['human_genome_dna_alignment'], # mis-spelled in original gene turing test in genegpt paper, kept for backward compatibility
+    'Multi-species DNA aligment': ['multi-species_dna_alignment'],
+    'Gene name conversion': ['gene_alias'],
+    'ISM sequence optimization': ['ism_sequence_optimization'],
+    'SNP splicing analysis': ['snp_splicing_analysis'], 
+    'Tissue expression comparison': ['tissue_expression_comparison']
+}
+
+def extract_task_classification_from_logs(logs):
+    """
+    Extract task classification from logs array.
+    Returns: (predicted_task_type, classification_found, error_occurred)
+    """
+    predicted_task_type = None
+    classification_found = False
+    error_occurred = False
+    
+    if not logs or not isinstance(logs, list):
+        return predicted_task_type, classification_found, error_occurred
+    
+    for log_entry in logs:
+        if isinstance(log_entry, str):
+            # Look for "Task classified as: XXXX" pattern
+            match = re.search(r'Task classified as:\s*([a-zA-Z0-9_-]+)', log_entry)
+            if match:
+                predicted_task_type = match.group(1)
+                classification_found = True
+                break
+            
+            # Check for errors in classification stage
+            if 'error' in log_entry.lower() or 'exception' in log_entry.lower():
+                if 'classification' in log_entry.lower() or 'Stage 1' in log_entry:
+                    error_occurred = True
+    
+    return predicted_task_type, classification_found, error_occurred
+
+def score_task_classification_for_question(question, logs, task_category, geneturing_data):
+    """
+    Score task classification for a single question.
+    Returns: classification_score (0.0, 0.0000000001, or 1.0)
+    """
+    # Get expected task type
+    expected_task_types = TASK_TYPE_MAPPING.get(task_category)
+    if not expected_task_types:
+        return 0.0  # Unknown task category
+    
+    # Extract predicted task type from logs
+    predicted_task_type, classification_found, error_occurred = extract_task_classification_from_logs(logs)
+    
+    # Score the classification
+    if error_occurred:
+        return 0.0
+    elif classification_found and predicted_task_type:
+        if predicted_task_type in expected_task_types:
+            return 1.0
+        else:
+            print(f"DEBUG: Question '{question}' misclassified as '{predicted_task_type}' instead of '{expected_task_types}'")
+            return 0.0000000001  # Very small score for incorrect, better than erroring out. 
+    else:
+        return 0.0  # No classification found
+
+def extract_parse_answer_from_doc_from_logs(logs):
+    """
+    Extract parse_answer_from_doc result from logs array.
+    Returns: parsed_answer_result (error message or parsed answer)
+    """
+    if not logs or not isinstance(logs, list):
+        return ""
+    
+    for log_entry in logs:
+        if isinstance(log_entry, str):
+            # Check for parse_answer_from_doc errors first
+            if "parse_answer_from_doc: Error:" in log_entry:
+                # Extract the error message after "Error: "
+                error_match = re.search(r'parse_answer_from_doc: Error: (.+)', log_entry)
+                if error_match:
+                    return f"Error: {error_match.group(1)}"
+            
+            # Check for successful parsed answer
+            elif "parse_answer_from_doc: Parsed answer:" in log_entry:
+                # Extract the parsed answer
+                answer_match = re.search(r"parse_answer_from_doc: Parsed answer: '([^']+)'", log_entry)
+                if answer_match:
+                    return answer_match.group(1)
+                # Fallback for different quote formats
+                answer_match = re.search(r'parse_answer_from_doc: Parsed answer: "([^"]+)"', log_entry)
+                if answer_match:
+                    return answer_match.group(1)
+                # Fallback for no quotes
+                answer_match = re.search(r'parse_answer_from_doc: Parsed answer: (.+)', log_entry)
+                if answer_match:
+                    return answer_match.group(1).strip()
+            
+            # Debug: Check if we have any parse_answer_from_doc entries at all
+            elif "parse_answer_from_doc:" in log_entry:
+                # Found a parse_answer_from_doc entry but couldn't match the pattern
+                if DEBUG_PRINT:
+                    print(f"DEBUG: Found parse_answer_from_doc entry but couldn't parse: {log_entry}")
+    
+    return ""
 
 def extract_chromosome_positions(chromosome_str):
     """
@@ -87,32 +196,17 @@ def split_comma_separated(text):
     else:
         return [item.strip() for item in text.split(',')]  # Split on comma only
 
-def normalize_gene_symbol(gene_symbol):
-    """
-    Normalize gene symbols by removing descriptive parts in parentheses.
-    Examples:
-    - "GNMT (Glycine N-methyltransferase)" -> "GNMT"
-    - "SGOL1 (Shugoshin-Like 1)" -> "SGOL1"
-    - "MNX1 (Motor Neuron and Pancreas Homeobox 1)" -> "MNX1"
-    
-    This function also handles cases where the gene symbol itself might be in parentheses.
-    """
-    if not gene_symbol:
-        return gene_symbol
-        
-    # Remove any descriptive parts in parentheses, pattern: SYMBOL (Description)
-    clean_symbol = re.sub(r'\s*\([^)]*\)', '', gene_symbol).strip()
-    return clean_symbol
-
 def extract_token_usage_info(logs):
     """
     Extract token usage information from the logs array.
-    Returns: (total_tokens, total_cost, peak_context_usage, total_calls)
+    Returns: (total_tokens, input_tokens, output_tokens, total_cost, peak_context_usage, total_calls)
     """
     if not logs or not isinstance(logs, list):
-        return "", "", "", ""
+        return "", "", "", "", "", ""
     
     total_tokens = ""
+    input_tokens = ""
+    output_tokens = ""
     total_cost = ""
     peak_context_usage = ""
     total_calls = ""
@@ -136,10 +230,17 @@ def extract_token_usage_info(logs):
                 if match:
                     total_calls = int(match.group(1))
             elif log.startswith("Total Tokens:"):
-                match = re.search(r'Total Tokens:\s*([\d,]+)', log)
-                if match:
-                    # Remove commas and convert to int
-                    total_tokens = int(match.group(1).replace(',', ''))
+                # Parse both total and breakdown: "Total Tokens: 4,024 (3,877 input + 147 output)"
+                total_match = re.search(r'Total Tokens:\s*([\d,]+)', log)
+                if total_match:
+                    total_tokens = int(total_match.group(1).replace(',', ''))
+                
+                # Extract input and output breakdown
+                breakdown_match = re.search(r'\(([\d,]+)\s*input\s*\+\s*([\d,]+)\s*output\)', log)
+                if breakdown_match:
+                    input_tokens = int(breakdown_match.group(1).replace(',', ''))
+                    output_tokens = int(breakdown_match.group(2).replace(',', ''))
+                    
             elif log.startswith("Total Cost:"):
                 match = re.search(r'Total Cost:\s*\$?([\d.]+)', log)
                 if match:
@@ -149,7 +250,7 @@ def extract_token_usage_info(logs):
                 if match:
                     peak_context_usage = float(match.group(1))
     
-    return total_tokens, total_cost, peak_context_usage, total_calls
+    return total_tokens, input_tokens, output_tokens, total_cost, peak_context_usage, total_calls
 
 def extract_stages_completed(logs):
     """
@@ -194,6 +295,21 @@ def clean_excluded_answer(answer):
         return [str(item)[1:] if str(item).startswith('?') else str(item) for item in answer]
     return answer
 
+def normalize_gene_symbol(gene_symbol):
+    if not gene_symbol:
+        return gene_symbol
+    
+    gene_symbol = str(gene_symbol).strip()
+    # Remove <think>...</think> tags and content
+    gene_symbol = re.sub(r'<think>.*?</think>', '', gene_symbol, flags=re.DOTALL)
+    # Remove newlines and normalize spaces
+    gene_symbol = re.sub(r'\s+', ' ', gene_symbol).strip()
+    # Remove trailing periods and quotes
+    gene_symbol = gene_symbol.rstrip('."\'')
+    # Remove descriptive parts in parentheses: SYMBOL (Description) -> SYMBOL
+    clean_symbol = re.sub(r'\s*\([^)]*\)', '', gene_symbol).strip()
+    return clean_symbol
+
 def get_answer(answer, task):
 
     mapper = {
@@ -213,6 +329,7 @@ def get_answer(answer, task):
                 'Gallus gallus': 'chicken',
                 'Gallus gallus (chicken)': 'chicken',
                 'Meleagris gallopavo': 'turkey',
+                'wild turkey': 'turkey',
                 'Cairina moschata': 'duck',
                 'Cairina moschata breed yongchun': 'duck'
             }
@@ -259,19 +376,87 @@ def get_answer(answer, task):
         # Normalize each gene symbol if present in chromosome location
         # Note: This task usually returns chromosome locations, not gene symbols
 
+    elif task == 'Gene SNP association':
+        answer = answer.strip().replace('Answer: ', '')
+        
+        # Try specific patterns in order of confidence
+        patterns = [
+            r'associated with (?:the )?gene\s+([A-Z0-9_-]+)',  # "associated with the gene SYMBOL"
+            r'is\s+[\'"]?([A-Z0-9_-]+)[\'"]?',                # "is 'SYMBOL'" or "is SYMBOL"
+            r'^([A-Z0-9_-]+)\s*\([^)]*gene_id[^)]*\)',        # "SYMBOL (gene_id: XX)"
+        ]
+        
+        # Try each pattern - if any matches, use it
+        for pattern in patterns:
+            match = re.search(pattern, answer, re.IGNORECASE)
+            if match:
+                answer = match.group(1)
+                break
+        # If no patterns match, keep original answer unchanged
+        
+        # Remove trailing punctuation only if we extracted a gene symbol
+        if len(answer.split()) == 1 and answer.isupper():  # Looks like a gene symbol
+            answer = re.sub(r'[.,:;!?]+$', '', answer)
+
+    elif task == 'Gene alias':
+        answer = answer.strip().replace('Answer: ', '')
+        answer = normalize_gene_symbol(answer)
+
+    elif task == 'Gene name conversion':
+        answer = answer.strip().replace('Answer: ', '')
+        answer = normalize_gene_symbol(answer)
+
     elif task == 'Protein-coding genes':
         answer = answer.strip().replace('Answer: ', '')
-        if answer.startswith('Yes'):
+        
+        # Case-insensitive matching, normalize to uppercase ground truth format
+        answer_lower = answer.lower().strip()
+        if answer_lower.startswith('yes') or answer_lower.startswith('true') or answer_lower == 'true':
             answer = 'TRUE'
-        elif answer.startswith('No'):
+        elif answer_lower.startswith('no') or answer_lower.startswith('false') or answer_lower == 'false':
+            answer = 'NA'
+        elif any(pattern in answer_lower for pattern in [
+            'not a protein-coding gene',
+            'is not protein-coding',
+            'not protein-coding',
+            'non-protein-coding',
+            'non-coding'
+        ]):
             answer = 'NA'
 
     elif task == 'Multi-species DNA aligment':
         answer = answer.strip().replace('Answer: ', '')
-        # Normalize each animal
-        answer = normalize_gene_symbol(answer)
+        
+        # Remove markdown formatting and quotes
+        answer = re.sub(r'\*\*(.*?)\*\*', r'\1', answer)
+        answer = answer.strip('"\'')
+        
+        # Clean up extra spaces and newlines
+        answer = re.sub(r'\s+', ' ', answer).strip()
+        
+        # Handle "No significant similarity found" cases first
+        if 'no significant similarity found' in answer.lower():
+            answer = "No significant similarity found"  # Normalize to exact ground truth format
+        else:
+            # Try to match species names (case-insensitive)
+            for species_name, short_name in mapper.items():
+                if answer.lower().startswith(species_name.lower()):
+                    answer = short_name
+                    break
+            else:
+                # If no exact species match, check if it starts with any short name
+                for short_name in mapper.values():
+                    if answer.lower().startswith(short_name):
+                        answer = short_name
+                        break
+                else:
+                    # Default: keep full organism name but make lowercase
+                    answer = answer.lower()
 
-        answer = mapper.get(answer, answer)
+    elif task == 'Human genome DNA aligment':
+        answer = answer.strip().replace('Answer: ', '')
+        # Remove markdown formatting if present
+        answer = re.sub(r'\*\*([^*]+)\*\*', r'\1', answer)
 
     else:
         answer = answer.strip().replace('Answer: ', '')
@@ -300,9 +485,13 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
     all_results = []
     task_summaries = defaultdict(lambda: {'total': 0, 'correct': 0, 'score': 0.0})
     
+    # Track task classification scores
+    task_classification_scores = defaultdict(list)
+    
     for task_file in glob.glob(os.path.join(folder, '*.json')):
         task = os.path.basename(task_file).replace('.json', '')
-        print(f'\nEvaluating {task}')
+        if DEBUG_PRINT:
+            print(f'\nEvaluating {task}')
         
         preds = json.load(open(task_file))
         
@@ -329,12 +518,13 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
                 excluded_count += 1
                 # Clean the answer for display (remove '?' prefix)
                 result['ground_truth'] = clean_excluded_answer(answer)
-                
+
+            entry_logs = []
             if question in pred_q2a:
                 prediction = pred_q2a[question]
                 result['prediction'] = prediction
                 
-                # Find the entry for this question to extract additional data
+                # Find the entry for this question to extract additional data                
                 for entry in preds:
                     if entry[0] == question:
                         # Add API URLs (5th element) if it exists
@@ -346,6 +536,7 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
                         # Add number of model calls (length of 4th element)
                         if len(entry) > 3 and isinstance(entry[3], list):
                             result['num_model_calls'] = len(entry[3])
+                            entry_logs = entry[3]  # Store logs for classification scoring
                         else:
                             result['num_model_calls'] = ""
                             
@@ -357,8 +548,10 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
                         
                         # Extract token usage information from logs (4th element)
                         if len(entry) > 3 and isinstance(entry[3], list):
-                            total_tokens, total_cost, peak_context_usage, total_calls = extract_token_usage_info(entry[3])
+                            total_tokens, input_tokens, output_tokens, total_cost, peak_context_usage, total_calls = extract_token_usage_info(entry[3])
                             result['total_tokens'] = total_tokens
+                            result['input_tokens'] = input_tokens  # NEW
+                            result['output_tokens'] = output_tokens  # NEW
                             result['total_cost'] = total_cost
                             result['peak_context_usage'] = peak_context_usage
                             result['total_calls'] = total_calls
@@ -367,12 +560,19 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
                             result['stages_completed'] = extract_stages_completed(entry[3])
                         else:
                             result['total_tokens'] = ""
+                            result['input_tokens'] = ""  # NEW
+                            result['output_tokens'] = ""  # NEW
                             result['total_cost'] = ""
                             result['peak_context_usage'] = ""
                             result['total_calls'] = ""
                             result['stages_completed'] = ""
                             
                         break
+                
+                # Score task classification
+                classification_score = score_task_classification_for_question(question, entry_logs, task, qas)
+                result['task_classification_score'] = classification_score
+                task_classification_scores[task].append(classification_score)
 
                 # Only calculate score if not excluded
                 if should_exclude:
@@ -505,10 +705,15 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
                 result['num_model_calls'] = ""
                 result['elapsed_time'] = ""
                 result['total_tokens'] = ""
+                result['input_tokens'] = ""
+                result['output_tokens'] = ""
                 result['total_cost'] = ""
                 result['peak_context_usage'] = ""
                 result['total_calls'] = ""
                 result['stages_completed'] = ""
+                result['task_classification_score'] = 0.0
+                task_classification_scores[task].append(0.0)
+                
                 if should_exclude:
                     result['score'] = 'EXCLUDED'
                     result['success'] = 'EXCLUDED'
@@ -518,13 +723,18 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
                     result['success'] = 'Missing'
                     correct.append(0)
             
+            # Extract parse_answer_from_doc result for all cases (answered or not)
+            parsed_answer_result = extract_parse_answer_from_doc_from_logs(entry_logs)
+            result['parse_answer_result'] = parsed_answer_result
+            
             question_results.append(result)
         
         # Calculate task summary (excluding the excluded questions)
         total_score = sum(correct) / len(correct) if correct else 0
         effective_total = len(info) - excluded_count  # Total minus excluded
         
-        print(f"Score: {total_score:.4f} ({len(correct)}/{effective_total} questions, {excluded_count} excluded)")
+        if DEBUG_PRINT:
+            print(f"Score: {total_score:.4f} ({len(correct)}/{effective_total} questions, {excluded_count} excluded)")
         
         task_summaries[task]['total'] = effective_total
         task_summaries[task]['correct'] = sum(correct)
@@ -541,16 +751,9 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
     details_file = os.path.join(output_dir, f'{os.path.basename(folder)}_details{output_suffix}.csv')
     with open(details_file, 'w', newline='', encoding='utf-8', errors='replace') as f:
         fieldnames = ['task', 'question', 'ground_truth', 'prediction', 'score', 'success', 
-                    'api_urls', 'num_model_calls', 'elapsed_time', 'total_tokens', 'total_cost', 
-                    'peak_context_usage', 'total_calls', 'stages_completed']
-        
-        # Add chromosome extraction fields for chromosome-related tasks
-        if any(result.get('extracted_pred_chr') for result in all_results):
-            fieldnames.extend(['extracted_pred_chr', 'extracted_answer_chr'])
-            
-        # Add normalized gene fields for gene association tasks
-        if any(result.get('normalized_answer') for result in all_results):
-            fieldnames.extend(['normalized_answer', 'normalized_prediction'])
+                    'api_urls', 'num_model_calls', 'elapsed_time', 
+                    'total_tokens', 'total_cost', 'peak_context_usage', 'total_calls', 'stages_completed',
+                    'task_classification_score', 'parse_answer_result', 'input_tokens', 'output_tokens']
         
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -597,7 +800,7 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
     summary_file = os.path.join(output_dir, f'{os.path.basename(folder)}_summary{output_suffix}.csv')
     with open(summary_file, 'w', newline='', encoding='utf-8', errors='replace') as f:
         fieldnames = ['task', 'total_questions', 'correct_answers', 'score', 'avg_total_tokens', 
-                     'avg_total_cost', 'max_peak_context_usage', 'avg_total_calls', 'avg_stages_completed', 'sum_elapsed_time']
+                    'avg_total_cost', 'max_peak_context_usage', 'avg_total_calls', 'avg_stages_completed', 'sum_elapsed_time']
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for task, summary in task_summaries.items():
@@ -628,22 +831,225 @@ def run_evaluation(folder, qas_file, output_suffix="", use_updated_logic=False):
     all_scores = [summary['score'] for summary in task_summaries.values()]
     overall_score = sum(all_scores) / len(all_scores) if all_scores else 0
     
-    print(f"\n=== EVALUATION SUMMARY{output_suffix.upper()} ===")
-    print(f"Overall Score: {overall_score:.4f}")
-    print(f"Detailed reports saved to: {output_dir}")
-    print(f"- Question-level details: {os.path.basename(details_file)}")
-    print(f"- Task-level summary: {os.path.basename(summary_file)}")
+    if DEBUG_PRINT:
+        print(f"\n=== EVALUATION SUMMARY{output_suffix.upper()} ===")
+        print(f"Overall Score: {overall_score:.4f}")
+        print(f"Detailed reports saved to: {output_dir}")
+        print(f"- Question-level details: {os.path.basename(details_file)}")
+        print(f"- Task-level summary: {os.path.basename(summary_file)}")
     
     return task_summaries, overall_score
 
-def main_evaluation(folder_path, qas_file='data/geneturing.json', use_updated_logic=True):
+# Add these functions to evaluate.py
+
+import csv
+import os
+import json
+import re
+from pathlib import Path
+
+def is_task_classification_results(results_dir):
+    """Check if results directory contains task classification results."""
+    return "task_classification" in results_dir
+
+def get_classification_output_files(results_dir):
+    """Generate output file paths for task classification evaluation."""
+    # Extract model name from path: .../gpt-5-nano_agent/task_classification/
+    model_name = os.path.basename(os.path.dirname(results_dir))
+    
+    base_dir = "results/nba/evaluation_reports/task_classification/"
+    os.makedirs(base_dir, exist_ok=True)
+    
+    details_file = f"{model_name}_details.csv"
+    summary_file = f"{model_name}_summary.json"
+    
+    return os.path.join(base_dir, details_file), os.path.join(base_dir, summary_file)
+
+def parse_classification_details_from_logs(logs):
+    """Extract classification details from logs."""
+    details = {
+        'raw_response': '',
+        'confidence': '',
+        'reasoning': ''
+    }
+    
+    if not logs:
+        return details
+    
+    # Look for classification details section
+    in_details_section = False
+    for log in logs:
+        if "TASK CLASSIFICATION DETAILS" in log:
+            in_details_section = True
+            continue
+        
+        if in_details_section:
+            if log.startswith("Raw LLM Response:"):
+                details['raw_response'] = log.replace("Raw LLM Response:", "").strip()
+            elif log.startswith("Confidence:"):
+                details['confidence'] = log.replace("Confidence:", "").strip()
+            elif log.startswith("Reasoning:"):
+                details['reasoning'] = log.replace("Reasoning:", "").strip()
+            elif log.startswith("===") or log.startswith("Stage"):
+                # End of details section
+                break
+    
+    return details
+
+def evaluate_task_classification(results_dir, qas_file="data/geneturing.json"):
+    """
+    Evaluate task classification results.
+    Creates detailed CSV and summary JSON files.
+    """
+    print("RUNNING TASK CLASSIFICATION EVALUATION")
+    print("=" * 50)
+    
+    # Get output file paths
+    details_file, summary_file = get_classification_output_files(results_dir)
+    print(f"Details output: {details_file}")
+    print(f"Summary output: {summary_file}")
+    
+    # Load reference data
+    with open(qas_file, 'r') as f:
+        qas_data = json.load(f)
+    
+    # Collect all results
+    all_results = []
+    task_scores = {}  # Track scores per task category
+    
+    for task_name in qas_data.keys():
+        task_file = os.path.join(results_dir, f"{task_name}.json")
+        
+        if not os.path.exists(task_file):
+            print(f"Warning: {task_file} not found")
+            continue
+        
+        with open(task_file, 'r') as f:
+            task_results = json.load(f)
+        
+        # Initialize task score tracking
+        if task_name not in task_scores:
+            task_scores[task_name] = []
+        
+        for entry in task_results:
+            if len(entry) < 6:
+                print(f"Warning: Invalid entry format in {task_name}")
+                continue
+            
+            question = entry[0]
+            ground_truth = entry[1]  # Expected task type from main.py
+            prediction = entry[2]    # Predicted task type from classification
+            logs = entry[3]
+            api_calls = entry[4]
+            elapsed_time = entry[5]
+            
+            # Calculate score using existing function
+            score = score_task_classification_for_question(question, logs, task_name, qas_data)
+            success = score == 1.0
+            
+            # Extract predicted task type from logs for display
+            predicted_task_type, _, _ = extract_task_classification_from_logs(logs)
+            
+            # Parse additional details from logs
+            details = parse_classification_details_from_logs(logs)
+            
+            # Store result
+            result_row = {
+                'task': task_name,
+                'question': question,
+                'ground_truth': ground_truth,
+                'prediction': predicted_task_type or prediction,  # Use extracted or fallback
+                'score': score,
+                'success': success,
+                'elapsed_time': elapsed_time,
+                'raw_classification_response': details['raw_response'],
+                'confidence': details['confidence'],
+                'reasoning': details['reasoning']
+            }
+            
+            all_results.append(result_row)
+            task_scores[task_name].append(score)
+    
+    # Write detailed CSV
+    if all_results:
+        with open(details_file, 'w', newline='', encoding='utf-8') as f:
+            fieldnames = ['task', 'question', 'ground_truth', 'prediction', 
+                         'score', 'success', 'elapsed_time', 'raw_classification_response', 
+                         'confidence', 'reasoning']
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(all_results)
+        
+        print(f"Detailed results written to: {details_file}")
+    
+    # Calculate summary statistics
+    total_questions = len(all_results)
+    total_correct = sum(1 for r in all_results if r['success'])
+    overall_accuracy = total_correct / total_questions if total_questions > 0 else 0.0
+    
+    # Per-task accuracy
+    task_accuracy = {}
+    for task_name, scores in task_scores.items():
+        if scores:
+            accuracy = sum(scores) / len(scores)
+            task_accuracy[task_name] = {
+                'accuracy': accuracy,
+                'correct': sum(scores),
+                'total': len(scores)
+            }
+    
+    # Calculate average elapsed time
+    avg_elapsed_time = sum(r['elapsed_time'] for r in all_results) / total_questions if total_questions > 0 else 0.0
+    
+    # Create summary in same format as normal evaluation
+    summary = {
+        'overall_metrics': {
+            'total_questions': total_questions,
+            'total_correct': total_correct,
+            'overall_accuracy': overall_accuracy,
+            'average_elapsed_time': avg_elapsed_time
+        },
+        'task_breakdown': task_accuracy,
+        'model_info': {
+            'results_directory': results_dir,
+            'evaluation_type': 'task_classification'
+        }
+    }
+    
+    # Write summary JSON
+    with open(summary_file, 'w') as f:
+        json.dump(summary, f, indent=2)
+    
+    # Print summary to console (same format as normal evaluation)
+    print("=" * 50)
+    print("TASK CLASSIFICATION EVALUATION SUMMARY")
+    print("=" * 50)
+    print(f"Total Questions: {total_questions}")
+    print(f"Correct Classifications: {total_correct}")
+    print(f"Overall Accuracy: {overall_accuracy:.3f}")
+    print(f"Average Time per Question: {avg_elapsed_time:.2f}s")
+    print()
+    print("Per-Task Breakdown:")
+    print("-" * 50)
+    for task_name, metrics in task_accuracy.items():
+        print(f"{task_name}: {metrics['correct']}/{metrics['total']} ({metrics['accuracy']:.3f})")
+    
+    print(f"\nSummary written to: {summary_file}")
+    return summary
+        
+def main_evaluation(folder_path, qas_file='data/geneturing.json', use_updated_logic=True, mode='both'):
     """
     Main evaluation function that can be called programmatically
     Args:
         folder_path: Path to the results folder containing JSON files
         qas_file: Path to the geneturing.json file (default: 'data/geneturing.json')
         use_updated_logic: Whether to use updated logic by default (default: True)
+        mode: Evaluation mode - 'original', 'updated', or 'both' (default: 'both')
     """
+    
+    if is_task_classification_results(folder_path):
+        return evaluate_task_classification(folder_path, qas_file)
+    
     # Check if required files exist
     original_qas = qas_file
     updated_qas = qas_file.replace('.json', '_updated.json')
@@ -651,18 +1057,24 @@ def main_evaluation(folder_path, qas_file='data/geneturing.json', use_updated_lo
     if not os.path.exists(original_qas):
         print(f"Error: {original_qas} not found!")
         return
-    
-    # Run original evaluation
-    print("RUNNING ORIGINAL EVALUATION")
-    original_results, original_overall = run_evaluation(
-        folder=folder_path,
-        qas_file=original_qas,
-        output_suffix="",
-        use_updated_logic=False
-    )
-    
-    # Run updated evaluation if file exists
-    if os.path.exists(updated_qas):
+
+    original_results = None
+    updated_results = None
+    original_overall = None
+    updated_overall = None
+
+    # Run original evaluation if requested
+    if mode in ['original', 'both']:
+        print("RUNNING ORIGINAL EVALUATION")
+        original_results, original_overall = run_evaluation(
+            folder=folder_path,
+            qas_file=original_qas,
+            output_suffix="",
+            use_updated_logic=False
+        )
+
+    # Run updated evaluation if requested and file exists
+    if mode in ['updated', 'both'] and os.path.exists(updated_qas):
         print("\n\nRUNNING UPDATED EVALUATION")
         updated_results, updated_overall = run_evaluation(
             folder=folder_path,
@@ -670,24 +1082,38 @@ def main_evaluation(folder_path, qas_file='data/geneturing.json', use_updated_lo
             output_suffix="_updated",
             use_updated_logic=use_updated_logic
         )
-        
+    elif mode in ['updated', 'both']:
+        print(f"\nWarning: {updated_qas} not found. Cannot run updated evaluation.")
+
+    # Run comparison only if both evaluations were completed
+    if mode == 'both' and original_results is not None and updated_results is not None:
         # Compare results
-        print(f'\n{"="*70}')
+        print(f'\n{"="*82}')
         print("COMPARISON SUMMARY")
-        print(f'{"="*70}')
-        print(f"{'Task':<35} {'Original':<12} {'Updated':<12} {'Difference':<12}")
-        print(f'{"-"*70}')
-        
-        all_tasks = set(original_results.keys()) | set(updated_results.keys())
-        for task in sorted(all_tasks):
+        print(f'{"="*82}')
+        print(f"{'Task#':<5} {'Task':<30} {'Original':<12} {'Updated':<12} {'Difference':<12}")
+        print(f'{"-"*82}')
+
+        # Use the same task ordering as the original QAS file (matches main.py iteration order)
+        qas_data = json.load(open(qas_file))
+        qas_task_order = list(qas_data.keys())
+
+        # Get all tasks that exist in results, ordered by QAS file sequence
+        available_tasks = set(original_results.keys()) if original_results else set(updated_results.keys())
+        all_tasks = [task for task in qas_task_order if task in available_tasks]
+
+        # Create task items with their indices (based on order in original_results)
+        task_items = [(i, task) for i, task in enumerate(all_tasks)]
+
+        for task_idx, task in task_items:
             orig_score = original_results.get(task, {}).get('score', 0.0)
             upd_score = updated_results.get(task, {}).get('score', 0.0)
             diff = upd_score - orig_score
-            print(f"{task:<35} {orig_score:<12.4f} {upd_score:<12.4f} {diff:+.4f}")
+            print(f"{task_idx:<5} {task:<30} {orig_score:<12.4f} {upd_score:<12.4f} {diff:+.4f}")
         
-        print(f'{"-"*70}')
-        print(f"{'OVERALL':<35} {original_overall:<12.4f} {updated_overall:<12.4f} {updated_overall-original_overall:+.4f}")
-        print(f'{"="*70}')
+        print(f'{"-"*82}')
+        print(f"{'':>5} {'OVERALL':<30} {original_overall:<12.4f} {updated_overall:<12.4f} {updated_overall-original_overall:+.4f}")
+        print(f'{"="*82}')
         
         # Save comparison report
         output_dir = os.path.join(os.path.dirname(folder_path), 'evaluation_reports')
@@ -721,15 +1147,46 @@ def main_evaluation(folder_path, qas_file='data/geneturing.json', use_updated_lo
             })
         
         print(f"Comparison report saved to: {os.path.basename(comparison_file)}")
+    # Print single-mode summary when not running comparison
+    elif mode in ['original', 'updated']:
+        results = original_results if mode == 'original' else updated_results
+        overall_score = original_overall if mode == 'original' else updated_overall
         
-    else:
-        print(f"\nWarning: {updated_qas} not found. Only running original evaluation.")
+        if results is not None and overall_score is not None:
+            print(f'\n{"="*60}')
+            print(f"{mode.upper()} EVALUATION SUMMARY")
+            print(f'{"="*60}')
+            print(f"{'Task#':<5} {'Task':<35} {'Score':<10}")
+            print(f'{"-"*60}')
+            
+            # Use the same task ordering as the original QAS file
+            qas_data = json.load(open(qas_file))
+            qas_task_order = list(qas_data.keys())
+            
+            # Get all tasks that exist in results, ordered by QAS file sequence
+            available_tasks = set(results.keys())
+            all_tasks = [task for task in qas_task_order if task in available_tasks]
+            
+            # Create task items with their indices
+            task_items = [(i, task) for i, task in enumerate(all_tasks)]
+            
+            for task_idx, task in task_items:
+                score = results.get(task, {}).get('score', 0.0)
+                print(f"{task_idx:<5} {task:<35} {score:<10.4f}")
+            
+            print(f'{"-"*60}')
+            print(f"{'':>5} {'OVERALL':<35} {overall_score:<10.4f}")
+            print(f'{"="*60}')
 
 if __name__ == '__main__':
     # Command line interface - result dir path to evaluate
-    if len(sys.argv) < 2:
-        print("Usage: python evaluate.py <folder_path>")
-        sys.exit(1)
+    import argparse
     
-    folder = sys.argv[1]
-    main_evaluation(folder)
+    parser = argparse.ArgumentParser(description='Evaluate GeneGPT results')
+    parser.add_argument('folder_path', help='Path to results folder')
+    parser.add_argument('--mode', choices=['original', 'updated', 'both'], 
+                    default='updated', help='Evaluation mode: original, updated, or both (default: updated)')
+    
+    args = parser.parse_args()
+    
+    main_evaluation(args.folder_path, mode=args.mode)

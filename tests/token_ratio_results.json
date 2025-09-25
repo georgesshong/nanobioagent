@@ -1,0 +1,3491 @@
+{
+  "test_date": "2025-09-02T11:15:51.700231",
+  "total_models": 120,
+  "successful_models": 10,
+  "models_with_ratios": 43,
+  "results": [
+    {
+      "model_name": "gpt-3.5-turbo",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 332722,
+      "token_limit": 16385,
+      "char_to_token_ratio": 3.005554186377817,
+      "error_message": "Error code: 400 - {'error': {'message': \"This model's maximum context length is 16385 tokens. However, your messages resulted in 332722 tokens. Please reduce the length of the messages.\", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "openai",
+        "context_window": 16385,
+        "temperature": 0,
+        "doc": "https://platform.openai.com/docs/models/gpt-3.5-turbo",
+        "pricing": {
+          "input": 0.5,
+          "output": 1.5,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gpt-3.5-turbo",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "gpt-4.1-mini",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "The last word in the provided genomics data is \"id=\".",
+      "model_config": {
+        "cut_length": 72000,
+        "max_tokens": 512,
+        "model_type": "openai",
+        "context_window": 1047576,
+        "temperature": 0,
+        "doc": "https://platform.openai.com/docs/models/gpt-4.1-mini",
+        "pricing": {
+          "input": 0.4,
+          "output": 1.6,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gpt-4.1-mini",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 72000
+        }
+      }
+    },
+    {
+      "model_name": "gpt-4.1-nano",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "The last word in the provided genomics data is \"sequence\".",
+      "model_config": {
+        "cut_length": 72000,
+        "max_tokens": 512,
+        "model_type": "openai",
+        "context_window": 1047576,
+        "temperature": 0,
+        "doc": "https://platform.openai.com/docs/models/gpt-4.1-nano",
+        "pricing": {
+          "input": 0.1,
+          "output": 0.4,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gpt-4.1-nano",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 72000
+        }
+      }
+    },
+    {
+      "model_name": "gpt-4.1",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "The last word in the above genomics data is:\n\n\"Help\"",
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "openai",
+        "context_window": 1047576,
+        "temperature": 0,
+        "doc": "https://platform.openai.com/docs/models/gpt-4.1",
+        "pricing": {
+          "input": 2,
+          "output": 8,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gpt-4.1",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "gpt-4o-mini",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 334905,
+      "token_limit": 128000,
+      "char_to_token_ratio": 2.985963183589376,
+      "error_message": "Error code: 400 - {'error': {'message': \"This model's maximum context length is 128000 tokens. However, your messages resulted in 334905 tokens. Please reduce the length of the messages.\", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 72000,
+        "max_tokens": 512,
+        "model_type": "openai",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://platform.openai.com/docs/models/gpt-4o-mini",
+        "pricing": {
+          "input": 0.15,
+          "output": 0.6,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gpt-4o-mini",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 72000
+        }
+      }
+    },
+    {
+      "model_name": "gpt-4o",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 334905,
+      "token_limit": 128000,
+      "char_to_token_ratio": 2.985963183589376,
+      "error_message": "Error code: 400 - {'error': {'message': \"This model's maximum context length is 128000 tokens. However, your messages resulted in 334905 tokens. Please reduce the length of the messages.\", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 72000,
+        "max_tokens": 512,
+        "model_type": "openai",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://platform.openai.com/docs/models/gpt-4o",
+        "pricing": {
+          "input": 2.5,
+          "output": 10,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gpt-4o",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 72000
+        }
+      }
+    },
+    {
+      "model_name": "gpt-5-mini",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 334904,
+      "token_limit": 272000,
+      "char_to_token_ratio": 2.9859720994673102,
+      "error_message": "Error code: 400 - {'error': {'message': 'Input tokens exceed the configured limit of 272000 tokens. Your messages resulted in 334904 tokens. Please reduce the length of the messages.', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 4096,
+        "model_type": "openai",
+        "context_window": 400000,
+        "temperature": 1,
+        "doc": "https://platform.openai.com/docs/models/gpt-5-mini",
+        "pricing": {
+          "input": 0.25,
+          "output": 2,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gpt-5-mini",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "gpt-5-nano",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 334904,
+      "token_limit": 272000,
+      "char_to_token_ratio": 2.9859720994673102,
+      "error_message": "Error code: 400 - {'error': {'message': 'Input tokens exceed the configured limit of 272000 tokens. Your messages resulted in 334904 tokens. Please reduce the length of the messages.', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 4096,
+        "model_type": "openai",
+        "context_window": 400000,
+        "temperature": 1,
+        "doc": "https://platform.openai.com/docs/models/gpt-5-nano",
+        "pricing": {
+          "input": 0.05,
+          "output": 0.4,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gpt-5-nano",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "gpt-5",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 334904,
+      "token_limit": 272000,
+      "char_to_token_ratio": 2.9859720994673102,
+      "error_message": "Error code: 400 - {'error': {'message': 'Input tokens exceed the configured limit of 272000 tokens. Your messages resulted in 334904 tokens. Please reduce the length of the messages.', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 4096,
+        "model_type": "openai",
+        "context_window": 400000,
+        "temperature": 1,
+        "doc": "https://platform.openai.com/docs/models/gpt-5",
+        "pricing": {
+          "input": 1.25,
+          "output": 10,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gpt-5",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "claude-3-5-haiku-20241022",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 217042,
+      "token_limit": 200000,
+      "char_to_token_ratio": 4.607467679066724,
+      "error_message": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'prompt is too long: 217042 tokens > 200000 maximum'}, 'request_id': 'req_011CSjKG4Lr5Y3v4PwtAhz6U'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 54000,
+        "max_tokens": 512,
+        "model_type": "anthropic",
+        "context_window": 200000,
+        "temperature": 0,
+        "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/haiku-3-5",
+        "pricing": {
+          "input": 0.8,
+          "output": 4,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "claude-3-5-haiku-20241022",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 54000
+        }
+      }
+    },
+    {
+      "model_name": "claude-3-7-sonnet-20250219",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 217042,
+      "token_limit": 200000,
+      "char_to_token_ratio": 4.607467679066724,
+      "error_message": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'prompt is too long: 217042 tokens > 200000 maximum'}, 'request_id': 'req_011CSjKG7JCZZBcatyXW9Qox'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 54000,
+        "max_tokens": 512,
+        "model_type": "anthropic",
+        "context_window": 200000,
+        "temperature": 0,
+        "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/sonnet-3-7",
+        "pricing": {
+          "input": 3,
+          "output": 15,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "claude-3-7-sonnet-20250219",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 54000
+        }
+      }
+    },
+    {
+      "model_name": "claude-sonnet-4-20250514",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 217042,
+      "token_limit": 200000,
+      "char_to_token_ratio": 4.607467679066724,
+      "error_message": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'prompt is too long: 217042 tokens > 200000 maximum'}, 'request_id': 'req_011CSjKGAj5EAAUDTSsoFeXq'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 54000,
+        "max_tokens": 512,
+        "model_type": "anthropic",
+        "context_window": 200000,
+        "temperature": 0,
+        "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/sonnet-4",
+        "pricing": {
+          "input": 3,
+          "output": 15,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "claude-sonnet-4-20250514",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 54000
+        }
+      }
+    },
+    {
+      "model_name": "claude-opus-4-20250514",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 217042,
+      "token_limit": 200000,
+      "char_to_token_ratio": 4.607467679066724,
+      "error_message": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'prompt is too long: 217042 tokens > 200000 maximum'}, 'request_id': 'req_011CSjKGDnsm6tnmqCEtbgHv'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 54000,
+        "max_tokens": 512,
+        "model_type": "anthropic",
+        "context_window": 200000,
+        "temperature": 0,
+        "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/opus-4",
+        "pricing": {
+          "input": 3,
+          "output": 15,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "claude-opus-4-20250514",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 54000
+        }
+      }
+    },
+    {
+      "model_name": "claude-opus-4-1-20250805",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 217042,
+      "token_limit": 200000,
+      "char_to_token_ratio": 4.607467679066724,
+      "error_message": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'prompt is too long: 217042 tokens > 200000 maximum'}, 'request_id': 'req_011CSjKGH8YGNPYQBxZTJTmL'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 54000,
+        "max_tokens": 512,
+        "model_type": "anthropic",
+        "context_window": 200000,
+        "temperature": 0,
+        "doc": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/opus-4-1",
+        "pricing": {
+          "input": 15,
+          "output": 75,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "claude-opus-4-1-20250805",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 54000
+        }
+      }
+    },
+    {
+      "model_name": "gemini-1.5-flash",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "The last word in the provided genomics data is \"accessionversion\".",
+      "model_config": {
+        "cut_length": 30000,
+        "max_tokens": 512,
+        "model_type": "google",
+        "context_window": 1000000,
+        "temperature": 0,
+        "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-1.5-flash",
+        "pricing": {
+          "input": 0.075,
+          "output": 0.3,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gemini-1.5-flash",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 30000
+        }
+      }
+    },
+    {
+      "model_name": "gemini-1.5-flash-8b",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "The last word in the provided text is \"site\".",
+      "model_config": {
+        "cut_length": 30000,
+        "max_tokens": 512,
+        "model_type": "google",
+        "context_window": 1000000,
+        "temperature": 0,
+        "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-1.5-flash-8b",
+        "pricing": {
+          "input": 0.0375,
+          "output": 0.15,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gemini-1.5-flash-8b",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 30000
+        }
+      }
+    },
+    {
+      "model_name": "gemini-2.0-flash",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "beta",
+      "model_config": {
+        "cut_length": 30000,
+        "max_tokens": 512,
+        "model_type": "google",
+        "context_window": 1048576,
+        "temperature": 0,
+        "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.0-flash",
+        "pricing": {
+          "input": 0.1,
+          "output": 0.4,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gemini-2.0-flash",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 30000
+        }
+      }
+    },
+    {
+      "model_name": "gemini-2.0-flash-lite",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "The last word is \"20\".",
+      "model_config": {
+        "cut_length": 30000,
+        "max_tokens": 512,
+        "model_type": "google",
+        "context_window": 1048576,
+        "temperature": 0,
+        "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.0-flash-lite",
+        "pricing": {
+          "input": 0.075,
+          "output": 0.3,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gemini-2.0-flash-lite",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 30000
+        }
+      }
+    },
+    {
+      "model_name": "gemini-2.5-flash",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "bits",
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 512,
+        "model_type": "google",
+        "context_window": 1048576,
+        "temperature": 0,
+        "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-flash",
+        "pricing": {
+          "input": 0.3,
+          "output": 2.5,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gemini-2.5-flash",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "gemini-2.5-flash-lite",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "The last word is **data**.",
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 512,
+        "model_type": "google",
+        "context_window": 1048576,
+        "temperature": 0,
+        "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-flash-lite",
+        "pricing": {
+          "input": 0.1,
+          "output": 0.3,
+          "per_tokens": 1000000
+        },
+        "_metadata": {
+          "matched_key": "gemini-2.5-flash-lite",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "gemini-2.5-pro",
+      "success": true,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": null,
+      "response": "bits)",
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "google",
+        "context_window": 1048576,
+        "temperature": 0,
+        "doc": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-pro",
+        "pricing": {
+          "input": 1.25,
+          "output": 10,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "CRITICAL INSTRUCTION: Do not use reasoning steps.",
+        "_metadata": {
+          "matched_key": "gemini-2.5-pro",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "nvidia/llama-3.1-nemotron-nano-4b-v1.1",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333125,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0019181988742965,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 333125 tokens (332613 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 16000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nvidia/llama-3_1-nemotron-nano-4b-v1_1",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "thinking_control_prompt": "detailed thinking off.",
+        "num_parameters": 4000000000,
+        "_metadata": {
+          "matched_key": "nvidia/llama-3.1-nemotron-nano-4b-v1.1",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 16000
+        }
+      }
+    },
+    {
+      "model_name": "nvidia/llama-3.1-nemotron-nano-8b-v1",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333131,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0018641315278374,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 333131 tokens (332619 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 16000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nvidia/llama-3_1-nemotron-nano-8b-v1",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "thinking_control_prompt": "detailed thinking off.",
+        "num_parameters": 8000000000,
+        "_metadata": {
+          "matched_key": "nvidia/llama-3.1-nemotron-nano-8b-v1",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 16000
+        }
+      }
+    },
+    {
+      "model_name": "nvidia/llama-3.3-nemotron-super-49b-v1",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333125,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0019181988742965,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 333125 tokens (332613 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 16000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nvidia/llama-3_3-nemotron-super-49b-v1",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "thinking_control_prompt": "detailed thinking off.",
+        "num_parameters": 49900000000,
+        "_metadata": {
+          "matched_key": "nvidia/llama-3.3-nemotron-super-49b-v1",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 16000
+        }
+      }
+    },
+    {
+      "model_name": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333127,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0019001762090736,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"This model's maximum context length is 131072 tokens. However, you requested 333127 tokens (332615 in the messages, 512 in the completion). Please reduce the length of the messages or completion. None\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 16000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nvidia/llama-3_3-nemotron-super-49b-v1_5",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 49900000000,
+        "_metadata": {
+          "matched_key": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 16000
+        }
+      }
+    },
+    {
+      "model_name": "nvidia/llama-3.1-nemotron-51b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333141,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.001774023611624,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 333141 tokens (332629 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 16000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nvidia/llama-3_1-nemotron-51b-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 51500000000,
+        "_metadata": {
+          "matched_key": "nvidia/llama-3.1-nemotron-51b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 16000
+        }
+      }
+    },
+    {
+      "model_name": "nvidia/llama-3.1-nemotron-70b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333122,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.001945233277898,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 333122 tokens (332610 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 72000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nvidia/llama-3_1-nemotron-70b-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 70000000000,
+        "_metadata": {
+          "matched_key": "nvidia/llama-3.1-nemotron-70b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 72000
+        }
+      }
+    },
+    {
+      "model_name": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333125,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0019181988742965,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"This model's maximum context length is 131072 tokens. However, you requested 333125 tokens (332613 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 16000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nvidia/llama-3_1-nemotron-ultra-253b-v1",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "thinking_control_prompt": "detailed thinking off.",
+        "num_parameters": 253000000000,
+        "_metadata": {
+          "matched_key": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 16000
+        }
+      }
+    },
+    {
+      "model_name": "meta/llama-4-scout-17b-16e-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 324624,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.080530090196658,
+      "error_message": "Error code: 400 - {'error': {'message': \"This model's maximum context length is 131072 tokens. However, you requested 324624 tokens (323600 in the messages, 1024 in the completion). Please reduce the length of the messages or completion. None\", 'type': 'BadRequestError', 'param': None, 'code': 400}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "nvidia_nim",
+        "context_window": 1000000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/meta/llama-4-scout-17b-16e-instruct",
+        "pricing": {
+          "input": 0.18,
+          "output": 0.59,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 400000000000,
+        "_metadata": {
+          "matched_key": "meta/llama-4-scout-17b-16e-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "meta/llama-4-maverick-17b-128e-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 324624,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.080530090196658,
+      "error_message": "Error code: 400 - {'error': {'message': \"This model's maximum context length is 131072 tokens. However, you requested 324624 tokens (323600 in the messages, 1024 in the completion). Please reduce the length of the messages or completion. None\", 'type': 'BadRequestError', 'param': None, 'code': 400}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "nvidia_nim",
+        "context_window": 10000000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/meta/llama-4-maverick-17b-128e-instruct",
+        "pricing": {
+          "input": 0.27,
+          "output": 0.85,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 109000000000,
+        "_metadata": {
+          "matched_key": "meta/llama-4-maverick-17b-128e-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "meta/llama-3.3-70b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333121,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0019542448539718,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 333121 tokens (332609 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/meta/llama-3_3-70b-instruct",
+        "pricing": {
+          "input": 0.88,
+          "output": 0.88,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 70000000000,
+        "_metadata": {
+          "matched_key": "meta/llama-3.3-70b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "meta/llama-3.2-3b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333141,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.001774023611624,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"This model's maximum context length is 131072 tokens. However, you requested 333141 tokens (332629 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/meta/llama-3.2-3b-instruct",
+        "pricing": {
+          "input": 0.06,
+          "output": 0.06,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 3210000000,
+        "_metadata": {
+          "matched_key": "meta/llama-3.2-3b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "meta/llama-3.2-1b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333121,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0019542448539718,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"This model's maximum context length is 131072 tokens. However, you requested 333121 tokens (332609 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/meta/llama-3.2-1b-instruct",
+        "pricing": {
+          "input": 0.06,
+          "output": 0.06,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 1230000000,
+        "_metadata": {
+          "matched_key": "meta/llama-3.2-1b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "meta/llama-3.1-405b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333634,
+      "token_limit": 131072,
+      "char_to_token_ratio": 2.997338400762512,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"This model's maximum context length is 131072 tokens. However, you requested 333634 tokens (332610 in the messages, 1024 in the completion). Please reduce the length of the messages or completion.\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/meta/llama-3_1-405b-instruct",
+        "pricing": {
+          "input": 3.5,
+          "output": 3.5,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 405000000000,
+        "_metadata": {
+          "matched_key": "meta/llama-3.1-405b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "meta/llama-3.1-70b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333121,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0019542448539718,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 333121 tokens (332609 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/meta/llama-3_1-70b-instruct",
+        "pricing": {
+          "input": 0.88,
+          "output": 0.88,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 70000000000,
+        "_metadata": {
+          "matched_key": "meta/llama-3.1-70b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "meta/llama-3.1-8b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333121,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0019542448539718,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 333121 tokens (332609 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/meta/llama-3_1-8b-instruct",
+        "pricing": {
+          "input": 0.18,
+          "output": 0.18,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 8000000000,
+        "_metadata": {
+          "matched_key": "meta/llama-3.1-8b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "google/gemma-3-1b-it",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 416049,
+      "token_limit": 32768,
+      "char_to_token_ratio": 2.4035966917358293,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"This model's maximum context length is 32768 tokens. However, you requested 416049 tokens (415537 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 32000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/google/gemma-3-1b-it",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 1000000000,
+        "_metadata": {
+          "matched_key": "google/gemma-3-1b-it",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "google/gemma-2-9b-it",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 416249,
+      "token_limit": 4096,
+      "char_to_token_ratio": 2.4024418076680063,
+      "error_message": "Error code: 500 - {'error': 'Input value error: prompt is [[416249]] long while only 4096 is supported'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 10852,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 4096,
+        "temperature": 0.01,
+        "doc": "https://build.nvidia.com/google/gemma-2-9b-it",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 9000000000,
+        "_metadata": {
+          "matched_key": "google/gemma-2-9b-it",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 10852
+        }
+      }
+    },
+    {
+      "model_name": "google/gemma-2-2b-it",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 416249,
+      "token_limit": 4096,
+      "char_to_token_ratio": 2.4024418076680063,
+      "error_message": "Error code: 500 - {'error': 'Input value error: prompt is [[416249]] long while only 4096 is supported'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 1500,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 4096,
+        "temperature": 0.01,
+        "doc": "https://build.nvidia.com/google/gemma-2-2b-it",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 2000000000,
+        "_metadata": {
+          "matched_key": "google/gemma-2-2b-it",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 1500
+        }
+      }
+    },
+    {
+      "model_name": "google/codegemma-7b",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 400 - {'error': {'message': \"This model's maximum context length is 8192 tokens. However, your request has 416177 input tokens. Please reduce the length of the input messages. None\", 'type': 'BadRequestError', 'param': None, 'code': 400}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 8000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/google/codegemma-7b",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 7000000000,
+        "_metadata": {
+          "matched_key": "google/codegemma-7b",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "google/gemma-3-27b-it",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 398532,
+      "token_limit": 131072,
+      "char_to_token_ratio": 2.5092439252055043,
+      "error_message": "Error code: 400 - {'error': {'message': \"This model's maximum context length is 131072 tokens. However, you requested 398532 tokens (398020 in the messages, 512 in the completion). Please reduce the length of the messages or completion. None\", 'type': 'BadRequestError', 'param': None, 'code': 400}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/google/gemma-3-27b-it",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 27000000000,
+        "_metadata": {
+          "matched_key": "google/gemma-3-27b-it",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "deepseek-ai/deepseek-r1-distill-qwen-7b",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 400923,
+      "token_limit": 131072,
+      "char_to_token_ratio": 2.4942794501687358,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 400923 tokens (400411 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/deepseek-ai/deepseek-r1-distill-qwen-7b",
+        "pricing": {
+          "input": 1.6,
+          "output": 1.6,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 7000000000,
+        "_metadata": {
+          "matched_key": "deepseek-ai/deepseek-r1-distill-qwen-7b",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "deepseek-ai/deepseek-r1-distill-llama-8b",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 333109,
+      "token_limit": 131072,
+      "char_to_token_ratio": 3.0020623879871153,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 333109 tokens (332597 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/deepseek-ai/deepseek-r1-distill-llama-8b",
+        "pricing": {
+          "input": 1.6,
+          "output": 1.6,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 8000000000,
+        "_metadata": {
+          "matched_key": "deepseek-ai/deepseek-r1-distill-llama-8b",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "ibm/granite-3.3-8b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 428409,
+      "token_limit": 65536,
+      "char_to_token_ratio": 2.3342506810081023,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"This model's maximum context length is 65536 tokens. However, you requested 428409 tokens (427897 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/ibm/granite-3_3-8b-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 8000000000,
+        "_metadata": {
+          "matched_key": "ibm/granite-3.3-8b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "qwen/qwen3-235b-a22b",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 400423,
+      "token_limit": 40960,
+      "char_to_token_ratio": 2.4973940058388253,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"The input (400423 tokens) is longer than the model's context length (40960 tokens).\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 32768,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/qwen/qwen3-235b-a22b",
+        "pricing": {
+          "input": 0.2,
+          "output": 0.6,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 234000000000,
+        "_metadata": {
+          "matched_key": "qwen/qwen3-235b-a22b",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "qwen/qwen2.5-coder-7b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 400931,
+      "token_limit": 32768,
+      "char_to_token_ratio": 2.494229680418825,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 32768 tokens. However, you requested 400931 tokens (400419 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 32000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/qwen/qwen2_5-coder-7b-instruct",
+        "pricing": {
+          "input": 0.3,
+          "output": 0.3,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 7000000000,
+        "_metadata": {
+          "matched_key": "qwen/qwen2.5-coder-7b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "qwen/qwen2.5-coder-32b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 400931,
+      "token_limit": 32768,
+      "char_to_token_ratio": 2.494229680418825,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 32768 tokens. However, you requested 400931 tokens (400419 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 32000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/qwen/qwen2_5-coder-32b-instruct",
+        "pricing": {
+          "input": 0.8,
+          "output": 0.8,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 32000000000,
+        "_metadata": {
+          "matched_key": "qwen/qwen2.5-coder-32b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "qwen/qwen2.5-7b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 400931,
+      "token_limit": 32768,
+      "char_to_token_ratio": 2.494229680418825,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 32768 tokens. However, you requested 400931 tokens (400419 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/qwen/qwen2_5-7b-instruct",
+        "pricing": {
+          "input": 0.3,
+          "output": 0.3,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 7000000000,
+        "_metadata": {
+          "matched_key": "qwen/qwen2.5-7b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "nvidia/mistral-nemo-minitron-8b-base",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "404 page not found",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 8000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nvidia/mistral-nemo-minitron-8b-base",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 8000000000,
+        "_metadata": {
+          "matched_key": "nvidia/mistral-nemo-minitron-8b-base",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "nvidia/nvidia-nemotron-nano-9b-v2",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 414478,
+      "token_limit": 128000,
+      "char_to_token_ratio": 2.4127070676851363,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"This model's maximum context length is 128000 tokens. However, you requested 414478 tokens (413966 in the messages, 512 in the completion). Please reduce the length of the messages or completion. None\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nvidia/nvidia-nemotron-nano-9b-v2",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 9000000000,
+        "_metadata": {
+          "matched_key": "nvidia/nvidia-nemotron-nano-9b-v2",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "mistralai/mistral-7b-instruct-v0.3",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 458409,
+      "token_limit": 32768,
+      "char_to_token_ratio": 2.1814885833393323,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 32768 tokens. However, you requested 458409 tokens (457897 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 8000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/mistralai/mistral-7b-instruct-v03",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 7000000000,
+        "_metadata": {
+          "matched_key": "mistralai/mistral-7b-instruct-v0.3",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "mistralai/mixtral-8x7b-instruct-v0.1",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 458415,
+      "token_limit": 32768,
+      "char_to_token_ratio": 2.181460030758156,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 32768 tokens. However, you requested 458415 tokens (457903 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 32000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/mistralai/mixtral-8x7b-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 7000000000,
+        "_metadata": {
+          "matched_key": "mistralai/mixtral-8x7b-instruct-v0.1",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "mistralai/mistral-nemotron",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': 'max_tokens must be at least 1, got -151813.', 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/mistralai/mistral-nemotron",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 12000000000,
+        "_metadata": {
+          "matched_key": "mistralai/mistral-nemotron",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "microsoft/phi-4-mini-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 335403,
+      "token_limit": 131072,
+      "char_to_token_ratio": 2.9815296822032002,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 131072 tokens. However, you requested 335403 tokens (334891 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/microsoft/phi-4-mini-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 3800000000,
+        "_metadata": {
+          "matched_key": "microsoft/phi-4-mini-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "microsoft/phi-3-small-128k-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 422 - {'error': 'body -> temperature\\n  Input should be greater than 0 (type=greater_than; gt=0.0)'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/microsoft/phi-3-small-128k-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 7000000000,
+        "_metadata": {
+          "matched_key": "microsoft/phi-3-small-128k-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "microsoft/phi-4-mini-flash-reasoning",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 335411,
+      "token_limit": 65536,
+      "char_to_token_ratio": 2.9814585687410373,
+      "error_message": "Error code: 400 - {'object': 'error', 'message': \"This model's maximum context length is 65536 tokens. However, you requested 335411 tokens (334899 in the messages, 512 in the completion). Please reduce the length of the messages or completion. None\", 'type': 'BadRequestError', 'param': None, 'code': 400}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 64000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/microsoft/phi-4-mini-flash-reasoning",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 3800000000,
+        "_metadata": {
+          "matched_key": "microsoft/phi-4-mini-flash-reasoning",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "nv-mistralai/mistral-nemo-12b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 500 - {'error': 'Error during inference of request chat-03394304a5e14d7aac0114c45bdbf55b -- Encountered an error when fetching new request: Prompt length (413955) exceeds maximum input length (127999). Set log level to info and check TRTGptModel logs for how maximum input length is set (/home/jenkins/agent/workspace/LLM/release-0.11/L0_MergeRequest/llm/cpp/include/tensorrt_llm/batch_manager/llmRequest.h:227)\\n1       0x7f3ffadd81b5 /opt/nim/llm/.venv/lib/python3.10/site-packages/tensorrt_llm/libs/libtensorrt_llm.so(+0x5661b5) [0x7f3ffadd81b5]\\n2       0x7f3ffc0fca77 tensorrt_llm::executor::Executor::Impl::executionLoop() + 455\\n3       0x7f4519e79253 /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0xdc253) [0x7f4519e79253]\\n4       0x7f451bdedac3 /usr/lib/x86_64-linux-gnu/libc.so.6(+0x94ac3) [0x7f451bdedac3]\\n5       0x7f451be7fa40 /usr/lib/x86_64-linux-gnu/libc.so.6(+0x126a40) [0x7f451be7fa40]'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/nv-mistralai/mistral-nemo-12b-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 12000000000,
+        "_metadata": {
+          "matched_key": "nv-mistralai/mistral-nemo-12b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "tiiuae/falcon3-7b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": 430790,
+      "token_limit": 32768,
+      "char_to_token_ratio": 2.3213491492374474,
+      "error_message": "Error code: 400 - {'error': \"This model's maximum context length is 32768 tokens. However, you requested 430790 tokens (430278 in the messages, 512 in the completion). Please reduce the length of the messages or completion.\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "nvidia_nim",
+        "context_window": 32000,
+        "temperature": 0,
+        "doc": "https://build.nvidia.com/tiiuae/falcon3-7b-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 7220000000,
+        "_metadata": {
+          "matched_key": "tiiuae/falcon3-7b-instruct",
+          "auto_detected_nvidia": true,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "ollama/meditron:7b",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Ollama call failed with status code 500. Details: {\"error\":\"model requires more system memory (4.8 GiB) than is available (3.8 GiB)\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 3700,
+        "max_tokens": 512,
+        "model_type": "ollama",
+        "context_window": 2000,
+        "temperature": 0,
+        "doc": "https://ollama.com/library/meditron:7b",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 6740000000,
+        "_metadata": {
+          "matched_key": "ollama/meditron:7b",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 3700
+        }
+      }
+    },
+    {
+      "model_name": "ollama/llama3:8b",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Ollama call failed with status code 500. Details: {\"error\":\"model requires more system memory (5.4 GiB) than is available (3.8 GiB)\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 8000,
+        "max_tokens": 512,
+        "model_type": "ollama",
+        "context_window": 8000,
+        "temperature": 0,
+        "doc": "https://ollama.com/library/llama3:8b",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 8030000000,
+        "_metadata": {
+          "matched_key": "ollama/llama3:8b",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 8000
+        }
+      }
+    },
+    {
+      "model_name": "ollama/llama2:latest",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Ollama call failed with status code 500. Details: {\"error\":\"model requires more system memory (6.0 GiB) than is available (3.8 GiB)\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 3700,
+        "max_tokens": 512,
+        "model_type": "ollama",
+        "context_window": 2048,
+        "temperature": 0,
+        "doc": "https://ollama.com/library/llama2:latest",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 6740000000,
+        "_metadata": {
+          "matched_key": "ollama/llama2:latest",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 3700
+        }
+      }
+    },
+    {
+      "model_name": "ollama/codellama:7b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Ollama call failed with status code 500. Details: {\"error\":\"model requires more system memory (6.0 GiB) than is available (3.8 GiB)\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 3700,
+        "max_tokens": 512,
+        "model_type": "ollama",
+        "context_window": 2048,
+        "temperature": 0,
+        "doc": "https://ollama.com/library/codellama:7b-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 6740000000,
+        "_metadata": {
+          "matched_key": "ollama/codellama:7b-instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 3700
+        }
+      }
+    },
+    {
+      "model_name": "ollama/gemma3:12b-it-qat",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Ollama call failed with status code 500. Details: {\"error\":\"model requires more system memory (11.4 GiB) than is available (3.8 GiB)\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 8000,
+        "max_tokens": 512,
+        "model_type": "ollama",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://ollama.com/library/gemma3:12b-it-qat",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 12200000000,
+        "_metadata": {
+          "matched_key": "ollama/gemma3:12b-it-qat",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 8000
+        }
+      }
+    },
+    {
+      "model_name": "ollama/qwen3:8b",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Ollama call failed with status code 500. Details: {\"error\":\"model requires more system memory (5.6 GiB) than is available (3.8 GiB)\"}",
+      "response": null,
+      "model_config": {
+        "cut_length": 8000,
+        "max_tokens": 512,
+        "model_type": "ollama",
+        "context_window": 32768,
+        "temperature": 0,
+        "doc": "https://ollama.com/library/qwen3:8b",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 8190000000,
+        "_metadata": {
+          "matched_key": "ollama/qwen3:8b",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 8000
+        }
+      }
+    },
+    {
+      "model_name": "ollama/qwen2.5-coder-7b-instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Ollama call failed with status code 404. Maybe your model is not found and you should pull the model with `ollama pull qwen2.5-coder-7b-instruct`.",
+      "response": null,
+      "model_config": {
+        "cut_length": 8000,
+        "max_tokens": 512,
+        "model_type": "ollama",
+        "context_window": 32768,
+        "temperature": 0,
+        "doc": "https://ollama.com/library/qwen2.5-coder:7b-instruct",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 7620000000,
+        "_metadata": {
+          "matched_key": "ollama/qwen2.5-coder-7b-instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 8000
+        }
+      }
+    },
+    {
+      "model_name": "text-davinci",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 404 - {'error': {'message': 'The model `text-davinci` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}",
+      "response": null,
+      "model_config": {
+        "cut_length": 4000,
+        "max_tokens": 512,
+        "model_type": "completion",
+        "context_window": 4097,
+        "temperature": 0,
+        "doc": "https://platform.openai.com/docs/models/davinci-002",
+        "pricing": {
+          "input": 2,
+          "output": 2,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 175000000000,
+        "_metadata": {
+          "matched_key": "text-davinci",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 4000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-Coder-480B-A35B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "pricing": {
+          "input": 2,
+          "output": 2,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 450000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-Coder-480B-A35B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct",
+        "pricing": {
+          "input": 0.8,
+          "output": 0.8,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 30500000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-Coder-30B-A3B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 32768,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507",
+        "pricing": {
+          "input": 0.2,
+          "output": 0.6,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 235000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-4B-Instruct-2507",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+        "pricing": {
+          "input": 0.1,
+          "output": 0.1,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 4200000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-4B-Instruct-2507",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen2.5-Coder-32B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct",
+        "pricing": {
+          "input": 0.8,
+          "output": 0.8,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 32800000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen2.5-Coder-32B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen2.5-Coder-7B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 32000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct",
+        "pricing": {
+          "input": 0.3,
+          "output": 0.3,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 7620000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen2.5-Coder-7B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen2.5-Coder-3B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 32000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen2.5-Coder-3B-Instruct",
+        "pricing": {
+          "input": 0.3,
+          "output": 0.3,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 3090000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen2.5-Coder-3B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen2.5-72B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
+        "pricing": {
+          "input": 1.2,
+          "output": 1.2,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 72700000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen2.5-72B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+        "pricing": {
+          "input": 2,
+          "output": 2,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 480000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-235B-A22B-FP8",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 32768,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-235B-A22B-FP8",
+        "pricing": {
+          "input": 0.2,
+          "output": 0.6,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 235000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-235B-A22B-FP8",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-32B-FP8",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-32B-FP8",
+        "pricing": {
+          "input": 0.8,
+          "output": 0.8,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 32000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-32B-FP8",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-8B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-8B",
+        "pricing": {
+          "input": 0.2,
+          "output": 0.2,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 8000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-8B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-4B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-4B",
+        "pricing": {
+          "input": 0.1,
+          "output": 0.1,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 4000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-4B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-30B-A3B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-30B-A3B",
+        "pricing": {
+          "input": 0.8,
+          "output": 0.8,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 30000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-30B-A3B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-32B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-32B",
+        "pricing": {
+          "input": 0.8,
+          "output": 0.8,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 32000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-32B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-14B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-14B",
+        "pricing": {
+          "input": 0.2,
+          "output": 0.6,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 14000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-14B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/Qwen3-235B-A22B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 32768,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+        "pricing": {
+          "input": 0.2,
+          "output": 0.6,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 235000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/Qwen3-235B-A22B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/Qwen/QwQ-32B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 36000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 256000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/Qwen/QwQ-32B",
+        "pricing": {
+          "input": 1.2,
+          "output": 1.2,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 32000000000,
+        "_metadata": {
+          "matched_key": "huggingface/Qwen/QwQ-32B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 36000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+        "pricing": {
+          "input": 3,
+          "output": 7,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 8190000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-R1-0528",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+        "pricing": {
+          "input": 3,
+          "output": 7,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 685000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-R1-0528",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-Prover-V2-671B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-671B",
+        "pricing": {
+          "input": 1.25,
+          "output": 1.25,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 671000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-Prover-V2-671B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-V3-0324",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-V3-0324",
+        "pricing": {
+          "input": 1.25,
+          "output": 1.25,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 685000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-V3-0324",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+        "pricing": {
+          "input": 1.6,
+          "output": 1.6,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 7000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+        "pricing": {
+          "input": 1.6,
+          "output": 1.6,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 32000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+        "pricing": {
+          "input": 0.55,
+          "output": 2.19,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 8000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-R1",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+        "pricing": {
+          "input": 3,
+          "output": 7,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 685000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-R1",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "pricing": {
+          "input": 0.18,
+          "output": 0.18,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 1500000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+        "pricing": {
+          "input": 1.6,
+          "output": 1.6,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 14000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-V3",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
+        "pricing": {
+          "input": 1.25,
+          "output": 1.25,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 685000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-V3",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/deepseek-ai/DeepSeek-V3.1",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
+        "pricing": {
+          "input": 0.56,
+          "output": 1.68,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 685000000000,
+        "_metadata": {
+          "matched_key": "huggingface/deepseek-ai/DeepSeek-V3.1",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/zai-org/GLM-4.5V",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 64000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/zai-org/GLM-4.5V",
+        "pricing": {
+          "input": 0.2,
+          "output": 1.1,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 108000000000,
+        "_metadata": {
+          "matched_key": "huggingface/zai-org/GLM-4.5V",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/zai-org/GLM-4.5-Air",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 196000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/zai-org/GLM-4.5-Air",
+        "pricing": {
+          "input": 0.2,
+          "output": 1.1,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 110000000000,
+        "_metadata": {
+          "matched_key": "huggingface/zai-org/GLM-4.5-Air",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 196000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/zai-org/GLM-4.5",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/zai-org/GLM-4.5",
+        "pricing": {
+          "input": 0.2,
+          "output": 1.1,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 358000000000,
+        "_metadata": {
+          "matched_key": "huggingface/zai-org/GLM-4.5",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/zai-org/GLM-4.5-Air-FP8",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/zai-org/GLM-4.5-Air-FP8",
+        "pricing": {
+          "input": 0.2,
+          "output": 1.1,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 110000000000,
+        "_metadata": {
+          "matched_key": "huggingface/zai-org/GLM-4.5-Air-FP8",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/zai-org/GLM-4.1V-9B-Thinking",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/zai-org/GLM-4.1V-9B-Thinking",
+        "pricing": {
+          "input": 0.2,
+          "output": 1.1,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 9000000000,
+        "_metadata": {
+          "matched_key": "huggingface/zai-org/GLM-4.1V-9B-Thinking",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/zai-org/GLM-4-32B-0414",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 1024,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/zai-org/GLM-4-32B-0414",
+        "pricing": {
+          "input": 0.2,
+          "output": 1.1,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 32000000000,
+        "_metadata": {
+          "matched_key": "huggingface/zai-org/GLM-4-32B-0414",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "pricing": {
+          "input": 0.18,
+          "output": 0.59,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 109000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+        "pricing": {
+          "input": 0.27,
+          "output": 0.85,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 400000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 96000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+        "pricing": {
+          "input": 0.27,
+          "output": 0.85,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 400000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 96000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Llama-3.3-70B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
+        "pricing": {
+          "input": 0.88,
+          "output": 0.88,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 70000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Llama-3.3-70B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Llama-3.2-1B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+        "pricing": {
+          "input": 0.06,
+          "output": 0.06,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 1000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Llama-3.2-1B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Llama-3.2-3B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+        "pricing": {
+          "input": 0.06,
+          "output": 0.06,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 3000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Llama-3.2-3B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Llama-3.1-8B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+        "pricing": {
+          "input": 0.18,
+          "output": 0.18,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 8000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Llama-3.1-8B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Llama-3.1-70B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct",
+        "pricing": {
+          "input": 0.88,
+          "output": 0.88,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 70000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Llama-3.1-70B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Llama-3.1-405B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+        "pricing": {
+          "input": 3.5,
+          "output": 3.5,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 405000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Llama-3.1-405B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Meta-Llama-3-8B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct",
+        "pricing": {
+          "input": 0.06,
+          "output": 0.06,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 8000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Meta-Llama-3-8B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/meta-llama/Meta-Llama-3-70B-Instruct",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 128000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct",
+        "pricing": {
+          "input": 0.88,
+          "output": 0.88,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 70000000000,
+        "_metadata": {
+          "matched_key": "huggingface/meta-llama/Meta-Llama-3-70B-Instruct",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/google/gemma-3-27b-it",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 32000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/google/gemma-3-27b-it",
+        "pricing": {
+          "input": 0.8,
+          "output": 0.8,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 27000000000,
+        "_metadata": {
+          "matched_key": "huggingface/google/gemma-3-27b-it",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/google/gemma-2-2b-it",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 10449,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 4000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/google/gemma-2-2b-it",
+        "pricing": {
+          "input": 0.1,
+          "output": 0.1,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 2000000000,
+        "_metadata": {
+          "matched_key": "huggingface/google/gemma-2-2b-it",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 10449
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/google/gemma-2-9b-it",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 10449,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 4000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/google/gemma-2-9b-it",
+        "pricing": {
+          "input": 0.3,
+          "output": 0.3,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 9000000000,
+        "_metadata": {
+          "matched_key": "huggingface/google/gemma-2-9b-it",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 10449
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/microsoft/phi-4",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 16000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/microsoft/phi-4",
+        "pricing": {
+          "input": 0.3,
+          "output": 0.3,
+          "per_tokens": 1000000
+        },
+        "num_parameters": 14700000000,
+        "_metadata": {
+          "matched_key": "huggingface/microsoft/phi-4",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/HuggingFaceTB/SmolLM3-3B",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 54000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 64000,
+        "temperature": 0,
+        "doc": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+        "pricing": {
+          "input": 0.1,
+          "output": 0.1,
+          "per_tokens": 1000000
+        },
+        "thinking_control_prompt": "/no_think",
+        "num_parameters": 3080000000,
+        "_metadata": {
+          "matched_key": "huggingface/HuggingFaceTB/SmolLM3-3B",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 54000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/openai/gpt-oss-120b",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://huggingface.co/openai/gpt-oss-120b",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 5100000000,
+        "_metadata": {
+          "matched_key": "huggingface/openai/gpt-oss-120b",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    },
+    {
+      "model_name": "huggingface/openai/gpt-oss-20b",
+      "success": false,
+      "prompt_length_chars": 1000014,
+      "tokens_used": null,
+      "token_limit": null,
+      "char_to_token_ratio": null,
+      "error_message": "Error code: 413 - {'error': 'request entity too large'}",
+      "response": null,
+      "model_config": {
+        "cut_length": 18000,
+        "max_tokens": 512,
+        "model_type": "huggingface",
+        "context_window": 131072,
+        "temperature": 0,
+        "doc": "https://huggingface.co/openai/gpt-oss-20b",
+        "pricing": {
+          "input": 0.001,
+          "output": 0.004,
+          "per_tokens": 1000
+        },
+        "num_parameters": 3600000000,
+        "_metadata": {
+          "matched_key": "huggingface/openai/gpt-oss-20b",
+          "auto_detected_nvidia": false,
+          "calculated_cut_length": 18000
+        }
+      }
+    }
+  ]
+}

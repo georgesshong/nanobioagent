@@ -1,0 +1,451 @@
+﻿task,method,score,model,num_parameters
+Gene alias,agent,0.98,gpt-4.1,1000000000001
+Gene disease association,agent,0.927083333,gpt-4.1,1000000000001
+Gene location,agent,1,gpt-4.1,1000000000001
+Gene name conversion,agent,1,gpt-4.1,1000000000001
+Gene SNP association,agent,1,gpt-4.1,1000000000001
+Human genome DNA aligment,agent,0.897959306,gpt-4.1,1000000000001
+Multi-species DNA aligment,agent,0.957446809,gpt-4.1,1000000000001
+Protein-coding genes,agent,1,gpt-4.1,1000000000001
+SNP location,agent,1,gpt-4.1,1000000000001
+Gene alias,agent,0.98,gpt-4o,1000000000001
+Gene disease association,agent,0.90625,gpt-4o,1000000000001
+Gene location,agent,1,gpt-4o,1000000000001
+Gene name conversion,agent,1,gpt-4o,1000000000001
+Gene SNP association,agent,1,gpt-4o,1000000000001
+Human genome DNA aligment,agent,0.903061367,gpt-4o,1000000000001
+Multi-species DNA aligment,agent,0.957446809,gpt-4o,1000000000001
+Protein-coding genes,agent,1,gpt-4o,1000000000001
+SNP location,agent,1,gpt-4o,1000000000001
+Gene alias,agent,0.88,microsoft_phi-4,14700000000
+Gene disease association,agent,0.85,microsoft_phi-4,14700000000
+Gene location,agent,1,microsoft_phi-4,14700000000
+Gene name conversion,agent,1,microsoft_phi-4,14700000000
+Gene SNP association,agent,1,microsoft_phi-4,14700000000
+Human genome DNA aligment,agent,0.642857286,microsoft_phi-4,14700000000
+Multi-species DNA aligment,agent,0.957446809,microsoft_phi-4,14700000000
+Protein-coding genes,agent,1,microsoft_phi-4,14700000000
+SNP location,agent,0.98,microsoft_phi-4,14700000000
+Gene alias,agent,1,qwen_qwen3-coder-480b-a35b-instruct,480000000000
+Gene disease association,agent,0.916666667,qwen_qwen3-coder-480b-a35b-instruct,480000000000
+Gene location,agent,1,qwen_qwen3-coder-480b-a35b-instruct,480000000000
+Gene name conversion,agent,1,qwen_qwen3-coder-480b-a35b-instruct,480000000000
+Gene SNP association,agent,1,qwen_qwen3-coder-480b-a35b-instruct,480000000000
+Human genome DNA aligment,agent,0.867347163,qwen_qwen3-coder-480b-a35b-instruct,480000000000
+Multi-species DNA aligment,agent,0.957446809,qwen_qwen3-coder-480b-a35b-instruct,480000000000
+Protein-coding genes,agent,1,qwen_qwen3-coder-480b-a35b-instruct,480000000000
+SNP location,agent,1,qwen_qwen3-coder-480b-a35b-instruct,480000000000
+Gene alias,agent,0.98,moonshotai_Kimi-K2-Instruct-0905,1000000000000
+Gene disease association,agent,0.927083333,moonshotai_Kimi-K2-Instruct-0905,1000000000000
+Gene location,agent,1,moonshotai_Kimi-K2-Instruct-0905,1000000000000
+Gene name conversion,agent,1,moonshotai_Kimi-K2-Instruct-0905,1000000000000
+Gene SNP association,agent,1,moonshotai_Kimi-K2-Instruct-0905,1000000000000
+Human genome DNA aligment,agent,0.877551143,moonshotai_Kimi-K2-Instruct-0905,1000000000000
+Multi-species DNA aligment,agent,0.957446809,moonshotai_Kimi-K2-Instruct-0905,1000000000000
+Protein-coding genes,agent,1,moonshotai_Kimi-K2-Instruct-0905,1000000000000
+SNP location,agent,0.98,moonshotai_Kimi-K2-Instruct-0905,1000000000000
+Gene alias,agent,0.96,claude-opus-4-1-20250805,1100000000000
+Gene disease association,agent,0.927083333,claude-opus-4-1-20250805,1100000000000
+Gene location,agent,1,claude-opus-4-1-20250805,1100000000000
+Gene name conversion,agent,1,claude-opus-4-1-20250805,1100000000000
+Gene SNP association,agent,1,claude-opus-4-1-20250805,1100000000000
+Human genome DNA aligment,agent,0.908163408,claude-opus-4-1-20250805,1100000000000
+Multi-species DNA aligment,agent,0.978723404,claude-opus-4-1-20250805,1100000000000
+Protein-coding genes,agent,1,claude-opus-4-1-20250805,1100000000000
+SNP location,agent,1,claude-opus-4-1-20250805,1100000000000
+Gene alias,agent,0.98,claude-3-5-haiku-20241022,900000000000
+Gene disease association,agent,0.928869048,claude-3-5-haiku-20241022,900000000000
+Gene location,agent,1,claude-3-5-haiku-20241022,900000000000
+Gene name conversion,agent,1,claude-3-5-haiku-20241022,900000000000
+Gene SNP association,agent,1,claude-3-5-haiku-20241022,900000000000
+Human genome DNA aligment,agent,0.933673551,claude-3-5-haiku-20241022,900000000000
+Multi-species DNA aligment,agent,1,claude-3-5-haiku-20241022,900000000000
+Protein-coding genes,agent,1,claude-3-5-haiku-20241022,900000000000
+SNP location,agent,1,claude-3-5-haiku-20241022,900000000000
+Gene alias,agent,0.98,claude-sonnet-4-20250514,950000000000
+Gene disease association,agent,0.927083333,claude-sonnet-4-20250514,950000000000
+Gene location,agent,1,claude-sonnet-4-20250514,950000000000
+Gene name conversion,agent,1,claude-sonnet-4-20250514,950000000000
+Gene SNP association,agent,1,claude-sonnet-4-20250514,950000000000
+Human genome DNA aligment,agent,0.918367469,claude-sonnet-4-20250514,950000000000
+Multi-species DNA aligment,agent,0.978723404,claude-sonnet-4-20250514,950000000000
+Protein-coding genes,agent,1,claude-sonnet-4-20250514,950000000000
+SNP location,agent,1,claude-sonnet-4-20250514,950000000000
+Gene alias,agent,0.98,gemini-1.5-flash-8b,8000000000
+Gene disease association,agent,0.895833333,gemini-1.5-flash-8b,8000000000
+Gene location,agent,1,gemini-1.5-flash-8b,8000000000
+Gene name conversion,agent,1,gemini-1.5-flash-8b,8000000000
+Gene SNP association,agent,1,gemini-1.5-flash-8b,8000000000
+Human genome DNA aligment,agent,0.836734816,gemini-1.5-flash-8b,8000000000
+Multi-species DNA aligment,agent,0.957446809,gemini-1.5-flash-8b,8000000000
+Protein-coding genes,agent,1,gemini-1.5-flash-8b,8000000000
+SNP location,agent,1,gemini-1.5-flash-8b,8000000000
+Gene alias,agent,0.98,gemini-2.5-flash-lite,975000000000
+Gene disease association,agent,0.88125,gemini-2.5-flash-lite,975000000000
+Gene location,agent,1,gemini-2.5-flash-lite,975000000000
+Gene name conversion,agent,1,gemini-2.5-flash-lite,975000000000
+Gene SNP association,agent,1,gemini-2.5-flash-lite,975000000000
+Human genome DNA aligment,agent,0.948979633,gemini-2.5-flash-lite,975000000000
+Multi-species DNA aligment,agent,0.957446809,gemini-2.5-flash-lite,975000000000
+Protein-coding genes,agent,1,gemini-2.5-flash-lite,975000000000
+SNP location,agent,1,gemini-2.5-flash-lite,975000000000
+Gene alias,agent,0.88,google_gemma-2-2b-it,2000000000
+Gene disease association,agent,0.380555556,google_gemma-2-2b-it,2000000000
+Gene location,agent,0.70212766,google_gemma-2-2b-it,2000000000
+Gene name conversion,agent,1,google_gemma-2-2b-it,2000000000
+Gene SNP association,agent,1,google_gemma-2-2b-it,2000000000
+Human genome DNA aligment,agent,0.040816367,google_gemma-2-2b-it,2000000000
+Multi-species DNA aligment,agent,0.191489362,google_gemma-2-2b-it,2000000000
+Protein-coding genes,agent,0.94,google_gemma-2-2b-it,2000000000
+SNP location,agent,0.98,google_gemma-2-2b-it,2000000000
+Gene alias,agent,0.98,google_gemma-2-9b-it,9000000000
+Gene disease association,agent,0.66875,google_gemma-2-9b-it,9000000000
+Gene location,agent,1,google_gemma-2-9b-it,9000000000
+Gene name conversion,agent,1,google_gemma-2-9b-it,9000000000
+Gene SNP association,agent,1,google_gemma-2-9b-it,9000000000
+Human genome DNA aligment,agent,0.464285776,google_gemma-2-9b-it,9000000000
+Multi-species DNA aligment,agent,0.978723404,google_gemma-2-9b-it,9000000000
+Protein-coding genes,agent,0.98,google_gemma-2-9b-it,9000000000
+SNP location,agent,1,google_gemma-2-9b-it,9000000000
+Gene alias,agent,0.5,google_gemma-3-1b-it,1000000000
+Gene disease association,agent,0.125,google_gemma-3-1b-it,1000000000
+Gene location,agent,0.638297872,google_gemma-3-1b-it,1000000000
+Gene name conversion,agent,0.92,google_gemma-3-1b-it,1000000000
+Gene SNP association,agent,0.92,google_gemma-3-1b-it,1000000000
+Human genome DNA aligment,agent,0.010204102,google_gemma-3-1b-it,1000000000
+Multi-species DNA aligment,agent,0.14893617,google_gemma-3-1b-it,1000000000
+Protein-coding genes,agent,0,google_gemma-3-1b-it,1000000000
+SNP location,agent,0.24,google_gemma-3-1b-it,1000000000
+Gene alias,agent,0.96,google_gemma-3-27b-it,27000000000
+Gene disease association,agent,0.927083333,google_gemma-3-27b-it,27000000000
+Gene location,agent,1,google_gemma-3-27b-it,27000000000
+Gene name conversion,agent,1,google_gemma-3-27b-it,27000000000
+Gene SNP association,agent,1,google_gemma-3-27b-it,27000000000
+Human genome DNA aligment,agent,0.831632776,google_gemma-3-27b-it,27000000000
+Multi-species DNA aligment,agent,0.957446809,google_gemma-3-27b-it,27000000000
+Protein-coding genes,agent,1,google_gemma-3-27b-it,27000000000
+SNP location,agent,1,google_gemma-3-27b-it,27000000000
+Gene alias,agent,0.94,gpt-3.5-turbo,175000000000
+Gene disease association,agent,0.864583333,gpt-3.5-turbo,175000000000
+Gene location,agent,1,gpt-3.5-turbo,175000000000
+Gene name conversion,agent,1,gpt-3.5-turbo,175000000000
+Gene SNP association,agent,1,gpt-3.5-turbo,175000000000
+Human genome DNA aligment,agent,0.826530735,gpt-3.5-turbo,175000000000
+Multi-species DNA aligment,agent,0.829787234,gpt-3.5-turbo,175000000000
+Protein-coding genes,agent,0.98,gpt-3.5-turbo,175000000000
+SNP location,agent,1,gpt-3.5-turbo,175000000000
+Gene alias,agent,0.98,gpt-4.1-mini,950000000000
+Gene disease association,agent,0.927083333,gpt-4.1-mini,950000000000
+Gene location,agent,1,gpt-4.1-mini,950000000000
+Gene name conversion,agent,1,gpt-4.1-mini,950000000000
+Gene SNP association,agent,1,gpt-4.1-mini,950000000000
+Human genome DNA aligment,agent,0.826530837,gpt-4.1-mini,950000000000
+Multi-species DNA aligment,agent,0.957446809,gpt-4.1-mini,950000000000
+Protein-coding genes,agent,1,gpt-4.1-mini,950000000000
+SNP location,agent,1,gpt-4.1-mini,950000000000
+Gene alias,agent,0.96,gpt-4.1-nano,925000000000
+Gene disease association,agent,0.756944444,gpt-4.1-nano,925000000000
+Gene location,agent,1,gpt-4.1-nano,925000000000
+Gene name conversion,agent,0.92,gpt-4.1-nano,925000000000
+Gene SNP association,agent,1,gpt-4.1-nano,925000000000
+Human genome DNA aligment,agent,0.729592,gpt-4.1-nano,925000000000
+Multi-species DNA aligment,agent,0.957446809,gpt-4.1-nano,925000000000
+Protein-coding genes,agent,1,gpt-4.1-nano,925000000000
+SNP location,agent,0.98,gpt-4.1-nano,925000000000
+Gene alias,agent,0.96,Qwen_Qwen2.5-72B-Instruct,72700000000
+Gene disease association,agent,0.927083333,Qwen_Qwen2.5-72B-Instruct,72700000000
+Gene location,agent,1,Qwen_Qwen2.5-72B-Instruct,72700000000
+Gene name conversion,agent,1,Qwen_Qwen2.5-72B-Instruct,72700000000
+Gene SNP association,agent,1,Qwen_Qwen2.5-72B-Instruct,72700000000
+Human genome DNA aligment,agent,0.913265408,Qwen_Qwen2.5-72B-Instruct,72700000000
+Multi-species DNA aligment,agent,0.978723404,Qwen_Qwen2.5-72B-Instruct,72700000000
+Protein-coding genes,agent,1,Qwen_Qwen2.5-72B-Instruct,72700000000
+SNP location,agent,1,Qwen_Qwen2.5-72B-Instruct,72700000000
+Gene alias,agent,0.94,Qwen_Qwen2.5-Coder-3B-Instruct,3090000000
+Gene disease association,agent,0.791666667,Qwen_Qwen2.5-Coder-3B-Instruct,3090000000
+Gene location,agent,1,Qwen_Qwen2.5-Coder-3B-Instruct,3090000000
+Gene name conversion,agent,1,Qwen_Qwen2.5-Coder-3B-Instruct,3090000000
+Gene SNP association,agent,1,Qwen_Qwen2.5-Coder-3B-Instruct,3090000000
+Human genome DNA aligment,agent,0.673469735,Qwen_Qwen2.5-Coder-3B-Instruct,3090000000
+Multi-species DNA aligment,agent,0.978723404,Qwen_Qwen2.5-Coder-3B-Instruct,3090000000
+Protein-coding genes,agent,0.96,Qwen_Qwen2.5-Coder-3B-Instruct,3090000000
+SNP location,agent,1,Qwen_Qwen2.5-Coder-3B-Instruct,3090000000
+Gene alias,agent,0.96,ibm_granite-3.3-8b-instruct,8000000000
+Gene disease association,agent,0.71235119,ibm_granite-3.3-8b-instruct,8000000000
+Gene location,agent,0.978723404,ibm_granite-3.3-8b-instruct,8000000000
+Gene name conversion,agent,1,ibm_granite-3.3-8b-instruct,8000000000
+Gene SNP association,agent,1,ibm_granite-3.3-8b-instruct,8000000000
+Human genome DNA aligment,agent,0.704081857,ibm_granite-3.3-8b-instruct,8000000000
+Multi-species DNA aligment,agent,0.957446809,ibm_granite-3.3-8b-instruct,8000000000
+Protein-coding genes,agent,0.96,ibm_granite-3.3-8b-instruct,8000000000
+SNP location,agent,1,ibm_granite-3.3-8b-instruct,8000000000
+Gene alias,agent,0.98,meta_llama-3.1-405b-instruct,405000000000
+Gene disease association,agent,0.927083333,meta_llama-3.1-405b-instruct,405000000000
+Gene location,agent,1,meta_llama-3.1-405b-instruct,405000000000
+Gene name conversion,agent,1,meta_llama-3.1-405b-instruct,405000000000
+Gene SNP association,agent,1,meta_llama-3.1-405b-instruct,405000000000
+Human genome DNA aligment,agent,0.887755265,meta_llama-3.1-405b-instruct,405000000000
+Multi-species DNA aligment,agent,0.936170213,meta_llama-3.1-405b-instruct,405000000000
+Protein-coding genes,agent,0.98,meta_llama-3.1-405b-instruct,405000000000
+SNP location,agent,1,meta_llama-3.1-405b-instruct,405000000000
+Gene alias,agent,0.96,meta_llama-3.1-8b-instruct,8000000000
+Gene disease association,agent,0.90625,meta_llama-3.1-8b-instruct,8000000000
+Gene location,agent,1,meta_llama-3.1-8b-instruct,8000000000
+Gene name conversion,agent,0.9,meta_llama-3.1-8b-instruct,8000000000
+Gene SNP association,agent,1,meta_llama-3.1-8b-instruct,8000000000
+Human genome DNA aligment,agent,0.734694204,meta_llama-3.1-8b-instruct,8000000000
+Multi-species DNA aligment,agent,0.936170213,meta_llama-3.1-8b-instruct,8000000000
+Protein-coding genes,agent,0.98,meta_llama-3.1-8b-instruct,8000000000
+SNP location,agent,0.98,meta_llama-3.1-8b-instruct,8000000000
+Gene alias,agent,0.9,meta_llama-3.2-3b-instruct,3210000000
+Gene disease association,agent,0.79375,meta_llama-3.2-3b-instruct,3210000000
+Gene location,agent,0.680851064,meta_llama-3.2-3b-instruct,3210000000
+Gene name conversion,agent,1,meta_llama-3.2-3b-instruct,3210000000
+Gene SNP association,agent,1,meta_llama-3.2-3b-instruct,3210000000
+Human genome DNA aligment,agent,0.448980449,meta_llama-3.2-3b-instruct,3210000000
+Multi-species DNA aligment,agent,0.957446809,meta_llama-3.2-3b-instruct,3210000000
+Protein-coding genes,agent,0.8,meta_llama-3.2-3b-instruct,3210000000
+SNP location,agent,1,meta_llama-3.2-3b-instruct,3210000000
+Gene alias,agent,0.96,meta_llama-3.3-70b-instruct,70000000000
+Gene disease association,agent,0.927083333,meta_llama-3.3-70b-instruct,70000000000
+Gene location,agent,1,meta_llama-3.3-70b-instruct,70000000000
+Gene name conversion,agent,0.86,meta_llama-3.3-70b-instruct,70000000000
+Gene SNP association,agent,1,meta_llama-3.3-70b-instruct,70000000000
+Human genome DNA aligment,agent,0.836734878,meta_llama-3.3-70b-instruct,70000000000
+Multi-species DNA aligment,agent,0.957446809,meta_llama-3.3-70b-instruct,70000000000
+Protein-coding genes,agent,1,meta_llama-3.3-70b-instruct,70000000000
+SNP location,agent,1,meta_llama-3.3-70b-instruct,70000000000
+Gene alias,agent,0.98,meta_llama-4-scout-17b-16e-instruct,109000000000
+Gene disease association,agent,0.9125,meta_llama-4-scout-17b-16e-instruct,109000000000
+Gene location,agent,1,meta_llama-4-scout-17b-16e-instruct,109000000000
+Gene name conversion,agent,1,meta_llama-4-scout-17b-16e-instruct,109000000000
+Gene SNP association,agent,1,meta_llama-4-scout-17b-16e-instruct,109000000000
+Human genome DNA aligment,agent,0.709183898,meta_llama-4-scout-17b-16e-instruct,109000000000
+Multi-species DNA aligment,agent,0.914893617,meta_llama-4-scout-17b-16e-instruct,109000000000
+Protein-coding genes,agent,1,meta_llama-4-scout-17b-16e-instruct,109000000000
+SNP location,agent,1,meta_llama-4-scout-17b-16e-instruct,109000000000
+Gene alias,agent,0.84,microsoft_phi-3.5-mini-instruct,3800000000
+Gene disease association,agent,0.643402778,microsoft_phi-3.5-mini-instruct,3800000000
+Gene location,agent,0.85106383,microsoft_phi-3.5-mini-instruct,3800000000
+Gene name conversion,agent,1,microsoft_phi-3.5-mini-instruct,3800000000
+Gene SNP association,agent,1,microsoft_phi-3.5-mini-instruct,3800000000
+Human genome DNA aligment,agent,0.500000224,microsoft_phi-3.5-mini-instruct,3800000000
+Multi-species DNA aligment,agent,0.914893617,microsoft_phi-3.5-mini-instruct,3800000000
+Protein-coding genes,agent,0.9,microsoft_phi-3.5-mini-instruct,3800000000
+SNP location,agent,1,microsoft_phi-3.5-mini-instruct,3800000000
+Gene alias,agent,0.88,microsoft_phi-3-small-128k-instruct,7000000000
+Gene disease association,agent,0.759722222,microsoft_phi-3-small-128k-instruct,7000000000
+Gene location,agent,0.936170213,microsoft_phi-3-small-128k-instruct,7000000000
+Gene name conversion,agent,0.96,microsoft_phi-3-small-128k-instruct,7000000000
+Gene SNP association,agent,1,microsoft_phi-3-small-128k-instruct,7000000000
+Human genome DNA aligment,agent,0.607143245,microsoft_phi-3-small-128k-instruct,7000000000
+Multi-species DNA aligment,agent,0.957446809,microsoft_phi-3-small-128k-instruct,7000000000
+Protein-coding genes,agent,0.86,microsoft_phi-3-small-128k-instruct,7000000000
+SNP location,agent,1,microsoft_phi-3-small-128k-instruct,7000000000
+Gene alias,agent,0.86,microsoft_phi-4-mini-instruct,3800000000
+Gene disease association,agent,0.622916667,microsoft_phi-4-mini-instruct,3800000000
+Gene location,agent,0.893617021,microsoft_phi-4-mini-instruct,3800000000
+Gene name conversion,agent,1,microsoft_phi-4-mini-instruct,3800000000
+Gene SNP association,agent,1,microsoft_phi-4-mini-instruct,3800000000
+Human genome DNA aligment,agent,0.642857449,microsoft_phi-4-mini-instruct,3800000000
+Multi-species DNA aligment,agent,0.957446809,microsoft_phi-4-mini-instruct,3800000000
+Protein-coding genes,agent,0.98,microsoft_phi-4-mini-instruct,3800000000
+SNP location,agent,1,microsoft_phi-4-mini-instruct,3800000000
+Gene alias,agent,0.96,mistralai_mistral-7b-instruct-v0.3,7000000000
+Gene disease association,agent,0.770833333,mistralai_mistral-7b-instruct-v0.3,7000000000
+Gene location,agent,1,mistralai_mistral-7b-instruct-v0.3,7000000000
+Gene name conversion,agent,0.98,mistralai_mistral-7b-instruct-v0.3,7000000000
+Gene SNP association,agent,1,mistralai_mistral-7b-instruct-v0.3,7000000000
+Human genome DNA aligment,agent,0.71938798,mistralai_mistral-7b-instruct-v0.3,7000000000
+Multi-species DNA aligment,agent,0.957446809,mistralai_mistral-7b-instruct-v0.3,7000000000
+Protein-coding genes,agent,1,mistralai_mistral-7b-instruct-v0.3,7000000000
+SNP location,agent,0.98,mistralai_mistral-7b-instruct-v0.3,7000000000
+Gene alias,agent,0.96,mistralai_mistral-nemotron,12000000000
+Gene disease association,agent,0.927083333,mistralai_mistral-nemotron,12000000000
+Gene location,agent,1,mistralai_mistral-nemotron,12000000000
+Gene name conversion,agent,1,mistralai_mistral-nemotron,12000000000
+Gene SNP association,agent,1,mistralai_mistral-nemotron,12000000000
+Human genome DNA aligment,agent,0.887755184,mistralai_mistral-nemotron,12000000000
+Multi-species DNA aligment,agent,0.957446809,mistralai_mistral-nemotron,12000000000
+Protein-coding genes,agent,1,mistralai_mistral-nemotron,12000000000
+SNP location,agent,1,mistralai_mistral-nemotron,12000000000
+Gene alias,agent,0.98,mistralai_mistral-small-3.1-24b-instruct-2503,24000000000
+Gene disease association,agent,0.902083333,mistralai_mistral-small-3.1-24b-instruct-2503,24000000000
+Gene location,agent,1,mistralai_mistral-small-3.1-24b-instruct-2503,24000000000
+Gene name conversion,agent,1,mistralai_mistral-small-3.1-24b-instruct-2503,24000000000
+Gene SNP association,agent,1,mistralai_mistral-small-3.1-24b-instruct-2503,24000000000
+Human genome DNA aligment,agent,0.760204184,mistralai_mistral-small-3.1-24b-instruct-2503,24000000000
+Multi-species DNA aligment,agent,0.957446809,mistralai_mistral-small-3.1-24b-instruct-2503,24000000000
+Protein-coding genes,agent,1,mistralai_mistral-small-3.1-24b-instruct-2503,24000000000
+SNP location,agent,0.98,mistralai_mistral-small-3.1-24b-instruct-2503,24000000000
+Gene alias,agent,0.96,mistralai_mixtral-8x7b-instruct-v0.1,56000000000
+Gene disease association,agent,0.745833333,mistralai_mixtral-8x7b-instruct-v0.1,56000000000
+Gene location,agent,0.957446809,mistralai_mixtral-8x7b-instruct-v0.1,56000000000
+Gene name conversion,agent,1,mistralai_mixtral-8x7b-instruct-v0.1,56000000000
+Gene SNP association,agent,1,mistralai_mixtral-8x7b-instruct-v0.1,56000000000
+Human genome DNA aligment,agent,0.770408367,mistralai_mixtral-8x7b-instruct-v0.1,56000000000
+Multi-species DNA aligment,agent,0.914893617,mistralai_mixtral-8x7b-instruct-v0.1,56000000000
+Protein-coding genes,agent,0.98,mistralai_mixtral-8x7b-instruct-v0.1,56000000000
+SNP location,agent,0.94,mistralai_mixtral-8x7b-instruct-v0.1,56000000000
+Gene alias,agent,0.96,nvidia_llama-3.1-nemotron-51b-instruct,51500000000
+Gene disease association,agent,0.90625,nvidia_llama-3.1-nemotron-51b-instruct,51500000000
+Gene location,agent,1,nvidia_llama-3.1-nemotron-51b-instruct,51500000000
+Gene name conversion,agent,0.9,nvidia_llama-3.1-nemotron-51b-instruct,51500000000
+Gene SNP association,agent,1,nvidia_llama-3.1-nemotron-51b-instruct,51500000000
+Human genome DNA aligment,agent,0.801020531,nvidia_llama-3.1-nemotron-51b-instruct,51500000000
+Multi-species DNA aligment,agent,0.957446809,nvidia_llama-3.1-nemotron-51b-instruct,51500000000
+Protein-coding genes,agent,1,nvidia_llama-3.1-nemotron-51b-instruct,51500000000
+SNP location,agent,1,nvidia_llama-3.1-nemotron-51b-instruct,51500000000
+Gene alias,agent,0.98,nvidia_llama-3.1-nemotron-ultra-253b-v1,253000000000
+Gene disease association,agent,0.927083333,nvidia_llama-3.1-nemotron-ultra-253b-v1,253000000000
+Gene location,agent,1,nvidia_llama-3.1-nemotron-ultra-253b-v1,253000000000
+Gene name conversion,agent,1,nvidia_llama-3.1-nemotron-ultra-253b-v1,253000000000
+Gene SNP association,agent,1,nvidia_llama-3.1-nemotron-ultra-253b-v1,253000000000
+Human genome DNA aligment,agent,0.908163367,nvidia_llama-3.1-nemotron-ultra-253b-v1,253000000000
+Multi-species DNA aligment,agent,0.957446809,nvidia_llama-3.1-nemotron-ultra-253b-v1,253000000000
+Protein-coding genes,agent,1,nvidia_llama-3.1-nemotron-ultra-253b-v1,253000000000
+SNP location,agent,1,nvidia_llama-3.1-nemotron-ultra-253b-v1,253000000000
+Gene alias,agent,0.98,nvidia_llama-3.3-nemotron-super-49b-v1.5,49900000000
+Gene disease association,agent,0.902083333,nvidia_llama-3.3-nemotron-super-49b-v1.5,49900000000
+Gene location,agent,1,nvidia_llama-3.3-nemotron-super-49b-v1.5,49900000000
+Gene name conversion,agent,0.96,nvidia_llama-3.3-nemotron-super-49b-v1.5,49900000000
+Gene SNP association,agent,1,nvidia_llama-3.3-nemotron-super-49b-v1.5,49900000000
+Human genome DNA aligment,agent,0.85204098,nvidia_llama-3.3-nemotron-super-49b-v1.5,49900000000
+Multi-species DNA aligment,agent,0.978723404,nvidia_llama-3.3-nemotron-super-49b-v1.5,49900000000
+Protein-coding genes,agent,1,nvidia_llama-3.3-nemotron-super-49b-v1.5,49900000000
+SNP location,agent,1,nvidia_llama-3.3-nemotron-super-49b-v1.5,49900000000
+Gene alias,agent,0.98,nvidia_nvidia-nemotron-nano-9b-v2,9000000000
+Gene disease association,agent,0.840277778,nvidia_nvidia-nemotron-nano-9b-v2,9000000000
+Gene location,agent,1,nvidia_nvidia-nemotron-nano-9b-v2,9000000000
+Gene name conversion,agent,1,nvidia_nvidia-nemotron-nano-9b-v2,9000000000
+Gene SNP association,agent,1,nvidia_nvidia-nemotron-nano-9b-v2,9000000000
+Human genome DNA aligment,agent,0.663265408,nvidia_nvidia-nemotron-nano-9b-v2,9000000000
+Multi-species DNA aligment,agent,0.936170213,nvidia_nvidia-nemotron-nano-9b-v2,9000000000
+Protein-coding genes,agent,1,nvidia_nvidia-nemotron-nano-9b-v2,9000000000
+SNP location,agent,1,nvidia_nvidia-nemotron-nano-9b-v2,9000000000
+Gene alias,agent,0.98,nv-mistralai_mistral-nemo-12b-instruct,12000000000
+Gene disease association,agent,0.902083333,nv-mistralai_mistral-nemo-12b-instruct,12000000000
+Gene location,agent,1,nv-mistralai_mistral-nemo-12b-instruct,12000000000
+Gene name conversion,agent,1,nv-mistralai_mistral-nemo-12b-instruct,12000000000
+Gene SNP association,agent,1,nv-mistralai_mistral-nemo-12b-instruct,12000000000
+Human genome DNA aligment,agent,0.775510469,nv-mistralai_mistral-nemo-12b-instruct,12000000000
+Multi-species DNA aligment,agent,0.957446809,nv-mistralai_mistral-nemo-12b-instruct,12000000000
+Protein-coding genes,agent,1,nv-mistralai_mistral-nemo-12b-instruct,12000000000
+SNP location,agent,0.98,nv-mistralai_mistral-nemo-12b-instruct,12000000000
+Gene alias,agent,0.96,qwen_qwen2.5-7b-instruct,7000000000
+Gene disease association,agent,0.815277778,qwen_qwen2.5-7b-instruct,7000000000
+Gene location,agent,1,qwen_qwen2.5-7b-instruct,7000000000
+Gene name conversion,agent,1,qwen_qwen2.5-7b-instruct,7000000000
+Gene SNP association,agent,1,qwen_qwen2.5-7b-instruct,7000000000
+Human genome DNA aligment,agent,0.811224592,qwen_qwen2.5-7b-instruct,7000000000
+Multi-species DNA aligment,agent,0.957446809,qwen_qwen2.5-7b-instruct,7000000000
+Protein-coding genes,agent,0.98,qwen_qwen2.5-7b-instruct,7000000000
+SNP location,agent,1,qwen_qwen2.5-7b-instruct,7000000000
+Gene alias,agent,0.92,qwen_qwen2.5-coder-32b-instruct,32000000000
+Gene disease association,agent,0.922916667,qwen_qwen2.5-coder-32b-instruct,32000000000
+Gene location,agent,1,qwen_qwen2.5-coder-32b-instruct,32000000000
+Gene name conversion,agent,0.96,qwen_qwen2.5-coder-32b-instruct,32000000000
+Gene SNP association,agent,1,qwen_qwen2.5-coder-32b-instruct,32000000000
+Human genome DNA aligment,agent,0.790816469,qwen_qwen2.5-coder-32b-instruct,32000000000
+Multi-species DNA aligment,agent,1,qwen_qwen2.5-coder-32b-instruct,32000000000
+Protein-coding genes,agent,1,qwen_qwen2.5-coder-32b-instruct,32000000000
+SNP location,agent,1,qwen_qwen2.5-coder-32b-instruct,32000000000
+Gene alias,agent,0.98,qwen_qwen2.5-coder-7b-instruct,7000000000
+Gene disease association,agent,0.927083333,qwen_qwen2.5-coder-7b-instruct,7000000000
+Gene location,agent,1,qwen_qwen2.5-coder-7b-instruct,7000000000
+Gene name conversion,agent,1,qwen_qwen2.5-coder-7b-instruct,7000000000
+Gene SNP association,agent,1,qwen_qwen2.5-coder-7b-instruct,7000000000
+Human genome DNA aligment,agent,0.877551061,qwen_qwen2.5-coder-7b-instruct,7000000000
+Multi-species DNA aligment,agent,0.978723404,qwen_qwen2.5-coder-7b-instruct,7000000000
+Protein-coding genes,agent,1,qwen_qwen2.5-coder-7b-instruct,7000000000
+SNP location,agent,1,qwen_qwen2.5-coder-7b-instruct,7000000000
+Gene alias,agent,0.96,qwen_qwen3-235b-a22b,234000000000
+Gene disease association,agent,0.927083333,qwen_qwen3-235b-a22b,234000000000
+Gene location,agent,1,qwen_qwen3-235b-a22b,234000000000
+Gene name conversion,agent,1,qwen_qwen3-235b-a22b,234000000000
+Gene SNP association,agent,1,qwen_qwen3-235b-a22b,234000000000
+Human genome DNA aligment,agent,0.918367429,qwen_qwen3-235b-a22b,234000000000
+Multi-species DNA aligment,agent,0.957446809,qwen_qwen3-235b-a22b,234000000000
+Protein-coding genes,agent,1,qwen_qwen3-235b-a22b,234000000000
+SNP location,agent,1,qwen_qwen3-235b-a22b,234000000000
+Gene alias,agent,0.96,tiiuae_falcon3-7b-instruct,7220000000
+Gene disease association,agent,0.85,tiiuae_falcon3-7b-instruct,7220000000
+Gene location,agent,0.936170213,tiiuae_falcon3-7b-instruct,7220000000
+Gene name conversion,agent,0.98,tiiuae_falcon3-7b-instruct,7220000000
+Gene SNP association,agent,1,tiiuae_falcon3-7b-instruct,7220000000
+Human genome DNA aligment,agent,0.683673878,tiiuae_falcon3-7b-instruct,7220000000
+Multi-species DNA aligment,agent,0.978723404,tiiuae_falcon3-7b-instruct,7220000000
+Protein-coding genes,agent,0.96,tiiuae_falcon3-7b-instruct,7220000000
+SNP location,agent,1,tiiuae_falcon3-7b-instruct,7220000000
+Gene alias,agent,0.98,claude-3-7-sonnet-20250219,925000000000
+Gene disease association,agent,0.927083333,claude-3-7-sonnet-20250219,925000000000
+Gene location,agent,1,claude-3-7-sonnet-20250219,925000000000
+Gene name conversion,agent,1,claude-3-7-sonnet-20250219,925000000000
+Gene SNP association,agent,1,claude-3-7-sonnet-20250219,925000000000
+Human genome DNA aligment,agent,0.887755286,claude-3-7-sonnet-20250219,925000000000
+Multi-species DNA aligment,agent,0.957446809,claude-3-7-sonnet-20250219,925000000000
+Protein-coding genes,agent,1,claude-3-7-sonnet-20250219,925000000000
+SNP location,agent,0.86,claude-3-7-sonnet-20250219,925000000000
+Gene alias,agent,0.98,gemini-1.5-flash,900000000000
+Gene disease association,agent,0.90625,gemini-1.5-flash,900000000000
+Gene location,agent,1,gemini-1.5-flash,900000000000
+Gene name conversion,agent,1,gemini-1.5-flash,900000000000
+Gene SNP association,agent,1,gemini-1.5-flash,900000000000
+Human genome DNA aligment,agent,0.897959327,gemini-1.5-flash,900000000000
+Multi-species DNA aligment,agent,0.978723404,gemini-1.5-flash,900000000000
+Protein-coding genes,agent,1,gemini-1.5-flash,900000000000
+SNP location,agent,1,gemini-1.5-flash,900000000000
+Gene alias,agent,0.96,gemini-2.0-flash,950000000000
+Gene disease association,agent,0.927083333,gemini-2.0-flash,950000000000
+Gene location,agent,1,gemini-2.0-flash,950000000000
+Gene name conversion,agent,1,gemini-2.0-flash,950000000000
+Gene SNP association,agent,1,gemini-2.0-flash,950000000000
+Human genome DNA aligment,agent,0.790816592,gemini-2.0-flash,950000000000
+Multi-species DNA aligment,agent,0.957446809,gemini-2.0-flash,950000000000
+Protein-coding genes,agent,0.98,gemini-2.0-flash,950000000000
+SNP location,agent,1,gemini-2.0-flash,950000000000
+Gene alias,agent,0.98,gpt-4o-mini,900000000000
+Gene disease association,agent,0.839583333,gpt-4o-mini,900000000000
+Gene location,agent,1,gpt-4o-mini,900000000000
+Gene name conversion,agent,1,gpt-4o-mini,900000000000
+Gene SNP association,agent,1,gpt-4o-mini,900000000000
+Human genome DNA aligment,agent,0.821428714,gpt-4o-mini,900000000000
+Multi-species DNA aligment,agent,0.978723404,gpt-4o-mini,900000000000
+Protein-coding genes,agent,1,gpt-4o-mini,900000000000
+SNP location,agent,1,gpt-4o-mini,900000000000
+Gene alias,agent,0.98,gpt-5-nano,925000000000
+Gene disease association,agent,0.90625,gpt-5-nano,925000000000
+Gene location,agent,1,gpt-5-nano,925000000000
+Gene name conversion,agent,1,gpt-5-nano,925000000000
+Gene SNP association,agent,0.98,gpt-5-nano,925000000000
+Human genome DNA aligment,agent,0.739796041,gpt-5-nano,925000000000
+Multi-species DNA aligment,agent,0.957446809,gpt-5-nano,925000000000
+Protein-coding genes,agent,1,gpt-5-nano,925000000000
+SNP location,agent,1,gpt-5-nano,925000000000
+Gene alias,agent,0.98,google_gemma-3-12b-it,12200000000
+Gene disease association,agent,0.916666667,google_gemma-3-12b-it,12200000000
+Gene location,agent,0.978723404,google_gemma-3-12b-it,12200000000
+Gene name conversion,agent,1,google_gemma-3-12b-it,12200000000
+Gene SNP association,agent,1,google_gemma-3-12b-it,12200000000
+Human genome DNA aligment,agent,0.831632755,google_gemma-3-12b-it,12200000000
+Multi-species DNA aligment,agent,0.957446809,google_gemma-3-12b-it,12200000000
+Protein-coding genes,agent,1,google_gemma-3-12b-it,12200000000
+SNP location,agent,1,google_gemma-3-12b-it,12200000000
+Gene alias,agent,0.96,zai-org_GLM-4-9B-0414,9400000000
+Gene disease association,agent,0.854166667,zai-org_GLM-4-9B-0414,9400000000
+Gene location,agent,1,zai-org_GLM-4-9B-0414,9400000000
+Gene name conversion,agent,1,zai-org_GLM-4-9B-0414,9400000000
+Gene SNP association,agent,1,zai-org_GLM-4-9B-0414,9400000000
+Human genome DNA aligment,agent,0.857142939,zai-org_GLM-4-9B-0414,9400000000
+Multi-species DNA aligment,agent,0.936170213,zai-org_GLM-4-9B-0414,9400000000
+Protein-coding genes,agent,1,zai-org_GLM-4-9B-0414,9400000000
+SNP location,agent,1,zai-org_GLM-4-9B-0414,9400000000
+Gene alias,agent,0.86,microsoft_phi-4-multimodal-instruct,5600000000
+Gene disease association,agent,0.627083333,microsoft_phi-4-multimodal-instruct,5600000000
+Gene location,agent,0.893617021,microsoft_phi-4-multimodal-instruct,5600000000
+Gene name conversion,agent,1,microsoft_phi-4-multimodal-instruct,5600000000
+Gene SNP association,agent,1,microsoft_phi-4-multimodal-instruct,5600000000
+Human genome DNA aligment,agent,0.693877918,microsoft_phi-4-multimodal-instruct,5600000000
+Multi-species DNA aligment,agent,0.936170213,microsoft_phi-4-multimodal-instruct,5600000000
+Protein-coding genes,agent,0.96,microsoft_phi-4-multimodal-instruct,5600000000
+SNP location,agent,0.98,microsoft_phi-4-multimodal-instruct,5600000000

@@ -2,7 +2,7 @@
 NCBI-specific tool implementations for the generic agent framework.
 These are domain-specific implementations that plug into the generic framework.
 """
-DEFAULT_MODEL_NAME = "gpt-4o-mini" # Default model for LLM calls in this module
+DEFAULT_MODEL_NAME = "BadName to defend against fallback. In prod can set it back to default model" # "gpt-4o-mini" # Default model for LLM calls in this module
 DEFAULT_RETMAX = 5  # Default number of records to return
 USE_FALLBACK_WITHRULES = False
 MAX_DOCUMENT_SIZE = 30000
@@ -13,7 +13,7 @@ import re
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 from .gene_utils import call_api, log_event
-from ..core.model_utils import extract_json_dict_from_llm_response, create_langchain_model, invoke_llm_with_config
+from ..core.model_utils import extract_json_dict_from_llm_response, create_langchain_model, invoke_llm_with_config, get_model_config, tokens_to_chars
 
 CONFIG_DIR = Path(__file__).parent.parent / "config"
 PATH_EXAMPLES = str(CONFIG_DIR / "examples" / "ncbi_examples.json")
@@ -23,10 +23,10 @@ def infer_parameters_from_task(context: Dict[str, Any]) -> Dict[str, Any]:
     # upgrade to FewShotChatMessagePromptTemplate API later if needed
     # Use the LLM from context if available
     llm = context.get("llm")
-    if not llm:
-        llm = create_langchain_model(model_name=DEFAULT_MODEL_NAME)
     model_name = context.get('model_name', DEFAULT_MODEL_NAME)
-    
+    if not llm:
+        llm = create_langchain_model(model_name=model_name)
+
     task = context.get("task", "")
     task_type = context.get('task_type', '')
     tool_config = context.get("tool_config", {}) 
@@ -86,7 +86,7 @@ def infer_parameters_from_task(context: Dict[str, Any]) -> Dict[str, Any]:
             # log_event(f"DEBUG: Raw LLM response content: {response.content}")
             # log_event(f"DEBUG: JSON decode error: {e}")
             if USE_FALLBACK_WITHRULES:
-                # Fallback to rule-based if JSON parsing fails
+                # Only used for testing: Fallback to rule-based if JSON parsing fails
                 log_event("Warning: LLM response not valid JSON, falling back to rule-based approach")
                 log_event(f"infer_parameters_from_task response content: {response}")
                 
@@ -100,6 +100,9 @@ def infer_parameters_from_task(context: Dict[str, Any]) -> Dict[str, Any]:
                     return {"parameters": fallback_result, "logs": logs}
             else:
                 raise  # Re-raise the JSONDecodeError if fallback is disabled
+        
+        if task_type in ['gene_alias']:
+            parameters['orgn'] = 'homo sapiens'
         
         logs.append(f"infer_parameters_from_task: Extracted parameters: {parameters}")
         return {
@@ -123,9 +126,16 @@ def get_esearch_idlist_from_param(context: Dict[str, Any]) -> Dict[str, Any]:
     search_term = parameters.get("search_term", "")
     retmax = parameters.get("retmax", DEFAULT_RETMAX)
     retmode = parameters.get("retmode", "json")
+    orgn = parameters.get("orgn", "")
     
     if not search_term:
         raise ValueError("No search term provided")
+    
+    if orgn.lower() == "human" or orgn.lower() == "homo sapiens":
+        if database == "gene":
+            entrez_query = "%20NOT%20discontinued[prop]" # not discontinued property
+            entrez_query = entrez_query + "%20AND%20Homo%20sapiens[orgn]"
+            search_term = search_term + entrez_query
     
     url = f'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db={database}&retmax={retmax}&retmode={retmode}&sort=relevance&term={search_term}'
     
@@ -343,28 +353,60 @@ def get_blast_doc_from_rid(context: Dict[str, Any]) -> Dict[str, Any]:
 """Few-shot LLM parsing for NCBI documents - step-specific learning."""
 def parse_answer_from_doc(context: Dict[str, Any]) -> Dict[str, Any]:
     
+    do_dynamic_truncation = True  # Set to False to use old MAX_DOCUMENT_SIZE logic
+    
     # Use the LLM from context instead of creating a new one
     llm = context.get("llm")
+    model_name = context.get('model_name', DEFAULT_MODEL_NAME)
     if not llm:
         # Fallback to creating one (shouldn't happen normally)
-        llm = create_langchain_model(model_name=DEFAULT_MODEL_NAME)
-    model_name = context.get('model_name', DEFAULT_MODEL_NAME)
+        llm = create_langchain_model(model_name=model_name)
     
-    document = context.get("document", "")
+    # document = context.get("document", "")
+    document_raw = context.get("document", "")
+    if isinstance(document_raw, dict):
+        document = json.dumps(document_raw)
+    else:
+        document = document_raw
+    
     task = context.get("task", "")
     api_urls = context.get("api_urls", [])
-    
+    logs = []
     if not document:
         return {"answer": "No document provided", "api_urls": [], "logs": ["parse_answer_from_doc: No document provided"]}
     
-    # TRUNCATE LARGE DOCUMENTS TO AVOID RATE LIMITS
     original_doc_size = len(document)
-    if len(document) > MAX_DOCUMENT_SIZE:
-        if 'blast' in api_urls[0].lower() if api_urls else False:
-            document = _smart_truncate_blast_for_parsing(document, MAX_DOCUMENT_SIZE)
-        else:
-            document = document[:MAX_DOCUMENT_SIZE]
-            document += "\n\n[Document truncated to avoid rate limits]"
+    max_chars = 0
+    if do_dynamic_truncation:
+        # NEW LOGIC: Dynamic truncation based on model context window
+        # Get model config for dynamic truncation
+        model_config = get_model_config(model_name)
+        context_window = model_config.get("context_window", 32000)
+        max_tokens = model_config.get("max_tokens", 512)
+        
+        # Convert context window to characters (leave buffer for response)
+        # Reserve space: context_window - max_tokens - safety_buffer
+        safety_buffer = 0 # bigger the more conservative, but less accuracy
+        safety_ratio = 1.10 # smaller the more conservative, but less accuracy
+        available_tokens = context_window - max_tokens - safety_buffer  # 50 token safety buffer
+        max_chars = int(tokens_to_chars(available_tokens, model_name) * safety_ratio)
+        
+        log_event(f"parse_answer_from_doc: Model: {model_name}, Context: {context_window} tokens, Max chars: {max_chars}")
+        log_event(f"parse_answer_from_doc: do_dynamic_truncation: {do_dynamic_truncation}, safety_ratio: {safety_ratio}, safety_buffer: {safety_buffer}")
+        log_event(f"parse_answer_from_doc: document type: {type(document)}")
+
+    else:
+        # TRUNCATE LARGE DOCUMENTS TO AVOID RATE LIMITS
+        original_doc_size = len(document)
+        if len(document) > MAX_DOCUMENT_SIZE:
+            if 'blast' in api_urls[0].lower() if api_urls else False:
+                document = _smart_truncate_blast_for_parsing(document, MAX_DOCUMENT_SIZE)
+            else:
+                document = document[:MAX_DOCUMENT_SIZE]
+                document += "\n\n[Document truncated to avoid rate limits]"
+        # Add truncation info to logs
+        if original_doc_size > MAX_DOCUMENT_SIZE:
+            logs.append(f"parse_answer_from_doc: Document truncated from {original_doc_size} to {len(document)} chars")
         
     # Determine task type for appropriate examples
     task_type = context.get('task_type', '')
@@ -381,7 +423,6 @@ def parse_answer_from_doc(context: Dict[str, Any]) -> Dict[str, Any]:
     
     prompt_text = ""
     prompt_text += instruction_text
-    logs = []
     
     if examples:
         prompt_text += examples_text
@@ -390,18 +431,55 @@ def parse_answer_from_doc(context: Dict[str, Any]) -> Dict[str, Any]:
     else:
         logs = [f"parse_answer_from_doc: Using zero-shot parsing (no examples found for task type '{task_type}')"]
     
-    # Add truncation info to logs
-    if original_doc_size > MAX_DOCUMENT_SIZE:
-        logs.append(f"parse_answer_from_doc: Document truncated from {original_doc_size} to {len(document)} chars")
     
     prompt_text += f"\nTask Type: {task_type}"
     prompt_text += f"\n[ACTUAL TASK TO PARSE - USE THIS]"
     prompt_text += f"{api_text}"
+    
+    num_char_prompt_so_far = len(prompt_text) # accumulated prompt
+    if do_dynamic_truncation:
+        # Calculate remaining budget for document
+        max_document_chars = max(0, max_chars - num_char_prompt_so_far)
+        # more conservative truncation
+        max_document_chars = min(max_document_chars, MAX_DOCUMENT_SIZE)
+        
+        log_event(f"parse_answer_from_doc: Prompt so far: {num_char_prompt_so_far} chars, Document budget: {max_document_chars} chars")
+        '''
+        if len(document) > max_document_chars:
+                logs.extend([f"parse_answer_from_doc: Truncation of doc from {len(document)} to {max_document_chars} chars"])
+                if max_document_chars > 50:  # Only truncate if we have reasonable space
+                    document = document[:max_document_chars-30]  # Leave space for truncation message
+                    document += "\n[Document truncated...]"
+                else:
+                    document = "[Document too large for context]"
+        '''
+        if len(document) > max_document_chars:
+            logs.extend([f"parse_answer_from_doc: Truncation of doc from {len(document)} to {max_document_chars} chars"])
+            if max_document_chars > 50:  # Only truncate if we have reasonable space
+                # Handle BLAST documents with smart truncation, others with simple truncation
+                if 'blast' in api_urls[0].lower() if api_urls else False:
+                    document = _smart_truncate_blast_for_parsing(document, max_document_chars)
+                else:
+                    document = document[:max_document_chars-30]  # Leave space for truncation message
+                    document += "\n[Document truncated...]"
+            else:
+                document = "[Document too large for context]"
+                
+    # Add document to prompt
     prompt_text += f"\nDocument: {document}"
     prompt_text += f"\nTask: {task}"
     prompt_text += f"\n\nAnswer:"
+    
+    log_event("="*10 + " parse_answer_from_doc " + "="*10)
     log_event(prompt_text)
-
+    log_event("="*30)
+    log_event(f"parse_answer_from_doc: Instruction length: {len(instruction_text)} chars")
+    log_event(f"parse_answer_from_doc: Examples length: {len(examples_text)} chars")
+    log_event(f"parse_answer_from_doc: API text length: {len(api_text)} chars")
+    log_event(f"parse_answer_from_doc: Document length: {len(document)} chars")
+    log_event(f"parse_answer_from_doc: Prompt total length: {len(prompt_text)} chars")
+    log_event("="*30)
+    
     try:
         # response = llm.invoke(prompt_text)
         # response = invoke_llm_with_config(llm, prompt_text, model_name)
@@ -869,7 +947,8 @@ def _smart_truncate_blast_for_parsing(document, max_size=MAX_DOCUMENT_SIZE):
     """
     if len(document) <= max_size:
         return document
-    
+    log_event(f"_smart_truncate_blast_for_parsing: doc max_size set as {max_size} chars")
+    log_event(f"_smart_truncate_blast_for_parsing: doc length BEFORE is {len(document)}")
     lines = document.split('\n')
     kept_lines = []
     current_size = 0
@@ -899,4 +978,6 @@ def _smart_truncate_blast_for_parsing(document, max_size=MAX_DOCUMENT_SIZE):
         kept_lines.append(line)
         current_size += len(line) + 1  # +1 for newline
     
-    return '\n'.join(kept_lines)
+    doc_truncated = '\n'.join(kept_lines)
+    log_event(f"_smart_truncate_blast_for_parsing: doc length BEFORE is {len(doc_truncated)} chars")
+    return doc_truncated

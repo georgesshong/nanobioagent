@@ -183,6 +183,17 @@
             "retmax": "5",
             "retmode": "json"
           }
+        },
+        {
+          "input": {
+            "task": "Which chromosome does SNP rs1430464868 locate on human genome?"
+          },
+          "output": {
+            "database": "snp",
+            "search_term": "1430464868",
+            "retmax": "5",
+            "retmode": "json"
+          }
         }
       ],
       "gene_snp_association": [
@@ -206,7 +217,7 @@
           "output": {
             "database": "omim",
             "search_term": "Hemolytic+anemia+due+to+phosphofructokinase+deficiency",
-            "retmax": "20",
+            "retmax": "60",
             "retmode": "json"
           }
         }

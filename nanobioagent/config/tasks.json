@@ -70,9 +70,9 @@
     }
   },
   "human_genome_dna_alignment": {
-    "description": "Human genome DNA alignment",
+    "description": "Align DNA Sequence ('ACGT' letters) to human chromosome location",
     "patterns": [
-      "Align DNA sequence to human genome:[DNA sequence]",
+      "Align DNA sequence to human genome:[ACGT letters]",
       "align dna human genome",
       "location of dna in human genome",
       "which human chromosome is this dna"
@@ -94,10 +94,10 @@
     }
   },
   "multi-species_dna_alignment": {
-    "description": "Find out which organism / species the DNA sequence aligns to",
+    "description": "Find out which organism / species the given DNA sequence ('ACGT' letters) aligns to",
     "patterns": [
       "Which organism does the DNA sequence come from",
-      "Which organism does the DNA sequence come from:[DNA sequence]",
+      "Which organism does the DNA sequence come from:[ACGT letters]",
       "organism DNA sequence",
       "animal DNA sequence"
     ],

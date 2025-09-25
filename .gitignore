@@ -61,23 +61,24 @@ archives/
 *.log.*
 geneturing_results/
 genehop_results/
-zzz_*.*
+zzz*.*
+*.xlsm
+*.bak
+
+# Latex related files
+*.tex
+*.bib
+*.sty
+*.aux
+*.bbl
+*.blg
+*.out
+*.gz
 
 # result files (large data)
-results/
-nothink/
-newinvoke/
-newdata/
-111111/
-# but include specific subfolders
-!nothink/evaluation_reports/
-!nothink/evaluation_reports/**
-!nothink/qwen_qwen2.5-coder-7b-instruct_agent/
-!nothink/qwen_qwen2.5-coder-7b-instruct_agent/**
-!nothink/mistralai_mistral-nemotron_agent/
-!nothink/mistralai_mistral-nemotron_agent/**
-!nothink/gpt-4.1-mini_agent/
-!nothink/gpt-4.1-mini_agent/**
-!nothink/gpt-4.1-mini_genegpt/
-!nothink/gpt-4.1-mini_genegpt/**
+results/*
+
+# but include specific subfolders that contains the final results
+!results/nba_finals/
+!results/nba_finals/**
 

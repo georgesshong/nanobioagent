@@ -30,23 +30,12 @@ except ImportError:
     import openai
     LANGCHAIN_AVAILABLE = False
     openai.api_key = os.environ.get('OPENAI_API_KEY')
-    
+
+DEBUG_PRINT = True
+# GeneGPT method configuration constants
 SKIP_REPEAT_PROMPT = True
 MAX_NUM_CALLS = 10
-DEBUG_PRINT = True
 DEFAULT_MODEL_NAME = "gpt-4o-mini" # Default model for LLM calls in this module
-DEFAULT_RESULTS_FOLDER = "default"
-DEFAULT_STR_MASK = "111111"
-
-@contextmanager
-def suppress_stdout():
-    """Context manager to temporarily suppress stdout output."""
-    original_stdout = sys.stdout
-    sys.stdout = io.StringIO()  # Redirect stdout to a string buffer
-    try:
-        yield
-    finally:
-        sys.stdout = original_stdout  # Restore original stdout
 
 # Ask a question to the common wrapper function that handles different methods and models
 def gene_answer(question, answer=None, method='genegpt', **kwargs):
@@ -157,7 +146,7 @@ def gene_answer_genegpt(question, answer=None, prompt=None, model_name=None, con
                         repeat_prompt=None, **kwargs):
     """
     Handle original GeneGPT API-calling approach.
-    Extracted from the main geneGPT_answer function.
+    Taken from the GeneGPT codebase with minor modifications to enable calling alternative LLMs 
     """
     log_event(question)
     
@@ -186,7 +175,7 @@ def gene_answer_genegpt(question, answer=None, prompt=None, model_name=None, con
     api_urls = []
     num_calls = 0
     
-    # Main API calling loop
+    # Main API calling loop as per inference algorithm in paper
     while True:
         if num_calls >= MAX_NUM_CALLS:
             elapsed_time = round(time.time() - question_start_time, 2)
@@ -201,7 +190,7 @@ def gene_answer_genegpt(question, answer=None, prompt=None, model_name=None, con
                 log_event("Adding final call reminder to prompt")
         
         # Rate limiting
-        time.sleep(1)
+        time.sleep(0.3)
         
         # Call the LLM
         text = call_llm(q_prompt, model_name, config_data, use_fallback, cost_tracker=cost_tracker)
@@ -287,7 +276,7 @@ def geneGPT_answer_retrieve(
     question,
     answer=None, 
     json_paths=['data/geneturing.json', 'data/genehop.json'],
-    method="tfidf",  # "embedding"
+    method="tfidf",  # Similarity method - "embedding", "tfidf", or "simple"
     embedding_model="all-MiniLM-L6-v2", 
     similarity_threshold=0.7,  # Default to 0 to always return best match
     cache_dir="data/cache",
@@ -362,6 +351,7 @@ def geneGPT_answer_retrieve(
     prompts = [[f"Best match: {similar_question} (score: {score:.4f}, below threshold)", f"No answer returned"]]
     return [question, answer, "", prompts, api_urls, elapsed_time]
 
+# helper function to compare different models and methods for a given question
 def gene_compare(
     question,
     list_model_name=["gpt-4.1-mini"],
@@ -467,6 +457,17 @@ def gene_compare(
     
     return results
 
+@contextmanager
+def suppress_stdout():
+    """Context manager to temporarily suppress stdout output."""
+    original_stdout = sys.stdout
+    sys.stdout = io.StringIO()  # Redirect stdout to a string buffer
+    try:
+        yield
+    finally:
+        sys.stdout = original_stdout  # Restore original stdout
+
+# stop annoying prints when calling in notebooks
 def gene_compare_df(question, list_model_name=[DEFAULT_MODEL_NAME], list_method=["direct", "genegpt"], config_data=None, str_mask='111111'):
     with suppress_stdout():
         import pandas as pd

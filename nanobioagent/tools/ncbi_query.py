@@ -620,20 +620,29 @@ class BlastOrganismParser:
         
         # Species mapping for GeneTuring
         species_map = {
-            'Caenorhabditis elegans': 'worm',
+            'Gallus gallus': 'chicken',
+            'Gallus gallus (chicken)': 'chicken',
+            'Cairina moschata': 'duck',
+            'Cairina moschata breed yongchun': 'duck',
             'Homo sapiens': 'human',
+            'Homo sapiens (human)': 'human',
             'human': 'human',
+            'Mus musculus': 'mouse',
+            'Mus musculus (house mouse)': 'mouse',
+            'mouse': 'mouse',
+            'Rattus norvegicus': 'rat',
+            'Rattus norvegicus (rat)': 'rat',
+            'rat': 'rat',
+            'Meleagris gallopavo': 'turkey',
+            'wild turkey': 'turkey',
+            'Caenorhabditis elegans': 'worm',
+            'Saccharomyces cerevisiae': 'yeast',
+            "Saccharomyces cerevisiae (baker's yeast)": 'yeast',
+            'Saccharomyces cerevisiae (yeast)': 'yeast',
+            'yeast': 'yeast',
             'Danio rerio': 'zebrafish',
             'Zebrafish': 'zebrafish',
-            'mouse': 'mouse',
-            'Mus musculus': 'mouse',
-            'Saccharomyces cerevisiae': 'yeast',
-            'yeast': 'yeast',
-            'Rattus norvegicus': 'rat',
-            'rat': 'rat',
-            'Gallus gallus': 'chicken',
-            'Meleagris gallopavo': 'turkey',
-            'Cairina moschata': 'duck',
+            'Zebrafish (Danio rerio)': 'zebrafish',
             'No significant similarity found': 'No significant similarity found'
         }
         # Look for the best hit
@@ -767,18 +776,18 @@ def convert_ensembl_to_official(ensembl_id, retmax=DEFAULT_RETMAX, only_human=Tr
     return find_official_symbol(ensembl_id, retmax=retmax, only_human=only_human, check_other_aliases=check_other_aliases)
 
 # example: Is ATP5F1EP2 a protein-coding gene?
-def is_protein_coding(gene_name):
+def is_protein_coding(gene_name, retmax=DEFAULT_RETMAX):
     """Determine if a gene is protein-coding"""
     engine = NCBIQueryEngine()
     
     # Search for the gene
-    search_result = engine.esearch(gene_name, db="gene", retmax=5)
+    search_result = engine.esearch(gene_name, db="gene", retmax=retmax)
     
     if 'error' in search_result or not search_result.get('ids'):
         return "NA", None
     
     # Fetch gene details
-    fetch_result = engine.efetch(search_result['ids'], db="gene", retmax=5)
+    fetch_result = engine.efetch(search_result['ids'], db="gene", retmax=retmax)
     
     if 'error' in fetch_result:
         return "NA", None
@@ -786,26 +795,11 @@ def is_protein_coding(gene_name):
     content = fetch_result.get('content', '')
     
     return determine_protein_coding_status(content)
-    # Check if the gene is protein-coding
-    # This is a simplified version - would need more complex parsing in real implementation
-    ''' 
-    if re.search(r'protein[- ]coding', content, re.IGNORECASE):
-        return "TRUE", {'fetch_result': content}
-    else:
-        return "NA", {'fetch_result': content}
-    '''
 
+# Returns "TRUE" for protein-coding genes and "NA" for non-protein-coding genes
 def determine_protein_coding_status(content):
-    """
-    Determine if a gene is protein-coding or not based on various indicators.
-    
-    Returns:
-    - "TRUE" for protein-coding genes
-    - "NA" for non-protein-coding genes
-    """
     # Content is entirely lowercase for easier matching
     content_lower = content.lower()
-    
     # Check for indicators of non-coding genes
     non_coding_indicators = [
         r'pseudo(?:gene)?',
@@ -961,11 +955,9 @@ class QuestionClassifier:
     def classify_question(self, question: str, use_patterns_first: bool = True) -> Tuple[str, float]:
         """
         Determine the question type based on either direct pattern matching or embedding similarity.
-        
         Args:
             question: The input question to classify
             use_patterns_first: If True, try pattern matching before using embeddings
-            
         Returns:
             A tuple of (question_type, similarity_score)
         """
