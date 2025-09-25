@@ -2,6 +2,7 @@
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![arXiv](https://img.shields.io/badge/arXiv-2509.19566-b31b1b.svg)](https://arxiv.org/abs/2509.19566)
 
 > **Enabling Small Language Models to Excel at Bio-informatics Q&A Through Tool Orchestration**
 
@@ -39,7 +40,7 @@ cp .env.example .env
 # Run with NBA (NanoBioAgent framework) with 'nba' as experiment name and chosen model 
 python main.py nba --method agent --model gpt-4.1-mini
 
-# Use SLM (<10 billion param) model
+# Use SLM (<10 billion param) model (3 examples below, see model_config.json for more)
 python main.py nba --method agent --model qwen/qwen2.5-coder-7b-instruct
 python main.py nba --method agent --model gemini-1.5-flash-8b
 python main.py nba --method agent --model nvidia/nvidia-nemotron-nano-9b-v2
@@ -206,7 +207,7 @@ One can extend the list easily by simply adding to the [model_config.json](nanob
 
 
 ### 🧪 Implications and Benefits
-NBA demonstrates support for the thesis in [SLMs are the Future of Agentic AI](https://arxiv.org/pdf/2506.02153):
+NBA demonstrates support for the thesis in the paper [SLMs are the Future of Agentic AI](https://arxiv.org/pdf/2506.02153): (see paper for details on 3V's below)
 
 #### **V1 - Sufficient Capability** 🎯
 SLMs (7-10B parameters) achieve **85-97% accuracy** on GeneTuring genomics tasks, proving specialized reasoning doesn't require massive models when properly orchestrated within an agentic framework.
@@ -240,26 +241,27 @@ We welcome contributions! See our [Contributing Guide](docs/CONTRIBUTING.md) for
 ## 📄 Citation
 
 If you use NanoBioAgent (NBA) in your research, please cite:
-**Paper:** [NBA: Nano-Scale Language Model Agents for Bioinformatics](docs/paper/NBA.pdf)
+**Paper:** [Nano Bio-Agents (NBA): Small Language Model Agents for Genomics](https://arxiv.org/pdf/2509.19566)
 ```bibtex
 
-@misc{nbaHong2025,
-  title={Nano Bio-Agents (NBA): Small Language Model Agents for Genomics},
-  author={George Hong, Daniel Trejo Banos},
-  year={2025},
-  eprint={XXXX.XXXXX},
-  archivePrefix={arXiv},
-  primaryClass={cs.AI}
+@misc{hong2025nanobioagentsnbasmall,
+      title={Nano Bio-Agents (NBA): Small Language Model Agents for Genomics}, 
+      author={George Hong and Daniel Trejo Banos},
+      year={2025},
+      eprint={2509.19566},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2509.19566}, 
 }
 ```
 
 
 ## Appendix: Complete NBA Framework Performance Results
 
-### Table: NBA Framework Results by Family across 48 tested models
-*Loosely ordered by Total parameter count (activated or not) or estimates, within family.*
+### Table: NBA Framework Results by Family across 50 tested models
+*Loosely ordered by Total parameter count (activated or not) or estimates, within family. Models with no public information on parameter counts are labelled as "??"*
 
-<sub>
+<small>
 
 | **Family** | **Model** | **Score** | **Size (B)** |
 |------------|-----------|-----------|--------------|
@@ -322,7 +324,7 @@ If you use NanoBioAgent (NBA) in your research, please cite:
 | **Granite** | ibm/granite-3.3-8b-instruct | 91.99% | 8.0 |
 | **Falcon3** | tiiuae/falcon3-7b-instruct | 92.81% | 7.2 |
 
-</sub>
+</small>
 
 ## 🔗 Related Work
 
