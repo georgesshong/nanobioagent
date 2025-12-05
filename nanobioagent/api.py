@@ -16,12 +16,14 @@ from .core.prompts import get_prompt_header, get_prompt_direct, extract_answer
 from .core.model_utils import UniversalCostTracker, call_llm
 
 try:
-    from langchain_community.llms import OpenAI, HuggingFacePipeline
-    from langchain_community.chat_models import ChatOpenAI, ChatGooglePalm, ChatOllama
+    from langchain_community.llms import OpenAI
+    from langchain_huggingface import HuggingFacePipeline
+    from langchain_community.chat_models import ChatOpenAI, ChatGooglePalm
+    from langchain_ollama import ChatOllama
     from langchain_anthropic import ChatAnthropic
-    from langchain.schema import HumanMessage, SystemMessage
-    from langchain.prompts import PromptTemplate
-    from langchain.chains import LLMChain
+    from langchain_core.messages import HumanMessage, SystemMessage
+    from langchain_core.prompts import PromptTemplate
+    from langchain_classic.chains import LLMChain
     import torch
     LANGCHAIN_AVAILABLE = True
 except ImportError:

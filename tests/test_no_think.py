@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from langchain_community.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 
 def test_no_think_approaches():
     """Test different ways to use /no_think"""

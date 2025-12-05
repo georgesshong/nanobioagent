@@ -13,7 +13,7 @@ load_dotenv()
 from langchain_community.chat_models import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_anthropic import ChatAnthropic
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 
 # Configuration
 SYSTEM_MESSAGE = "You are a helpful assistant."
@@ -357,7 +357,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from langchain_community.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 
 def test_qwen_diagnostic():
     """Detailed diagnostic of QWen 3 responses"""

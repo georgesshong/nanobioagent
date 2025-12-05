@@ -35,13 +35,16 @@ from ..tools.gene_utils import log_event
 load_dotenv()
 
 import torch
-from langchain_community.llms import OpenAI, HuggingFacePipeline
-from langchain_community.chat_models import ChatOpenAI, ChatGooglePalm, ChatOllama, ChatHuggingFace
+from langchain_community.llms import OpenAI
+from langchain_huggingface import HuggingFacePipeline
+from langchain_community.chat_models import ChatOpenAI, ChatGooglePalm, ChatHuggingFace
+from langchain_ollama import ChatOllama 
 from langchain_anthropic import ChatAnthropic
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.schema import HumanMessage, SystemMessage
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.prompts import PromptTemplate
+from langchain_classic.chains import LLMChain
+from langchain_core.output_parsers import StrOutputParser
 LANGCHAIN_AVAILABLE = True
 
 # To-Do: fix the deprecated warning from ChatOpenAI
@@ -348,8 +351,8 @@ def call_langchain_model(llm, q_prompt, system_message=SYSTEM_PROMPT_NCBI, model
                 input_variables=["prompt"],
                 template="{prompt}"
             )
-            chain = LLMChain(llm=llm, prompt=prompt_template)
-            return chain.invoke({"prompt": q_prompt}, config={"stop": STOP_SEQUENCE})["text"]
+            chain = prompt_template | llm.bind(stop=STOP_SEQUENCE) | StrOutputParser()
+            return chain.invoke({"prompt": q_prompt})
             
     except Exception as e:
         log_event(f"Error calling LangChain model: {e}")
