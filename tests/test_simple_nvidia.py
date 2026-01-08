@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from langchain_community.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage
+from langchain_core.messages import HumanMessage
 
 def simple_nvidia_test():
     """Simple test to understand the behavior"""

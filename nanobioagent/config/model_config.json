@@ -807,6 +807,15 @@
         "output": 1.1,
         "per_tokens": 1000000
       }
+    },
+    "HuggingFaceTB/SmolLM-360M": {
+      "model_type": "local"
+    },
+    "HuggingFaceTB/SmolLM2-360M-Instruct": {
+      "model_type": "local"
+    },
+    "ibm-granite/granite-4.0-350M": {
+      "model_type": "local"
     }
   }
 }
